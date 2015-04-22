@@ -1,57 +1,71 @@
 ﻿package src
 {
+	import flash.net.SharedObject;
+
 	public class GlobalValues
 	{
-		private static var S_Instance : GlobalValues;
-		public static function Instance() : GlobalValues
+		private static var _instance : GlobalValues;
+		
+		/**
+		* Accesses the instance of <code>GlobalValues</code>.
+		* 
+		* @return The instance of the <code>GlobalValues</code> class.
+		*/
+		public static function instance() : GlobalValues
 		{
-			if (S_Instance == null)
-			{
-				S_Instance = new GlobalValues();
-			}
-			
-			return S_Instance;
+			if (!_instance) _instance = new GlobalValues();
+			return _instance;
 		}
 		
-		private var gender : Boolean;
-		public function GetGender() : Number { return gender; }
-		public function SetGender(n : Number) : void { gender = n; }
+		public var gender : Boolean;
 		
-		private var babies : int;
-		public function GetBabies() : Number { return babies; }
-		public function SetBabies(n : Number) : void { babies = n; }
+		public var babies : int;
+		public var level : int;
 		
-		private var level : int;
-		public function GetLevel() : Number { return level; }
-		public function SetLevel(n : Number) : void { level = n; }
-		
-		private var pleasure : Number;
-		public function GetPleasure() : Number { return pleasure; }
-		public function SetPleasure(n : Number) : void { pleasure = n; }
-		
-		private var risk : Number;
-		public function GetRisk() : Number { return risk; }
-		public function SetRisk(n : Number) : void { risk = n; }
+		public var pleasure : Number;
+		public var risk : Number;
 		
 		public function GlobalValues()
 		{
 			ResetValues();
 		}
 		
-		public function ResetValues()
+		/**
+		* Resets all values back to their base value.
+		*/
+		public function ResetValues() : void
 		{
+			gender = false;
+			babies = 0;
+			level = 0;
 			pleasure = 50;
 			risk = 0;
 		}
 		
-		public function LoadGame()
+		/**
+		* Retreives values from an external save file.
+		*/
+		public function LoadGame() : void
 		{
-			
+			var _data : SharedObject = SharedObject.getLocal("SaveGame");
+			gender = _data.data.gender;
+			babies = _data.data.babies;
+			level = _data.data.level;
+			pleasure = _data.data.pleasure;
+			risk = _data.data.risk;
 		}
 		
-		public function SaveGame()
+		/**
+		* Stores the current values to an external save file.
+		*/
+		public function SaveGame() : void
 		{
-			
+			var _data : SharedObject = SharedObject.getLocal("SaveGame");
+			_data.data.gender = gender;
+			_data.data.babies = Babies;
+			_data.data.level = Level;
+			_data.data.pleasure = Pleasure;
+			_data.data.risk = Risk;
 		}
 	}
 }
