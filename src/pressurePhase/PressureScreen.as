@@ -2,11 +2,13 @@
 {
 	import src.*;
 	import starling.display.Button;
+	import starling.textures.Texture;
 	import flash.events.Event;
 	import flash.net.*;
 	import flash.html.script.Package;
 	import flash.events.IOErrorEvent;
 	import flash.filesystem.File;
+	import src.buttons.*;
 
 	public class PressureScreen extends GameScreen
 	{
@@ -17,7 +19,7 @@
 		
 		public function PressureScreen()
 		{
-			
+			setBackground("ACTION_BACKGROUND_BACKGROUND");
 		}
 		
 		public override function OnEnter() : void
@@ -25,6 +27,11 @@
 			super.OnEnter();
 			
 			CreateRandomPeer();
+			
+			var _texture : Texture = Game.instance().assets.getTexture("button");
+			var _button : ScreenSwitchButton = new ScreenSwitchButton(_texture,_texture,"src.pressurePhase.PressureScreen");
+			
+			this.addChild(_button);
 		}
 		
 		private function CreateRandomPeer() : void

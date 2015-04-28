@@ -9,7 +9,7 @@
 		
 		public function GameScreen()
 		{
-
+			
 		}
 	
 		private var backGround: Image;
