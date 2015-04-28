@@ -59,6 +59,7 @@
 		public function SetModifier(_name : String, _value : Number) : void
 		{
 			modifiers[_name] = _value;
+			trace("Set modifier " + _name + " to value " + _value.toString());
 		}
 		
 		// TODO: Rename.

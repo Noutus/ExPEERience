@@ -3,6 +3,7 @@
 	import starling.display.*;
 	import starling.utils.*;
 	import flash.filesystem.File;
+	import src.pressurePhase.PressureScreen;
 	
 	public class Game extends Sprite
 	{
@@ -37,7 +38,7 @@
 		
 		public function Initialize()
 		{
-			trace(ActionValues.instance().GetModifier(ActionValues.BUTTON_RATIO_TOUCH));
+			SwitchScreen(new PressureScreen());
 		}
 		
 		public function SwitchScreen(_newScreen : GameScreen) : void
