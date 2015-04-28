@@ -45,7 +45,7 @@
 
 		public function Initialize()
 		{
-			SwitchScreen(new PressureScreen());
+			SwitchScreen(new ActionScreen());
 		}
 
 		public function SwitchScreen(_newScreen : GameScreen):void
