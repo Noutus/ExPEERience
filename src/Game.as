@@ -6,6 +6,7 @@
 	import src.pressurePhase.PressureScreen;
 	import src.buttons.ScreenSwitchButton;
 	import starling.textures.Texture;
+	import src.screens.*;
 
 	public class Game extends Sprite
 	{
@@ -45,7 +46,7 @@
 
 		public function Initialize()
 		{
-			SwitchScreen(new ActionScreen());
+			SwitchScreen(new MainMenuScreen());
 		}
 
 		public function SwitchScreen(_newScreen : GameScreen):void

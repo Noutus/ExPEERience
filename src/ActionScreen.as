@@ -11,6 +11,7 @@
 	import starling.text.TextField;
 	import flash.utils.getTimer;
 	import starling.utils.Color;
+	import src.screens.ScoreScreen;
 	
 	public class ActionScreen extends GameScreen {
 		
@@ -146,6 +147,8 @@
 				if (timeLeft <= 0) {
 					paused = true;
 					trace("Game over!");
+					
+					Game.instance().SwitchScreen(new ScoreScreen());
 				}
 			}	
 		}

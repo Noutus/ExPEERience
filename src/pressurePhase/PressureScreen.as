@@ -9,6 +9,7 @@
 	import flash.events.IOErrorEvent;
 	import flash.filesystem.File;
 	import src.buttons.*;
+	import src.screens.Screens;
 
 	public class PressureScreen extends GameScreen
 	{
@@ -28,10 +29,21 @@
 			
 			CreateRandomPeer();
 			
-			var _texture : Texture = Game.instance().assets.getTexture("button");
-			var _button : ScreenSwitchButton = new ScreenSwitchButton(_texture,_texture,"src.pressurePhase.PressureScreen");
+			var _texture : Texture = Game.instance().assets.getTexture("button_no");
+			var _buttonNo : ScreenSwitchButton = new ScreenSwitchButton(_texture,_texture,Screens.ACTION);
 			
-			this.addChild(_button);
+			_buttonNo.x = 0;
+			_buttonNo.y = 300;
+			
+			this.addChild(_buttonNo);
+			
+			var _texture : Texture = Game.instance().assets.getTexture("button_condom");
+			var _buttonCondom : ScreenSwitchButton = new ScreenSwitchButton(_texture,_texture,Screens.ACTION);
+			
+			_buttonCondom.x = 0;
+			_buttonCondom.y = 600;
+			
+			this.addChild(_buttonCondom);
 		}
 		
 		private function CreateRandomPeer() : void
