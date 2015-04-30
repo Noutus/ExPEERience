@@ -20,7 +20,7 @@
 		
 		public function PressureScreen()
 		{
-			setBackground("ACTION_BACKGROUND_BACKGROUND");
+			setBackground(AssetNames.ACTION_BACKGROUND);
 		}
 		
 		public override function OnEnter() : void

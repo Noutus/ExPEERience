@@ -19,7 +19,7 @@
 			var _button : ScreenSwitchButton = new ScreenSwitchButton(_texture, _texture, Screens.STORY);
 			
 			_button.x = 720 - _button.width;
-			_button.y = 900 - _button.height;
+			_button.y = 600 - _button.height;
 			
 			trace(_button.x);
 			

@@ -1,6 +1,6 @@
 ﻿package src.pressurePhase
 {
-	import src.ActionValues;
+	import src.actionPhase.ActionValues;
 	
 	public class ActionModifier
 	{
