@@ -1,10 +1,11 @@
-﻿package src
+﻿package src.actionPhase
 {
 	import flash.utils.*;
 
 	public class ActionValues
 	{
 		public static const TIME_START : String = "TIME_START";
+		public static const TIME_LIMIT : String = "TIME_LIMIT";
 		public static const BUTTON_RATIO_SEX : String = "BUTTON_RATIO_SEX";
 		public static const BUTTON_RATIO_TOUCH : String = "BUTTON_RATIO_TOUCH";
 		public static const BUTTONS_PER_SECOND : String = "BUTTONS_PER_SECOND";

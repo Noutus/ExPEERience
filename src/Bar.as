@@ -11,9 +11,10 @@
         private var ratio:Number;
         
         public function Bar(texture: Texture){
-            ratio = 1.0;
+            ratio = 0.0;
             image = new Image(texture);
             addChild(image);
+			update();
         }
         
         private function update(): void {
