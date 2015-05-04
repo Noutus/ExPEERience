@@ -10,6 +10,10 @@
 	import flash.filesystem.File;
 	import src.buttons.*;
 	import src.screens.Screens;
+	import starling.display.Sprite;
+	import starling.display.Image;
+	import starling.display.DisplayObject;
+	import starling.text.TextField;
 
 	public class PressureScreen extends GameScreen
 	{
@@ -20,7 +24,7 @@
 		
 		public function PressureScreen()
 		{
-			setBackground("ACTION_BACKGROUND_BACKGROUND");
+			setBackground("pressure_background_placeholder");
 		}
 		
 		public override function OnEnter() : void
@@ -29,21 +33,8 @@
 			
 			CreateRandomPeer();
 			
-			var _texture : Texture = Game.instance().assets.getTexture("button_no");
-			var _buttonNo : ScreenSwitchButton = new ScreenSwitchButton(_texture,_texture,Screens.ACTION);
-			
-			_buttonNo.x = 0;
-			_buttonNo.y = 300;
-			
-			this.addChild(_buttonNo);
-			
-			var _texture : Texture = Game.instance().assets.getTexture("button_condom");
-			var _buttonCondom : ScreenSwitchButton = new ScreenSwitchButton(_texture,_texture,Screens.ACTION);
-			
-			_buttonCondom.x = 0;
-			_buttonCondom.y = 600;
-			
-			this.addChild(_buttonCondom);
+			Game.CreateScreenSwitchButtonAt("button_no", Screens.ACTION, 80, 550);
+			Game.CreateScreenSwitchButtonAt("button_condom", Screens.ACTION, 80, 900);
 		}
 		
 		private function CreateRandomPeer() : void
@@ -60,7 +51,14 @@
 			{
 				_peersXML = new XML(_URLLoader.data);
 				
-				var _randomPeer : int = Math.floor(Math.random() * _peersXML.PEER[_randomPeer].length());
+				var _randomPeer : int = Math.floor(Math.random() * _peersXML.PEER.length());
+				
+				// TODO: Put into static function CreateSpriteAt();
+				trace("pressure_peer_placeholder_" + _peersXML.PEER[_randomPeer].@NAME);
+				
+				Game.CreateImageAt("pressure_peer_placeholder_" + _peersXML.PEER[_randomPeer].@NAME, 410, 480);
+				Game.CreateImageAt("pressure_cloud_placeholder", 0, 0);
+				
 				var _randomPressure : int = Math.floor(Math.random() * _peersXML.PEER[_randomPeer].PRESSURE.length());
 				var _modifiers : Array = new Array();
 				
@@ -74,7 +72,12 @@
 				
 				activePeer = new Peer(_ability);
 				
-				trace(activePeer.GetAbility().message);
+				trace(_randomPeer + " : " + _randomPressure + " : " + activePeer.GetAbility().message);
+				
+				var _text : TextField = new TextField(620, 400, activePeer.GetAbility().message);
+				_text.fontSize = 48;
+				_text.x = 50;
+				Game.instance().currentScreen.addChild(_text);
 			}
 			
 			function loadError(e : IOErrorEvent) : void

@@ -15,15 +15,11 @@
 		
 		public override function OnEnter() : void
 		{
-			var _texture : Texture = Game.instance().assets.getTexture("button_next");
-			var _button : ScreenSwitchButton = new ScreenSwitchButton(_texture, _texture, Screens.STORY);
+			this.setBackground("main_background_orange");
 			
-			_button.x = 720 - _button.width;
-			_button.y = 900 - _button.height;
-			
-			trace(_button.x);
-			
-			this.addChild(_button);
+			Game.CreateScreenSwitchButtonAt("main_button_play", Screens.STORY, 120, 300);
+			Game.CreateScreenSwitchButtonAt("main_button_rules", Screens.STORY, 120, 600);
+			Game.CreateScreenSwitchButtonAt("main_button_options", Screens.STORY, 120, 900);
 		}
 	}
 }

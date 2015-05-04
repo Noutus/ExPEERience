@@ -15,13 +15,8 @@
 		
 		public override function OnEnter() : void
 		{
-			var _texture : Texture = Game.instance().assets.getTexture("button_next");
-			var _button : ScreenSwitchButton = new ScreenSwitchButton(_texture, _texture, Screens.PRESSURE);
-			
-			_button.x = 720 - _button.width;
-			_button.y = 900 - _button.height;
-			
-			this.addChild(_button);
+			this.setBackground("story_comic_placeholder");
+			Game.CreateScreenSwitchButtonAt("button_next", Screens.PRESSURE, 520, 1080);
 		}
 	}
 }

@@ -17,7 +17,7 @@
 		* 
 		* @return The instance of the <code>Game</code> class.
 		*/
-		public static function instance():Game
+		public static function instance() : Game
 		{
 			if (! _instance)
 			{
@@ -28,9 +28,9 @@
 
 		public static const APPLICATION_PATH:File = File.applicationDirectory;
 
-		public var assets:AssetManager;
+		public var assets : AssetManager;
 
-		private var currentScreen:GameScreen;
+		public var currentScreen : GameScreen;
 
 		public function Game()
 		{
@@ -58,6 +58,28 @@
 			currentScreen = _newScreen;
 			this.addChild(currentScreen);
 			currentScreen.OnEnter();
+		}
+		
+		public static function CreateScreenSwitchButtonAt(_imagePath : String, _screen : *, _x : Number, _y : Number) : void
+		{
+			var _texture : Texture = Game.instance().assets.getTexture(_imagePath);
+			var _button : ScreenSwitchButton = new ScreenSwitchButton(_texture, _texture, _screen);
+			
+			_button.x = _x;
+			_button.y = _y;
+			
+			Game.instance().currentScreen.addChild(_button);
+		}
+		
+		public static function CreateImageAt(_imagePath : String, _x : Number, _y : Number) : void
+		{
+			var _texture : Texture = Game.instance().assets.getTexture(_imagePath);
+			var _image : Image = new Image(_texture);
+			
+			_image.x = _x;
+			_image.y = _y;
+			
+			Game.instance().currentScreen.addChild(_image);
 		}
 	}
 }
