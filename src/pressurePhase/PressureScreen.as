@@ -15,6 +15,7 @@
 	import starling.display.DisplayObject;
 	import starling.text.TextField;
 	import flash.system.Capabilities;
+	import src.display.Img;
 
 	public class PressureScreen extends GameScreen
 	{
@@ -34,8 +35,8 @@
 			
 			CreateRandomPeer();
 			
-			Game.CreateScreenSwitchButtonAt("button_no", Screens.ACTION, 80, 550);
-			Game.CreateScreenSwitchButtonAt("button_condom", Screens.ACTION, 80, 900);
+			Img.CreateScreenSwitchButtonAt("button_no", Screens.ACTION, 80, 550);
+			Img.CreateScreenSwitchButtonAt("button_condom", Screens.ACTION, 80, 900);
 		}
 		
 		private function CreateRandomPeer() : void
@@ -57,8 +58,8 @@
 				// TODO: Put into static function CreateSpriteAt();
 				trace("pressure_peer_placeholder_" + _peersXML.PEER[_randomPeer].@NAME);
 				
-				Game.CreateImageAt("pressure_peer_placeholder_" + _peersXML.PEER[_randomPeer].@NAME, 410, 480);
-				Game.CreateImageAt("pressure_cloud_placeholder", 0, 0);
+				Img.CreateImageAt("pressure_peer_placeholder_" + _peersXML.PEER[_randomPeer].@NAME, 410, 480);
+				Img.CreateImageAt("pressure_cloud_placeholder", 0, 0);
 				
 				var _randomPressure : int = Math.floor(Math.random() * _peersXML.PEER[_randomPeer].PRESSURE.length());
 				var _modifiers : Array = new Array();
@@ -75,7 +76,7 @@
 				
 				trace(_randomPeer + " : " + _randomPressure + " : " + activePeer.GetAbility().message);
 				
-				var v : Vector.<Number> = Game.GetScaledVector(620, 400);
+				var v : Vector.<Number> = Img.GetScaledVector(620, 400);
 				
 				var _text : TextField = new TextField(v[0], v[1], activePeer.GetAbility().message);
 				_text.fontSize = 48 / 720 * Capabilities.screenResolutionX;

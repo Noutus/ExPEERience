@@ -1,7 +1,7 @@
 ﻿package src.screens
 {
 	import src.GameScreen;
-	import src.Game;
+	import src.display.Img;
 	import starling.textures.Texture;
 	import src.buttons.ScreenSwitchButton;
 	import starling.core.Starling;
@@ -15,8 +15,8 @@
 		
 		public override function OnEnter() : void
 		{
-			Game.CreateScreenSwitchButtonAt("button_next", Screens.PRESSURE, 520, 700);
-			Game.CreateScreenSwitchButtonAt("button_back", Screens.MAINMENU, 0, 700);
+			Img.CreateScreenSwitchButtonAt("button_next", Screens.PRESSURE, 520, 700);
+			Img.CreateScreenSwitchButtonAt("button_back", Screens.MAINMENU, 0, 700);
 		}
 	}
 }

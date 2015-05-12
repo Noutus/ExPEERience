@@ -16,6 +16,7 @@
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
 	import src.PauseTimer;
+	import src.display.Img;
 	
 	public class PopupButton extends BasicButton {
 		
@@ -96,7 +97,7 @@
 			x = Math.random() * (Starling.current.stage.stageWidth - this.width); 
 			y = Math.random() * (Starling.current.stage.stageHeight - this.height);
 			
-			Game.ChangeSpriteSize(this);
+			Img.ChangeSpriteSize(this);
 		}
 
 		public override function OnTouch(event: TouchEvent): void {
