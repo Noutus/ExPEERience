@@ -16,6 +16,8 @@
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
 	import src.PauseTimer;
+	import flash.geom.Rectangle;
+	import flash.system.Capabilities;
 	
 	public class PopupButton extends BasicButton {
 		
@@ -70,6 +72,8 @@
 			
 			super(Game.instance().assets.getTexture(textureName), null);
 			
+			Game.ChangeSpriteSize(this);
+
 			removeTimer = new PauseTimer(1000 * ActionValues.instance().GetModifier(ActionValues.BUTTONS_ALIVE_TIME), 1);
 			removeTimer.addEventListener(TimerEvent.TIMER_COMPLETE, 
 				function (event: TimerEvent): void {
@@ -88,15 +92,31 @@
 		}
 		
 		/*
-			Places this PopupButton on a random spot on the screen.
-		
-			TODO: Make sure this popup isn't placed on top of another popup, or placed on top of a different button/bar
+			Places this PopupButton on a random spot in the popupArea 
+			and makes sure it doesn't place it on another button (will recalculate a position otherwise).
 		*/
-		public function placeAtRandomSpot() {
-			x = Math.random() * (Starling.current.stage.stageWidth - this.width); 
-			y = Math.random() * (Starling.current.stage.stageHeight - this.height);
+		public function placeAtRandomSpot() {		
 			
-			Game.ChangeSpriteSize(this);
+			var popupArea: Rectangle = ActionScreen.popupArea;
+						
+			x = popupArea.x + Math.floor(Math.random() * (popupArea.width - this.width)); 
+			y = popupArea.y + Math.floor(Math.random() * (popupArea.height - this.height));
+					
+			var popups: Vector.<PopupButton> = popupController.getPopups();
+			for each (var button: PopupButton in popups) {
+				//trace("This button: " + x + ", " + y + ", " + this.width + ", " + this.height + ", checking button: " +button.x + ", " + button.y + ", " + button.width + ", " + button.height);
+				// if overlap
+				if ((x + this.width > button.x) && 
+					(x < button.x + button.width) && 
+					(y + this.height > button.y) && 
+					(y < button.y + button.height)) {
+					trace("Chosen position overlaps other button. Picking a new one now.");
+					placeAtRandomSpot();
+					return;
+				}	
+			}
+			
+			
 		}
 
 		public override function OnTouch(event: TouchEvent): void {

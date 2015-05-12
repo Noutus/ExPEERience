@@ -21,6 +21,10 @@
 			popupTimer = new PauseTimer(1000 / ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND));
 			popupTimer.addEventListener("timer", spawnRandomButton);
 		}
+		
+		public function getPopups(): Vector.<PopupButton> {
+			return popups;
+		}
 
 		public function startSpawning(): void {
 			if (!isSpawning()) 

@@ -25,7 +25,7 @@
 			backGround.width = _newSize[0];
 			backGround.height = _newSize[1];
 			
-			addChild(backGround);
+			addChildAt(backGround, 0);
 		}
 		
 		public function OnEnter() : void

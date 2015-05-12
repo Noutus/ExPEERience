@@ -14,6 +14,8 @@
 	import src.screens.ScoreScreen;
 	import src.*;
 	import flash.system.Capabilities;
+	import starling.display.Quad;
+	import flash.geom.Rectangle;
 	
 	public class ActionScreen extends GameScreen {
 		
@@ -23,6 +25,8 @@
 		
 		private var popupController: PopupController;
 		
+		public static var popupArea: Rectangle = 
+		new Rectangle(0, 130, Starling.current.stage.stageWidth, Starling.current.stage.stageHeight - 500);	
 
 		private var startTime: Number;
 		
@@ -42,6 +46,8 @@
 			
 			addPopupController();
 
+			// Only to show the area, for testing! Should not be in the final game.
+			addPopupArea(); 
 		}
 
 		public override function OnEnter(): void {
@@ -62,8 +68,17 @@
 				popupController.stopSpawning();
 			}
 			
-		}
+		}		
+		
+		// Only for testing to show where this area is.
+		private function addPopupArea(): void {			
+			var areaTest: Quad = new Quad(popupArea.width, popupArea.height);
+			areaTest.x = popupArea.x;
+			areaTest.y = popupArea.y;
 			
+			addChild(areaTest);
+		}
+
 		private function addPopupController(): void {
 			popupController = new PopupController(this);
 			
