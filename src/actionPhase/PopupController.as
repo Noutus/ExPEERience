@@ -55,11 +55,7 @@
 		public function isSpawning(): Boolean {
 			return popupTimer.running;
 		}
-		
-		public function addButton(popupButton: PopupButton) {
-			
-			actionScreen.addChild(popupButton);
-		}
+
 		
 		public function popupClicked(popupButton: PopupButton) {
 			if (!actionScreen.isPaused()) {
@@ -111,14 +107,17 @@
 			}
 			
 			var popupButton: PopupButton = new PopupButton(this, popupKind);
-			popupButton.placeAtRandomSpot(); 		
+			popupButton.placeAtRandomSpot(); 
 			
-			popups.push(popupButton);
+			if (popupButton == null) {
+				trace("popupButton was disposed");
+			} else {
+				popups.push(popupButton);
 			
-			actionScreen.addChild(popupButton);
-
+				actionScreen.addChild(popupButton);
+			}
 			
-			popupTimer.delay = 1000 / ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND);
+			popupTimer.delay = 100 / ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND);
 			trace("popupTimer.delay: " + popupTimer.delay);
 
 			//var popupButton: PopupButton = new PopupButton(Game.instance().assets.getTexture(ActionValues.PLEASURE_TOUCH null);

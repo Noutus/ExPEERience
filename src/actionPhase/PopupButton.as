@@ -96,23 +96,30 @@
 			Places this PopupButton on a random spot in the popupArea 
 			and makes sure it doesn't place it on another button (will recalculate a position otherwise).
 		*/
-		public function placeAtRandomSpot() {		
+		public function placeAtRandomSpot(depth: int = 0) {		
 			
 			var popupArea: Rectangle = ActionScreen.popupArea;
 						
-			x = popupArea.x + Math.floor(Math.random() * (popupArea.width - this.width)); 
-			y = popupArea.y + Math.floor(Math.random() * (popupArea.height - this.height));
+			x = 350;//popupArea.x + Math.floor(Math.random() * (popupArea.width - this.width)); 
+			y = 350;//popupArea.y + Math.floor(Math.random() * (popupArea.height - this.height));
 					
 			var popups: Vector.<PopupButton> = popupController.getPopups();
+			trace(popups.length);
 			for each (var button: PopupButton in popups) {
-				//trace("This button: " + x + ", " + y + ", " + this.width + ", " + this.height + ", checking button: " +button.x + ", " + button.y + ", " + button.width + ", " + button.height);
+				trace("This button: " + x + ", " + y + ", " + this.width + ", " + this.height + ", checking button: " +button.x + ", " + button.y + ", " + button.width + ", " + button.height);
 				// if overlap
-				if ((x + this.width > button.x) && 
-					(x < button.x + button.width) && 
-					(y + this.height > button.y) && 
-					(y < button.y + button.height)) {
+				if ((x + this.width >= button.x) && 
+					(x <= button.x + button.width) && 
+					(y + this.height >= button.y) && 
+					(y <= button.y + button.height)) {
 					trace("Chosen position overlaps other button. Picking a new one now.");
-					placeAtRandomSpot();
+					if (depth <= 10) {
+						placeAtRandomSpot(depth + 1);
+					} else {
+						trace("Couldn't place button, removing now..");
+						this.dispose();
+						this = null;
+					}
 					return;
 				}	
 			}

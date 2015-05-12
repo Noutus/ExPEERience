@@ -150,6 +150,12 @@
 			pleasureFill = new Bar(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_FILL));
 			var pleasureImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_IMG));
 			
+			pleasureFill.x = 35;
+			pleasureFill.y = 920;			
+			
+			pleasureImage.x = 35;
+			pleasureImage.y = 920;
+			
 			Img.ChangeSpriteSize(pleasureFill);
 			Img.ChangeSpriteSize(pleasureImage);
 			
@@ -161,6 +167,12 @@
 		private function addRiskBar(): void {
 			riskFill = new Bar(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_FILL));
 			var riskImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_IMG));
+			
+			riskFill.x = 35;
+			riskFill.y = 1100;
+			
+			riskImage.x = 35;			
+			riskImage.y = 1100;
 			
 			Img.ChangeSpriteSize(riskFill);
 			Img.ChangeSpriteSize(riskImage);
