@@ -14,6 +14,7 @@
 	import starling.display.Image;
 	import starling.display.DisplayObject;
 	import starling.text.TextField;
+	import flash.system.Capabilities;
 
 	public class PressureScreen extends GameScreen
 	{
@@ -41,7 +42,7 @@
 		{
 			var _URLLoader : URLLoader = new URLLoader();
 			var _peersXML : XML;
-			var _s : String = Game.APPLICATION_PATH.nativePath + "\\data\\peers.xml";
+			var _s : String = Game.APPLICATION_PATH.nativePath + "/data/peers.xml";
 			
 			_URLLoader.addEventListener(Event.COMPLETE, loadComplete);
 			_URLLoader.addEventListener(IOErrorEvent.IO_ERROR, loadError);
@@ -74,9 +75,11 @@
 				
 				trace(_randomPeer + " : " + _randomPressure + " : " + activePeer.GetAbility().message);
 				
-				var _text : TextField = new TextField(620, 400, activePeer.GetAbility().message);
-				_text.fontSize = 48;
-				_text.x = 50;
+				var v : Vector.<Number> = Game.GetScaledVector(620, 400);
+				
+				var _text : TextField = new TextField(v[0], v[1], activePeer.GetAbility().message);
+				_text.fontSize = 48 / 720 * Capabilities.screenResolutionX;
+				_text.x = 10;
 				Game.instance().currentScreen.addChild(_text);
 			}
 			

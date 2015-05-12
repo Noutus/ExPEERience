@@ -7,6 +7,8 @@
 	import src.buttons.ScreenSwitchButton;
 	import starling.textures.Texture;
 	import src.screens.*;
+	import starling.utils.ScaleMode;
+	import flash.system.Capabilities;
 
 	public class Game extends Sprite
 	{
@@ -62,24 +64,62 @@
 		
 		public static function CreateScreenSwitchButtonAt(_imagePath : String, _screen : *, _x : Number, _y : Number) : void
 		{
+			var _v : Vector.<Number> = new Vector.<Number>(2);
+			_v = Game.GetScaledVector(_x, _y);
+			
 			var _texture : Texture = Game.instance().assets.getTexture(_imagePath);
 			var _button : ScreenSwitchButton = new ScreenSwitchButton(_texture, _texture, _screen);
 			
-			_button.x = _x;
-			_button.y = _y;
+			_button.x = _v[0];
+			_button.y = _v[1];
+			
+			_v = Game.GetScaledVector(_button.width, _button.height);
+			
+			_button.width = _v[0];
+			_button.height = _v[1];
 			
 			Game.instance().currentScreen.addChild(_button);
 		}
 		
 		public static function CreateImageAt(_imagePath : String, _x : Number, _y : Number) : void
 		{
+			var _v : Vector.<Number> = new Vector.<Number>(2);
+			_v = Game.GetScaledVector(_x, _y);
+			
 			var _texture : Texture = Game.instance().assets.getTexture(_imagePath);
 			var _image : Image = new Image(_texture);
 			
-			_image.x = _x;
-			_image.y = _y;
+			_image.x = _v[0];
+			_image.y = _v[1];
+			
+			_v = Game.GetScaledVector(_image.width, _image.height);
+			
+			_image.width = _v[0];
+			_image.height = _v[1];
 			
 			Game.instance().currentScreen.addChild(_image);
+		}
+		
+		public static function GetScaledVector(_x : Number, _y : Number) : Vector.<Number>
+		{
+			var _v : Vector.<Number> = new Vector.<Number>(2);
+			
+			_v[0] = _x / 720 * Capabilities.screenResolutionX;
+			_v[1] = _y / 1280 * Capabilities.screenResolutionY;
+			
+			return _v;
+		}
+		
+		public static function ChangeSpriteSize(_s : DisplayObject) : void
+		{
+			var position : Vector.<Number> = Game.GetScaledVector(_s.x, _s.y);
+			var scale : Vector.<Number> = Game.GetScaledVector(_s.width, _s.height);
+			
+			_s.x = position[0];
+			_s.y = position[1];
+			
+			_s.width = scale[0];
+			_s.height = scale[1];
 		}
 	}
 }

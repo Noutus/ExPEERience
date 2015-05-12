@@ -95,6 +95,8 @@
 		public function placeAtRandomSpot() {
 			x = Math.random() * (Starling.current.stage.stageWidth - this.width); 
 			y = Math.random() * (Starling.current.stage.stageHeight - this.height);
+			
+			Game.ChangeSpriteSize(this);
 		}
 
 		public override function OnTouch(event: TouchEvent): void {

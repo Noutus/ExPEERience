@@ -13,6 +13,7 @@
 	import starling.utils.Color;
 	import src.screens.ScoreScreen;
 	import src.*;
+	import flash.system.Capabilities;
 	
 	public class ActionScreen extends GameScreen {
 		
@@ -69,10 +70,14 @@
 		}		
 
 		private function addTimer(): void {
-			gameTimerField = new TextField(100, 100, "", "Arial", 45, Color.NAVY);
+			
+			var squasize: Number = 100 / 720 * Capabilities.screenResolutionX;
+			var textsize: Number = 45 / 720 * Capabilities.screenResolutionX;
+			
+			gameTimerField = new TextField(squasize, squasize, "", "Arial", textsize, Color.NAVY);
 			gameTimerField.border = true;
-			gameTimerField.x = (Starling.current.stage.stageWidth - gameTimerField.width) / 2;
-			gameTimerField.y = 20;
+			gameTimerField.x = (Starling.current.stage.stageWidth - gameTimerField.width) / 1440 * Capabilities.screenResolutionX;
+			gameTimerField.y = 10;
 			addChild(gameTimerField);
 			
 		}
@@ -86,7 +91,9 @@
 			button.x = Starling.current.stage.stageWidth - button.width - 20;
 			button.y = 20; 
 			button.addEventListener(TouchEvent.TOUCH, pauseTouched);
-
+			
+			Game.ChangeSpriteSize(button);
+			
 			addChild(button);
 		}
 		
@@ -124,13 +131,22 @@
 		
 		private var pleasureFill: Bar;
 		private function addPleasureBar(): void {
+			var v : Vector.<Number> = Game.GetScaledVector(35, 920);
+			
 			pleasureFill = new Bar(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_FILL));
-			pleasureFill.x = 35;
-			pleasureFill.y = 920;
+			pleasureFill.x = v[0];
+			pleasureFill.y = v[1];
 			
 			var pleasureImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_IMG));
-			pleasureImage.x = 35;
-			pleasureImage.y = 920;
+			pleasureImage.x = v[0];
+			pleasureImage.y = v[1];
+			
+			var s : Vector.<Number> = Game.GetScaledVector(650, 120);
+			
+			pleasureFill.width = s[0];
+			pleasureFill.height = s[1];
+			pleasureImage.width = s[0];
+			pleasureImage.height = s[1];
 			
 			addChild(pleasureFill);			
 			addChild(pleasureImage);
@@ -138,14 +154,23 @@
 		
 		private var riskFill: Bar;
 		private function addRiskBar(): void {
+			var v : Vector.<Number> = Game.GetScaledVector(35, 1100);
+			
 			riskFill = new Bar(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_FILL));
-			riskFill.x = 35;
-			riskFill.y = 1100;		
+			riskFill.x = v[0];
+			riskFill.y = v[1];		
 			
 			var riskImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_IMG));
-			riskImage.x = 35;			
-			riskImage.y = 1100;
-						
+			riskImage.x = v[0];			
+			riskImage.y = v[1];
+			
+			var s : Vector.<Number> = Game.GetScaledVector(650, 120);
+			
+			riskFill.width = s[0];
+			riskFill.height = s[1];
+			riskImage.width = s[0];
+			riskImage.height = s[1];
+			
 			addChild(riskFill);			
 			addChild(riskImage);
 		}
@@ -184,7 +209,7 @@
 		
 		private var timeLeft: int;
 		// Base time limit is 100.
-		private var timeLimit: int = 100 * ActionValues.instance().GetModifier(ActionValues.TIME_LIMIT);
+		private var timeLimit: int = 15 * ActionValues.instance().GetModifier(ActionValues.TIME_LIMIT);
 		
 		private function update(event:Event) {
 			if (!isPaused()) {
