@@ -3,6 +3,7 @@
 	import starling.display.Sprite;
 	import starling.textures.Texture;
 	import starling.display.Image;
+	import src.display.Img;
 	
 	public class GameScreen extends Sprite
 	{
@@ -20,7 +21,7 @@
 			var backGroundTexture: Texture = Game.instance().assets.getTexture(textureName);
 			backGround = new Image(backGroundTexture);
 			
-			var _newSize : Vector.<Number> = Game.GetScaledVector(backGround.width, backGround.height);
+			var _newSize : Vector.<Number> = Img.GetScaledVector(backGround.width, backGround.height);
 			
 			backGround.width = _newSize[0];
 			backGround.height = _newSize[1];

@@ -18,6 +18,7 @@
 	import src.PauseTimer;
 	import flash.geom.Rectangle;
 	import flash.system.Capabilities;
+	import src.display.Img;
 	
 	public class PopupButton extends BasicButton {
 		
@@ -72,7 +73,7 @@
 			
 			super(Game.instance().assets.getTexture(textureName), null);
 			
-			Game.ChangeSpriteSize(this);
+			Img.ChangeSpriteSize(this);
 
 			removeTimer = new PauseTimer(1000 * ActionValues.instance().GetModifier(ActionValues.BUTTONS_ALIVE_TIME), 1);
 			removeTimer.addEventListener(TimerEvent.TIMER_COMPLETE, 
@@ -115,8 +116,7 @@
 					return;
 				}	
 			}
-			
-			
+
 		}
 
 		public override function OnTouch(event: TouchEvent): void {

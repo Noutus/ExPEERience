@@ -16,6 +16,7 @@
 	import flash.system.Capabilities;
 	import starling.display.Quad;
 	import flash.geom.Rectangle;
+	import src.display.Img;
 	
 	public class ActionScreen extends GameScreen {
 		
@@ -107,7 +108,7 @@
 			button.y = 20; 
 			button.addEventListener(TouchEvent.TOUCH, pauseTouched);
 			
-			Game.ChangeSpriteSize(button);
+			Img.ChangeSpriteSize(button);
 			
 			addChild(button);
 		}
@@ -146,22 +147,11 @@
 		
 		private var pleasureFill: Bar;
 		private function addPleasureBar(): void {
-			var v : Vector.<Number> = Game.GetScaledVector(35, 920);
-			
 			pleasureFill = new Bar(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_FILL));
-			pleasureFill.x = v[0];
-			pleasureFill.y = v[1];
-			
 			var pleasureImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_IMG));
-			pleasureImage.x = v[0];
-			pleasureImage.y = v[1];
 			
-			var s : Vector.<Number> = Game.GetScaledVector(650, 120);
-			
-			pleasureFill.width = s[0];
-			pleasureFill.height = s[1];
-			pleasureImage.width = s[0];
-			pleasureImage.height = s[1];
+			Img.ChangeSpriteSize(pleasureFill);
+			Img.ChangeSpriteSize(pleasureImage);
 			
 			addChild(pleasureFill);			
 			addChild(pleasureImage);
@@ -169,24 +159,13 @@
 		
 		private var riskFill: Bar;
 		private function addRiskBar(): void {
-			var v : Vector.<Number> = Game.GetScaledVector(35, 1100);
-			
 			riskFill = new Bar(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_FILL));
-			riskFill.x = v[0];
-			riskFill.y = v[1];		
-			
 			var riskImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_IMG));
-			riskImage.x = v[0];			
-			riskImage.y = v[1];
 			
-			var s : Vector.<Number> = Game.GetScaledVector(650, 120);
+			Img.ChangeSpriteSize(riskFill);
+			Img.ChangeSpriteSize(riskImage);
 			
-			riskFill.width = s[0];
-			riskFill.height = s[1];
-			riskImage.width = s[0];
-			riskImage.height = s[1];
-			
-			addChild(riskFill);			
+			addChild(riskFill);
 			addChild(riskImage);
 		}
 		

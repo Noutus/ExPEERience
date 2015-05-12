@@ -5,6 +5,7 @@
 	import src.buttons.ScreenSwitchButton;
 	import src.Game;
 	import starling.core.Starling;
+	import src.display.Img;
 
 	public class MainMenuScreen extends GameScreen
 	{
@@ -17,9 +18,9 @@
 		{
 			this.setBackground("main_background_orange");
 			
-			Game.CreateScreenSwitchButtonAt("main_button_play", Screens.STORY, 120, 300);
-			Game.CreateScreenSwitchButtonAt("main_button_rules", Screens.STORY, 120, 600);
-			Game.CreateScreenSwitchButtonAt("main_button_options", Screens.STORY, 120, 900);
+			Img.CreateScreenSwitchButtonAt("main_button_play", Screens.STORY, 120, 300);
+			Img.CreateScreenSwitchButtonAt("main_button_rules", Screens.STORY, 120, 600);
+			Img.CreateScreenSwitchButtonAt("main_button_options", Screens.STORY, 120, 900);
 		}
 	}
 }
