@@ -19,6 +19,7 @@
 			this.actionScreen = actionScreen;
 			
 			popupTimer = new PauseTimer(1000 / ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND));
+
 			popupTimer.addEventListener("timer", spawnRandomButton);
 		}
 		
@@ -67,9 +68,10 @@
 		}
 		
 		public function removeButton(popupButton: PopupButton) {
-			
-			actionScreen.removeChild(popupButton, true);
-			popups.splice(popups.indexOf(popupButton), 1);
+			if (actionScreen.contains(popupButton)) {
+				popups.splice(popups.indexOf(popupButton), 1);
+				actionScreen.removeChild(popupButton, true);
+			}
 		}
 		
 		/*
@@ -107,17 +109,16 @@
 			}
 			
 			var popupButton: PopupButton = new PopupButton(this, popupKind);
-			popupButton.placeAtRandomSpot(); 
 			
-			if (popupButton == null) {
-				trace("popupButton was disposed");
-			} else {
+			if (popupButton.placeAtRandomSpot()) { 
 				popups.push(popupButton);
-			
+
 				actionScreen.addChild(popupButton);
-			}
+			} else
+				popupButton.dispose();
 			
-			popupTimer.delay = 100 / ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND);
+		
+			popupTimer.delay = 1000 / ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND);
 			trace("popupTimer.delay: " + popupTimer.delay);
 
 			//var popupButton: PopupButton = new PopupButton(Game.instance().assets.getTexture(ActionValues.PLEASURE_TOUCH null);
