@@ -9,6 +9,7 @@
 	import src.screens.*;
 	import starling.utils.ScaleMode;
 	import flash.system.Capabilities;
+	import starling.core.Starling;
 
 	public class Game extends Sprite
 	{
@@ -42,12 +43,18 @@
 			assets.enqueue(APPLICATION_PATH.resolvePath("assets"));
 			assets.loadQueue(function (ratio : Number) : void
 			{
-			if (ratio == 1.0) Initialize();
+				if (ratio == 1.0) Initialize();
 			});
 		}
 
 		public function Initialize()
 		{
+			if (Capabilities.screenResolutionX > 720)
+			{
+				Starling.current.stage.stageWidth = Capabilities.screenResolutionX;
+				Starling.current.stage.stageHeight = Capabilities.screenResolutionY;
+			}
+			
 			SwitchScreen(new MainMenuScreen());
 		}
 
@@ -57,6 +64,7 @@
 			{
 				currentScreen.OnExit();
 			}
+			
 			currentScreen = _newScreen;
 			this.addChild(currentScreen);
 			currentScreen.OnEnter();
