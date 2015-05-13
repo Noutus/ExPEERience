@@ -40,6 +40,10 @@
 		
 		private var removeTimer: PauseTimer;
 		
+		// The maximum amount of times it will generate a random spot in the popupArea before just removing this popupButton
+		// (if all tries fail. A try fails when the popup would clash with another popup.
+		private static const maxRandomSpotTries: int = 150;
+		
 		
 		// a popupbutton can have a sex, kiss, touch or risk_sex texture
 		public function PopupButton(popupController: PopupController, popupKind: int) {
@@ -95,13 +99,15 @@
 		/*
 			Places this PopupButton on a random spot in the popupArea 
 			and makes sure it doesn't place it on another button (will recalculate a position otherwise).
+		
+			@return Boolean whether it succeeded in placing the button or not.
 		*/
-		public function placeAtRandomSpot(depth: int = 0) {		
+		public function placeAtRandomSpot(depth: int = 0): Boolean {		
 			
 			var popupArea: Rectangle = ActionScreen.popupArea;
 						
-			x = 350;//popupArea.x + Math.floor(Math.random() * (popupArea.width - this.width)); 
-			y = 350;//popupArea.y + Math.floor(Math.random() * (popupArea.height - this.height));
+			x = popupArea.x + Math.floor(Math.random() * (popupArea.width - this.width)); 
+			y = popupArea.y + Math.floor(Math.random() * (popupArea.height - this.height));
 					
 			var popups: Vector.<PopupButton> = popupController.getPopups();
 			trace(popups.length);
@@ -112,17 +118,16 @@
 					(x <= button.x + button.width) && 
 					(y + this.height >= button.y) && 
 					(y <= button.y + button.height)) {
-					trace("Chosen position overlaps other button. Picking a new one now.");
-					if (depth <= 10) {
-						placeAtRandomSpot(depth + 1);
+					trace("Chosen position overlaps other button. Picking a new spot.");
+					if (depth <= maxRandomSpotTries) {
+						return placeAtRandomSpot(depth + 1);
 					} else {
-						trace("Couldn't place button, removing now..");
-						this.dispose();
-						this = null;
+						trace("Couldn't place button " + maxRandomSpotTries + " times, will now let the popupController decide what to do with me..");
+						return false;
 					}
-					return;
 				}	
 			}
+			return true;
 
 		}
 
