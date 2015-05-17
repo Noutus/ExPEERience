@@ -85,25 +85,23 @@
 			
 			var popupKind: int;
 			
-			switch (random(4)) {
-				case 0: 
-					trace("PLEASURE_TOUCH");
-					popupKind = PopupButton.POPUP_PLEASURE_TOUCH;
+			// switch vervangen door if (verkort)
+			
+			
+			switch (random(3)) { // getmodifier van alle 3 & popup_none_chance
+				case 0: // getmodifier(popup_touch_chance
+					trace("POPUP_TOUCH");
+					popupKind = PopupButton.POPUP_TOUCH;
 					
 				break;
-				case 1: 
-					trace("PLEASURE_KISS");
-					popupKind = PopupButton.POPUP_PLEASURE_KISS;
+				case 1: // modifier touch .. modifier touch + modifier kiss
+					trace("POPUP_KISS");
+					popupKind = PopupButton.POPUP_KISS;
 					
 				break;
 				case 2: 
-					trace("PLEASURE_SEX");
-					popupKind = PopupButton.POPUP_PLEASURE_SEX;
-					
-				break;
-				case 3: 
-					trace("RISK_SEX");
-					popupKind = PopupButton.POPUP_RISK_SEX;
+					trace("POPUP_SEX");
+					popupKind = PopupButton.POPUP_SEX;
 					
 				break;
 			}

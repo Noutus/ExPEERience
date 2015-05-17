@@ -22,10 +22,9 @@
 	
 	public class PopupButton extends BasicButton {
 		
-		public static const POPUP_PLEASURE_TOUCH: int = 0;
-		public static const POPUP_PLEASURE_KISS: int = 1;
-		public static const POPUP_PLEASURE_SEX: int = 2;
-		public static const POPUP_RISK_SEX: int = 3;
+		public static const POPUP_TOUCH: int = 0;
+		public static const POPUP_KISS: int = 1;
+		public static const POPUP_SEX: int = 2;
 
 		public static const RISK_SEX: Number = 0.20;
 		public static const PLEASURE_SEX: Number = 0.20;
@@ -55,23 +54,20 @@
 						
 			var textureName: String; 
 			switch (popupKind) {
-				case POPUP_PLEASURE_TOUCH:
+				case POPUP_TOUCH:
 					textureName = AssetNames.ACTION_POPUP_TOUCH;
 					pleasure = PLEASURE_SEX * ActionValues.instance().GetModifier(ActionValues.PLEASURE_TOUCH);
 				
 				break;
-				case POPUP_PLEASURE_KISS:
+				case POPUP_KISS:
 					textureName = AssetNames.ACTION_POPUP_KISS;
 					pleasure = PLEASURE_SEX * ActionValues.instance().GetModifier(ActionValues.PLEASURE_KISS);
 				break;
-				case POPUP_PLEASURE_SEX:
+				case POPUP_SEX:
 					textureName = AssetNames.ACTION_POPUP_SEX;
 					pleasure = PLEASURE_SEX * ActionValues.instance().GetModifier(ActionValues.PLEASURE_SEX);
-				break;
-				case POPUP_RISK_SEX:
-					textureName = AssetNames.ACTION_POPUP_RISK_SEX;
 					risk = RISK_SEX * ActionValues.instance().GetModifier(ActionValues.RISK_SEX);
-				break;				
+				break;			
 			}
 			
 			
@@ -110,7 +106,7 @@
 			y = popupArea.y + Math.floor(Math.random() * (popupArea.height - this.height));
 					
 			var popups: Vector.<PopupButton> = popupController.getPopups();
-			trace(popups.length);
+
 			for each (var button: PopupButton in popups) {
 				trace("This button: " + x + ", " + y + ", " + this.width + ", " + this.height + ", checking button: " +button.x + ", " + button.y + ", " + button.width + ", " + button.height);
 				// if overlap
@@ -118,6 +114,7 @@
 					(x <= button.x + button.width) && 
 					(y + this.height >= button.y) && 
 					(y <= button.y + button.height)) {
+						
 					trace("Chosen position overlaps other button. Picking a new spot.");
 					if (depth <= maxRandomSpotTries) {
 						return placeAtRandomSpot(depth + 1);

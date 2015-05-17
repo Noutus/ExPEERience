@@ -12,7 +12,6 @@
 		public static const ACTION_POPUP_TOUCH: String = "action_popup_touch";
 		public static const ACTION_POPUP_KISS: String = "action_popup_kiss";
 		public static const ACTION_POPUP_SEX: String = "action_popup_sex";
-		public static const ACTION_POPUP_RISK_SEX: String = "action_popup_risk_sex";
 		
 	}
 	
