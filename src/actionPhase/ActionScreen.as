@@ -17,10 +17,13 @@
 	import starling.display.Quad;
 	import flash.geom.Rectangle;
 	import src.display.Img;
+	import flash.events.TimerEvent;
 	
 	public class ActionScreen extends GameScreen {
 		
 		private var gameTimerField: TextField;
+		
+		private var pleasureTimer: PauseTimer;
 
 		private var activeButtons: Vector.<PopupButton> = new Vector.<PopupButton>();
 		
@@ -46,6 +49,8 @@
 			addTimer();		
 			
 			addPopupController();
+			
+			addPleasureTimer();
 
 			// Only to show the area, for testing! Should not be in the final game.
 			addPopupArea(); 
@@ -57,6 +62,8 @@
 			startTime = getTimer();
 			
 			popupController.startSpawning();
+			
+			pleasureTimer.start();
 			
 			this.addEventListener(Event.ENTER_FRAME, update);
 		}
@@ -70,6 +77,16 @@
 			}
 			
 		}		
+		
+		private function addPleasureTimer(): void {
+			pleasureTimer = new PauseTimer(100);
+
+			pleasureTimer.addEventListener("timer", pleasureDecrease);
+		}
+
+		private function pleasureDecrease(event: TimerEvent): void {
+			alterPleasure(- 0.005 * ActionValues.instance().GetModifier(ActionValues.PLEASURE_DECREASE));
+		}
 		
 		// Only for testing to show where this area is.
 		private function addPopupArea(): void {			
@@ -196,9 +213,14 @@
 				if (!isPaused()) {
 					pauseStartTime = getTimer();
 					
+					pleasureTimer.pause();
+					
 					popupController.pause();
 	
 				} else {
+					
+					pleasureTimer.resume();
+					
 					pausedTime = getTimer() - pauseStartTime;
 					startTime = startTime + pausedTime;
 					

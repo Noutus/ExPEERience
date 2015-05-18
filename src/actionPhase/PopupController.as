@@ -81,30 +81,24 @@
 			return Math.floor(Math.random() * max);
 		}
 		
+		private function randomNumber(max: Number): Number {
+			return Math.random() * max;
+		}
+		
 		private function spawnRandomButton(event: TimerEvent): void {
 			
 			var popupKind: int;
 			
 			// switch vervangen door if (verkort)
+			//
+			var touchChance: Number = ActionValues.instance().GetModifier(ActionValues.SPAWN_CHANCE_TOUCH);
+			var kissChance: Number = ActionValues.instance().GetModifier(ActionValues.SPAWN_CHANCE_KISS);
+			var sexChance: Number = ActionValues.instance().GetModifier(ActionValues.SPAWN_CHANCE_SEX);
 			
+			var rand: Number = randomNumber(touchChance + kissChance + sexChance);
 			
-			switch (random(3)) { // getmodifier van alle 3 & popup_none_chance
-				case 0: // getmodifier(popup_touch_chance
-					trace("POPUP_TOUCH");
-					popupKind = PopupButton.POPUP_TOUCH;
-					
-				break;
-				case 1: // modifier touch .. modifier touch + modifier kiss
-					trace("POPUP_KISS");
-					popupKind = PopupButton.POPUP_KISS;
-					
-				break;
-				case 2: 
-					trace("POPUP_SEX");
-					popupKind = PopupButton.POPUP_SEX;
-					
-				break;
-			}
+			popupKind = (rand <= touchChance) ? PopupButton.POPUP_TOUCH : 
+				((rand <= touchChance + kissChance) ? PopupButton.POPUP_KISS : PopupButton.POPUP_SEX);
 			
 			var popupButton: PopupButton = new PopupButton(this, popupKind);
 			

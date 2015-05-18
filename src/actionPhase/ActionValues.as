@@ -19,6 +19,11 @@
 		public static const RISK_SEX : String = "RISK_SEX";
 		public static const PLEASURE_DECREASE : String = "PLEASURE_DECREASE";
 		
+		public static const SPAWN_CHANCE_TOUCH : String = "SPAWN_CHANCE_TOUCH";
+		public static const SPAWN_CHANCE_KISS : String = "SPAWN_CHANCE_KISS";
+		public static const SPAWN_CHANCE_SEX : String = "SPAWN_CHANCE_SEX";
+		
+
 		private static var _instance : ActionValues;
 		
 		/**
