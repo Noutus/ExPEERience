@@ -30,7 +30,7 @@
 		private var popupController: PopupController;
 		
 		public static var popupArea: Rectangle = 
-		new Rectangle(0, 130, Starling.current.stage.stageWidth, Starling.current.stage.stageHeight - 330);	
+		new Rectangle(0, 130 / 1280 * Capabilities.screenResolutionY, Starling.current.stage.stageWidth / 720 * Capabilities.screenResolutionX, (Starling.current.stage.stageHeight - 330) / 1280 * Capabilities.screenResolutionY);	
 
 		private var startTime: Number;
 		
