@@ -60,10 +60,16 @@
 		
 		public function popupClicked(popupButton: PopupButton) {
 			if (!actionScreen.isPaused()) {
-				actionScreen.alterPleasure(popupButton.getPleasure());
-				actionScreen.alterRisk(popupButton.getRisk());
 				
-				removeButton(popupButton);
+				popupButton.increaseTouches();
+
+				if (popupButton.touchedEnough()) {
+					
+					actionScreen.alterPleasure(popupButton.getPleasure());
+					actionScreen.alterRisk(popupButton.getRisk());
+					
+					removeButton(popupButton);
+				}
 			}
 		}
 		
@@ -89,8 +95,6 @@
 			
 			var popupKind: int;
 			
-			// switch vervangen door if (verkort)
-			//
 			var touchChance: Number = ActionValues.instance().GetModifier(ActionValues.SPAWN_CHANCE_TOUCH);
 			var kissChance: Number = ActionValues.instance().GetModifier(ActionValues.SPAWN_CHANCE_KISS);
 			var sexChance: Number = ActionValues.instance().GetModifier(ActionValues.SPAWN_CHANCE_SEX);
@@ -98,7 +102,8 @@
 			var rand: Number = randomNumber(touchChance + kissChance + sexChance);
 			
 			popupKind = (rand <= touchChance) ? PopupButton.POPUP_TOUCH : 
-				((rand <= touchChance + kissChance) ? PopupButton.POPUP_KISS : PopupButton.POPUP_SEX);
+				((rand <= touchChance + kissChance) ? PopupButton.POPUP_KISS : 
+				PopupButton.POPUP_SEX);
 			
 			var popupButton: PopupButton = new PopupButton(this, popupKind);
 			

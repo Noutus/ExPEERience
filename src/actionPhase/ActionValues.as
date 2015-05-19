@@ -4,15 +4,11 @@
 
 	public class ActionValues
 	{
-		public static const TIME_START : String = "TIME_START";
-		public static const TIME_LIMIT : String = "TIME_LIMIT";
-		public static const BUTTON_RATIO_SEX : String = "BUTTON_RATIO_SEX";
-		public static const BUTTON_RATIO_TOUCH : String = "BUTTON_RATIO_TOUCH";
-		public static const BUTTONS_PER_SECOND : String = "BUTTONS_PER_SECOND";
-		public static const BUTTONS_ALIVE_TIME : String = "BUTTONS_ALIVE_TIME";
-		public static const BUTTONS_MAXIMUM_NUMBER_OF_TAPS : String = "BUTTONS_MAXIMUM_NUMBER_OF_TAPS";
-		public static const BUTTONS_MOVEMENT_RATIO : String = "BUTTONS_MOVEMENT_RATIO";
-		public static const BUTTONS_VISIBILITY : String = "BUTTONS_VISIBILITY";
+		public static const TIME_LIMIT : String = "TIME_LIMIT"; 
+		
+		public static const BUTTONS_PER_SECOND : String = "BUTTONS_PER_SECOND"; 
+		public static const BUTTONS_ALIVE_TIME : String = "BUTTONS_ALIVE_TIME"; 		
+		
 		public static const PLEASURE_KISS : String = "PLEASURE_KISS";
 		public static const PLEASURE_TOUCH : String = "PLEASURE_TOUCH";
 		public static const PLEASURE_SEX : String = "PLEASURE_SEX";
@@ -23,7 +19,12 @@
 		public static const SPAWN_CHANCE_KISS : String = "SPAWN_CHANCE_KISS";
 		public static const SPAWN_CHANCE_SEX : String = "SPAWN_CHANCE_SEX";
 		
-
+		public static const BUTTONS_MAXIMUM_NUMBER_OF_TAPS : String = "BUTTONS_MAXIMUM_NUMBER_OF_TAPS";
+		
+		// Ideas
+		//public static const BUTTONS_MOVEMENT_RATIO : String = "BUTTONS_MOVEMENT_RATIO";
+		//public static const BUTTONS_VISIBILITY : String = "BUTTONS_VISIBILITY";
+		
 		private static var _instance : ActionValues;
 		
 		/**
