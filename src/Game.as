@@ -54,7 +54,7 @@
 				
 			}
 			
-			else if
+			else
 			{
 				if (Capabilities.screenResolutionX > 720)
 				{

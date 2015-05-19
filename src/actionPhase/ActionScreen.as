@@ -30,7 +30,7 @@
 		private var popupController: PopupController;
 		
 		public static var popupArea: Rectangle = 
-		new Rectangle(0, 130, Starling.current.stage.stageWidth, Starling.current.stage.stageHeight - 500);	
+		new Rectangle(0, 130, Starling.current.stage.stageWidth, Starling.current.stage.stageHeight - 330);	
 
 		private var startTime: Number;
 		
@@ -54,6 +54,11 @@
 
 			// Only to show the area, for testing! Should not be in the final game.
 			addPopupArea(); 
+			
+			
+			// test
+			//trace('Changing maximum number of taps to 3');
+			//ActionValues.instance().SetModifier(ActionValues.BUTTONS_MAXIMUM_NUMBER_OF_TAPS, 3);
 		}
 
 		public override function OnEnter(): void {
@@ -167,11 +172,11 @@
 			pleasureFill = new Bar(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_FILL));
 			var pleasureImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_IMG));
 			
-			pleasureFill.x = 35;
-			pleasureFill.y = 920;			
-			
 			pleasureImage.x = 35;
-			pleasureImage.y = 920;
+			pleasureImage.y = 1080;
+			
+			pleasureFill.x = pleasureImage.x + 9;
+			pleasureFill.y = pleasureImage.y + 11;
 			
 			Img.ChangeSpriteSize(pleasureFill);
 			Img.ChangeSpriteSize(pleasureImage);
@@ -185,11 +190,11 @@
 			riskFill = new Bar(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_FILL));
 			var riskImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_IMG));
 			
-			riskFill.x = 35;
-			riskFill.y = 1100;
-			
 			riskImage.x = 35;			
-			riskImage.y = 1100;
+			riskImage.y = 1200;
+			
+			riskFill.x = riskImage.x + 9;
+			riskFill.y = riskImage.y + 11;
 			
 			Img.ChangeSpriteSize(riskFill);
 			Img.ChangeSpriteSize(riskImage);

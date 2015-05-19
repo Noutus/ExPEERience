@@ -26,6 +26,7 @@
 		public static const POPUP_KISS: int = 1;
 		public static const POPUP_SEX: int = 2;
 
+		// Base values, altered by the ActionValues modifiers upon creation of the button
 		public static const RISK_SEX: Number = 0.20;
 		public static const PLEASURE_SEX: Number = 0.20;
 		public static const PLEASURE_KISS: Number = 0.05;
@@ -44,7 +45,7 @@
 		private static const maxRandomSpotTries: int = 150;
 		
 		
-		// a popupbutton can have a sex, kiss, touch or risk_sex texture
+		// a popupbutton can have a sex, kiss, or touch texture
 		public function PopupButton(popupController: PopupController, popupKind: int) {
 			
 			this.popupController = popupController;
@@ -128,6 +129,22 @@
 
 		}
 
+		// Amount of times this button has been touched so far
+		var touches: int = 0;
+		
+		// Set the maximum number of taps for this button as it is now
+		var maxTouches: int = ActionValues.instance().GetModifier(ActionValues.BUTTONS_MAXIMUM_NUMBER_OF_TAPS);
+		
+				
+		public function increaseTouches(): void {
+			touches++; 
+		}
+		
+		public function touchedEnough(): Boolean {
+			trace('touches: ' + touches + ', maxtouches: ' + maxTouches);
+			return (touches >= maxTouches);			
+		}
+				
 		public override function OnTouch(event: TouchEvent): void {
 			var touch:Touch = event.touches[0];
 			if (touch.phase == TouchPhase.BEGAN) {
