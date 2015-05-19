@@ -49,10 +49,18 @@
 
 		public function Initialize()
 		{
-			if (Capabilities.screenResolutionX > 720)
+			if (Capabilities.os.indexOf("Windows") >= 0)
 			{
-				Starling.current.stage.stageWidth = Capabilities.screenResolutionX;
-				Starling.current.stage.stageHeight = Capabilities.screenResolutionY;
+				
+			}
+			
+			else if
+			{
+				if (Capabilities.screenResolutionX > 720)
+				{
+					Starling.current.stage.stageWidth = Capabilities.screenResolutionX;
+					Starling.current.stage.stageHeight = Capabilities.screenResolutionY;
+				}
 			}
 			
 			SwitchScreen(new MainMenuScreen());
