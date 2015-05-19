@@ -53,7 +53,7 @@
 			addPleasureTimer();
 
 			// Only to show the area, for testing! Should not be in the final game.
-			addPopupArea(); 
+			//addPopupArea(); 
 		}
 
 		public override function OnEnter(): void {

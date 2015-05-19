@@ -18,7 +18,7 @@
 			var texture : Texture = Game.instance().assets.getTexture(imagePath);
 			var button : ScreenSwitchButton = new ScreenSwitchButton(texture, texture, screen);
 
-			AddDisplayObject(button, positionX, positionY);
+			var obj = AddDisplayObject(button, positionX, positionY);
 		}
 
 		public static function CreateImageAt(imagePath : String, positionX : Number, positionY : Number):void
@@ -26,10 +26,18 @@
 			var texture:Texture = Game.instance().assets.getTexture(imagePath);
 			var image:Image = new Image(texture);
 
-			AddDisplayObject(image, positionX , positionY);
+			var obj = AddDisplayObject(image, positionX , positionY);
 		}
 		
-		public static function GetScaledVector(_x : Number, _y : Number):Vector.<Number > 
+		public static function GetNewImageAt(imagePath : String, positionX : Number, positionY : Number) : DisplayObject
+		{
+			var texture:Texture = Game.instance().assets.getTexture(imagePath);
+			var image:Image = new Image(texture);
+
+			return AddDisplayObject(image, positionX , positionY);
+		}
+		
+		public static function GetScaledVector(_x : Number, _y : Number) : Vector.<Number> 
 		{
 			if (Capabilities.os.indexOf("Windows") >= 0)
 			{
@@ -62,7 +70,7 @@
 			_s.height = scale[1];
 		}
 		
-		private static function AddDisplayObject(displayObject : DisplayObject, x : Number, y : Number) : void
+		public static function AddDisplayObject(displayObject : DisplayObject, x : Number, y : Number) : DisplayObject
 		{
 			displayObject.x = x;
 			displayObject.y = y;
@@ -70,6 +78,8 @@
 			ChangeSpriteSize(displayObject);
 			
 			Game.instance().currentScreen.addChild(displayObject);
+			
+			return displayObject;
 		}
 	}
 }
