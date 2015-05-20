@@ -134,35 +134,29 @@
 			addChild(button);
 		}
 		
-		public function getPleasureRatio(): Number {
-			return pleasureFill.getRatio();
-		}
-		
 		private function setPleasureRatio(ratio: Number) {
+			GlobalValues.instance().pleasure = ratio;
 			pleasureFill.setRatio(ratio);
 		}
 		
-		// No mutex needed, AS3 isn't multithreaded, so this code will not be interrupted.
+		// AS3 isn't multithreaded, so this code will not be interrupted. (no race conditions)
 		public function alterPleasure(ratio: Number) { 
-			pleasureFill.setRatio(getPleasureRatio() + ratio);
-			if (pleasureFill.getRatio() >= 1) {
+			setPleasureRatio(GlobalValues.instance().pleasure + ratio);
+			
+			if (GlobalValues.instance().pleasure >= 1) {
 				trace("Pleasure full!");
 			}
-		
-		}
-		
-		public function getRiskRatio(): Number {
-			return riskFill.getRatio();
 		}
 		
 		public function setRiskRatio(ratio: Number) {
+			GlobalValues.instance().risk = ratio;
 			riskFill.setRatio(ratio);
 		}
 		
 		public function alterRisk(ratio: Number) {
-			riskFill.setRatio(getRiskRatio() + ratio);
+			setRiskRatio(GlobalValues.instance().risk + ratio);
 			
-			if (riskFill.getRatio() >= 1) {
+			if (GlobalValues.instance().risk >= 1) {
 				trace("Risk full! Pregnant!");
 			}
 		}
@@ -183,6 +177,8 @@
 			
 			addChild(pleasureFill);			
 			addChild(pleasureImage);
+			
+			setPleasureRatio(GlobalValues.instance().pleasure);
 		}
 		
 		private var riskFill: Bar;
@@ -201,6 +197,8 @@
 			
 			addChild(riskFill);
 			addChild(riskImage);
+			
+			setRiskRatio(GlobalValues.instance().risk);
 		}
 		
 		private var pauseStartTime: Number;

@@ -38,8 +38,8 @@
 			gender = false;
 			babies = 0;
 			level = 0;
-			pleasure = 50;
-			risk = 0;
+			pleasure = 0.50;
+			risk = 0.00;
 		}
 		
 		/**
@@ -62,10 +62,10 @@
 		{
 			var _data : SharedObject = SharedObject.getLocal("SaveGame");
 			_data.data.gender = gender;
-			_data.data.babies = Babies;
-			_data.data.level = Level;
-			_data.data.pleasure = Pleasure;
-			_data.data.risk = Risk;
+			_data.data.babies = babies;
+			_data.data.level = level;
+			_data.data.pleasure = pleasure;
+			_data.data.risk = risk;
 		}
 	}
 }
