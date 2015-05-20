@@ -49,7 +49,7 @@
 			addTimer();		
 			
 			addPopupController();
-			
+				
 			addPleasureTimer();
 
 			// Only to show the area, for testing! Should not be in the final game.
@@ -138,16 +138,17 @@
 			return pleasureFill.getRatio();
 		}
 		
-		public function setPleasureRatio(ratio: Number) {
+		private function setPleasureRatio(ratio: Number) {
 			pleasureFill.setRatio(ratio);
 		}
 		
-		public function alterPleasure(ratio: Number) {
+		// No mutex needed, AS3 isn't multithreaded, so this code will not be interrupted.
+		public function alterPleasure(ratio: Number) { 
 			pleasureFill.setRatio(getPleasureRatio() + ratio);
-			
 			if (pleasureFill.getRatio() >= 1) {
 				trace("Pleasure full!");
 			}
+		
 		}
 		
 		public function getRiskRatio(): Number {

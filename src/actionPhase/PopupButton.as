@@ -42,7 +42,7 @@
 		
 		// The maximum amount of times it will generate a random spot in the popupArea before just removing this popupButton
 		// (if all tries fail. A try fails when the popup would clash with another popup.
-		private static const maxRandomSpotTries: int = 150;
+		private static const maxRandomSpotTries: int = 100;
 		
 		
 		// a popupbutton can have a sex, kiss, or touch texture

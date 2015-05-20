@@ -19,7 +19,7 @@
 			// constructor code
 			this.actionScreen = actionScreen;
 			
-			popupTimer = new PauseTimer(1000 / ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND));
+			popupTimer = new PauseTimer(getTimeBetweenSpawns());
 
 			popupTimer.addEventListener("timer", spawnRandomButton);
 		}
@@ -100,6 +100,10 @@
 			return Math.random() * max;
 		}
 		
+		private function getTimeBetweenSpawns(): Number {
+			return 1000 / ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND);
+		}
+		
 		private function spawnRandomButton(event: TimerEvent): void {
 			
 			var popupKind: int;
@@ -124,7 +128,7 @@
 				popupButton.dispose();
 			
 		
-			popupTimer.delay = 1000 / ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND);
+			popupTimer.delay = getTimeBetweenSpawns();
 			trace("popupTimer.delay: " + popupTimer.delay);
 
 			//var popupButton: PopupButton = new PopupButton(Game.instance().assets.getTexture(ActionValues.PLEASURE_TOUCH null);
