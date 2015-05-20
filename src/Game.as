@@ -10,7 +10,7 @@
 	import starling.utils.ScaleMode;
 	import flash.system.Capabilities;
 	import starling.core.Starling;
-
+	
 	public class Game extends Sprite
 	{
 		private static var _instance:Game;
@@ -38,13 +38,12 @@
 		public function Game()
 		{
 			_instance = this;
+			var loadingScreen: LoadingScreen = new LoadingScreen();
+			addChild(loadingScreen);
 
 			assets = new AssetManager();
 			assets.enqueue(APPLICATION_PATH.resolvePath("assets"));
-			assets.loadQueue(function (ratio : Number) : void
-			{
-				if (ratio == 1.0) Initialize();
-			});
+			assets.loadQueue(loadingScreen.update);
 		}
 
 		public function Initialize()
