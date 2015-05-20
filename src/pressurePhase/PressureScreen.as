@@ -17,6 +17,7 @@
 	import flash.system.Capabilities;
 	import src.display.Img;
 	import src.gui.*;
+	import src.actionPhase.ActionValues;
 
 	public class PressureScreen extends GameScreen
 	{
@@ -84,7 +85,7 @@
 				_text.x = 10;
 				Game.instance().currentScreen.addChild(_text);
 				
-				var o = new PopupWindow("Title", "Imput text here. Talk about random stuff and give information about reproductive health.");
+				ActionValues.instance().SetModifier(ActionValues.BUTTONS_PER_SECOND, 5);
 			}
 			
 			function loadError(e : IOErrorEvent) : void

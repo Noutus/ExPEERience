@@ -13,7 +13,7 @@
 			
 		}
 	
-		private var backGround: Image;
+		protected var backGround: Image;
 		public function setBackground(textureName: String) {
 			if (getChildIndex(backGround) != -1)
 				removeChild(backGround, true);

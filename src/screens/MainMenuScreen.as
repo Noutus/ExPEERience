@@ -18,9 +18,9 @@
 		{
 			this.setBackground("main_background_orange");
 			
-			Img.CreateScreenSwitchButtonAt("main_button_play", Screens.STORY, 120, 300);
-			Img.CreateScreenSwitchButtonAt("main_button_rules", Screens.STORY, 120, 600);
-			Img.CreateScreenSwitchButtonAt("main_button_options", Screens.STORY, 120, 900);
+			Img.CreateScreenSwitchButtonAt("main_button_play", Screens.GENDER, 120, 300);
+			Img.CreateScreenSwitchButtonAt("main_button_rules", Screens.GENDER, 120, 600);
+			Img.CreateScreenSwitchButtonAt("main_button_options", Screens.GENDER, 120, 900);
 		}
 	}
 }

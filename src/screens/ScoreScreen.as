@@ -47,5 +47,12 @@
 			Img.CreateScreenSwitchButtonAt("button_next", Screens.PRESSURE, 520, 1100);
 			Img.CreateScreenSwitchButtonAt("button_back", Screens.MAINMENU, 0, 1100);
 		}
+		
+		public override function OnExit() : void
+		{
+			Results.instance().ResetValues();
+			
+			super.OnExit();
+		}
 	}
 }

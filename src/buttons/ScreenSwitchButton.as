@@ -30,9 +30,11 @@
 				{
 					case Screens.ACTION: Game.instance().SwitchScreen(new ActionScreen()); break;
 					case Screens.PRESSURE: Game.instance().SwitchScreen(new PressureScreen()); break;
-					case Screens.STORY: Game.instance().SwitchScreen(new StoryScreen()); break;
 					case Screens.SCORE: Game.instance().SwitchScreen(new ScoreScreen()); break;
 					case Screens.MAINMENU: Game.instance().SwitchScreen(new MainMenuScreen()); break;
+					case Screens.GENDER: Game.instance().SwitchScreen(new GenderScreen()); break;
+					case Screens.STORYGIRL: Game.instance().SwitchScreen(new StoryGirlScreen()); break;
+					case Screens.STORYBOY: Game.instance().SwitchScreen(new StoryBoyScreen()); break;
 				}
 			}
 		}
