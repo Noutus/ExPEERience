@@ -39,7 +39,7 @@
 		{
 			_instance = this;
 			var loadingScreen: LoadingScreen = new LoadingScreen();
-			addChild(loadingScreen);
+			SwitchScreen(loadingScreen);
 
 			assets = new AssetManager();
 			assets.enqueue(APPLICATION_PATH.resolvePath("assets"));
