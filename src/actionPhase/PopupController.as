@@ -4,6 +4,7 @@
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
 	import src.PauseTimer;
+	import src.global.Results;
 	
 	public class PopupController {
 		
@@ -51,8 +52,7 @@
 			for each(var popupButton: PopupButton in popups) {
 				popupButton.resume();
 			}
-		}
-		
+		}		
 		public function isSpawning(): Boolean {
 			return popupTimer.running;
 		}
@@ -65,8 +65,17 @@
 
 				if (popupButton.touchedEnough()) {
 					
-					actionScreen.alterPleasure(popupButton.getPleasure());
-					actionScreen.alterRisk(popupButton.getRisk());
+					if (popupButton.getPleasure() > 0)
+					{
+						actionScreen.alterPleasure(popupButton.getPleasure());
+						Results.instance().AddPleasure(100);
+					}
+					
+					if (popupButton.getRisk() > 0)
+					{
+						actionScreen.alterRisk(popupButton.getRisk());
+						Results.instance().AddRisk(100);
+					}
 					
 					removeButton(popupButton);
 				}

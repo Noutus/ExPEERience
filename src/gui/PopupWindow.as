@@ -21,21 +21,21 @@
 		{
 			background = Img.GetNewImageAt("window_popup", 0, 0);
 			
-			title = new TextField(480, 64, titleText);
+			title = new TextField(480, 72, titleText);
 			title.x = 120;
 			title.y = 256;
-			title.fontSize = 72 / 720 * Capabilities.screenResolutionX;
+			title.fontSize = 48 / 720 * Capabilities.screenResolutionX;
 			Img.ChangeSpriteSize(title);
 			Game.instance().currentScreen.addChild(title);
 			
 			text = new TextField(480, 720, textText);
 			text.x = 120;
 			text.y = 320;
-			text.fontSize = 48 / 720 * Capabilities.screenResolutionX;
+			text.fontSize = 32 / 720 * Capabilities.screenResolutionX;
 			Img.ChangeSpriteSize(text);
 			Game.instance().currentScreen.addChild(text);
 			
-			exitButton = Img.GetNewImageAt("button_exit", 546, 272);
+			exitButton = Img.GetNewImageAt("button_exit", 532, 272);
 			exitButton.addEventListener(TouchEvent.TOUCH, OnTouch);
 		}
 		
