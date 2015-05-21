@@ -18,13 +18,17 @@
 	import src.display.Img;
 	import src.gui.*;
 	import src.actionPhase.ActionValues;
+	import starling.events.TouchEvent;
+	import starling.events.Touch;
+	import starling.events.TouchPhase;
+	import src.actionPhase.ActionScreen;
 
 	public class PressureScreen extends GameScreen
 	{
 		private var activePeer : Peer;
 		
-		private var buttonCondom : Button;
-		private var buttonPeer : Button;
+		private var buttonCondom : DisplayObject;
+		private var buttonPeer : DisplayObject;
 		
 		public function PressureScreen()
 		{
@@ -37,8 +41,10 @@
 			
 			CreateRandomPeer();
 			
-			Img.CreateScreenSwitchButtonAt("button_no", Screens.ACTION, 80, 550);
-			Img.CreateScreenSwitchButtonAt("button_condom", Screens.ACTION, 80, 900);
+			buttonPeer = Img.GetNewImageAt("button_no", 80, 550);
+			buttonPeer.addEventListener(TouchEvent.TOUCH, OnNo);
+			buttonCondom = Img.GetNewImageAt("button_condom", 80, 900);
+			buttonCondom.addEventListener(TouchEvent.TOUCH, OnCondom);
 		}
 		
 		private function CreateRandomPeer() : void
@@ -79,18 +85,34 @@
 				trace(_randomPeer + " : " + _randomPressure + " : " + activePeer.GetAbility().message);
 				
 				var v : Vector.<Number> = Img.GetScaledVector(620, 400);
-				
 				var _text : TextField = new TextField(v[0], v[1], activePeer.GetAbility().message);
 				_text.fontSize = 48 / 720 * Capabilities.screenResolutionX;
-				_text.x = 10;
 				Game.instance().currentScreen.addChild(_text);
-				
-				ActionValues.instance().SetModifier(ActionValues.BUTTONS_PER_SECOND, 5);
 			}
 			
 			function loadError(e : IOErrorEvent) : void
 			{
 				trace(e.text);
+			}
+		}
+		
+		public function OnNo(e : TouchEvent) : void
+		{
+			var _touch : Touch = e.getTouch(this, TouchPhase.ENDED);
+			if (_touch)
+			{
+				activePeer.GetAbility().ChooseAbility();
+				Game.instance().SwitchScreen(new ActionScreen());
+			}
+		}
+		
+		public function OnCondom(e : TouchEvent) : void
+		{
+			var _touch : Touch = e.getTouch(this, TouchPhase.ENDED);
+			if (_touch)
+			{
+				ActionValues.instance().SetModifier(ActionValues.RISK_SEX, 0);
+				Game.instance().SwitchScreen(new ActionScreen());
 			}
 		}
 	}

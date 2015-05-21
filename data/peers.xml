@@ -3,90 +3,74 @@
 <DATA>
 	<PEER NAME="Boyfriend">
 		<PRESSURE MESSAGE="Sex doesn’t feel as good with a condom. It’s so unnatural.">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="Why bother using a condom? Just one time is not going to matter!">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="If people see that you are buying a condom, they will think that you are spoilt.">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="Using a condom? But your girlfriend might think that you don’t really love her.">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 	</PEER>
 	<PEER NAME="Girlfriend">
 		<PRESSURE MESSAGE="Sex doesn’t feel as good with a condom. It’s so unnatural.">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="If you carry condoms with you, people will think that you are looking for sex.">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="Using a condom? But your boyfriend  might think that you’ve been unfaithful.">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="If you suggest using a condom, your boyfriend will think that you have a disease.">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 	</PEER>
 	<PEER NAME="Mother">
 		<PRESSURE MESSAGE="You are wearing such a short dress. Why don’t you remove all of your clothes?">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="Sleepover? Better be carefull what are you doing tonight.">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="I’m so happy, because you are such a nice couple.">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="I think you relationship is becoming serious.">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="You have been together for a while, so it’s time to think about babies.">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 	</PEER>
 	<PEER NAME="Teacher">
 		<PRESSURE MESSAGE="If you have a baby, you would probably need to drop out of school.">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="Do you know that abortion complications sometimes can lead to death?">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="Raising a baby is not easy. Do you  think that you are prepared for this?">
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
-			<ABILITY NAME="">1</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
+			<ABILITY NAME="BUTTONS_PER_SECOND">5</ABILITY>
 		</PRESSURE>
 	</PEER>
 </DATA>

@@ -10,6 +10,7 @@
 	import starling.utils.ScaleMode;
 	import flash.system.Capabilities;
 	import src.Game;
+	import starling.text.TextField;
 	
 	public class Img
 	{
@@ -35,6 +36,20 @@
 			var image:Image = new Image(texture);
 
 			return AddDisplayObject(image, positionX , positionY);
+		}
+		
+		public static function CreateTextAt(boxParent : Sprite, boxText : String, boxX : Number, boxY : Number, boxWidth : Number, boxHeight : Number, fontSize : int) : TextField
+		{
+			var position : Vector.<Number> = Img.GetScaledVector(boxX, boxY);
+			var scale : Vector.<Number> = Img.GetScaledVector(boxWidth, boxHeight);
+			
+			var field : TextField = new TextField(scale[0], scale[1], boxText);
+				field.fontSize = fontSize / 720 * Capabilities.screenResolutionX;
+				field.x = position[0];
+				field.y = position[1];
+				boxParent.addChild(field);
+				
+			return field;
 		}
 		
 		public static function GetScaledVector(_x : Number, _y : Number) : Vector.<Number> 

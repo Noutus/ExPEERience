@@ -48,6 +48,9 @@
 					previousY = _touch.globalY;
 					
 					if (backGround.y > 0) backGround.y = 0;
+					
+					var maxY : Number = -(backGround.height - Capabilities.screenResolutionY);
+					if (backGround.y < maxY) backGround.y = maxY;
 				}
 			}
 		}

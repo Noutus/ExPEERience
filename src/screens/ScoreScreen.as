@@ -8,6 +8,9 @@
 	import src.global.Results;
 	import flash.system.Capabilities;
 	import starling.text.TextField;
+	import src.display.Img;
+	import src.GlobalValues;
+	import src.actionPhase.ActionValues;
 	
 	public class ScoreScreen extends GameScreen
 	{
@@ -16,34 +19,15 @@
 			var pleasure : int = Results.instance().GetPleasure();
 			var risk : int = Results.instance().GetRisk();
 			
-			var position : Vector.<Number> = Img.GetScaledVector(0, 640);
-			var scale : Vector.<Number> = Img.GetScaledVector(720, 100);
-			
-			var pleasureText : TextField = new TextField(scale[0], scale[1], "Pleasure Gained: " + pleasure.toString());
-				pleasureText.fontSize = 32 / 720 * Capabilities.screenResolutionX;
-				pleasureText.x = position[0];
-				pleasureText.y = position[1];
-				addChild(pleasureText);
-				
-			position[1] += 128 / 1280 * Capabilities.screenResolutionY;
-				
-			var riskText : TextField = new TextField(scale[0], scale[1], "Risk Gained: " + risk.toString());
-				riskText.fontSize = 32 / 720 * Capabilities.screenResolutionX;
-				riskText.x = position[0];
-				riskText.y = position[1];
-				addChild(riskText);
-				
-			position[1] += 128 / 1280 * Capabilities.screenResolutionY;
-				
-			var riskText : TextField = new TextField(scale[0], scale[1], "Total Score: " + (pleasure - risk).toString());
-				riskText.fontSize = 48 / 720 * Capabilities.screenResolutionX;
-				riskText.x = position[0];
-				riskText.y = position[1];
-				addChild(riskText);
+			var pleasureText : TextField = Img.CreateTextAt(this, "Pleasure Gained: " + pleasure.toString(), 0, 640, 720, 100, 32);
+			var riskText : TextField = Img.CreateTextAt(this, "Risk Gained: " + risk.toString(), 0, 768, 720, 100, 32);
+			var scoreText : TextField = Img.CreateTextAt(this, "Total Score: " + (pleasure - risk).toString(), 0, 896, 720, 100, 48);
 		}
 		
 		public override function OnEnter() : void
 		{
+			GlobalValues.instance().SaveGame();
+			
 			Img.CreateScreenSwitchButtonAt("button_next", Screens.PRESSURE, 520, 1100);
 			Img.CreateScreenSwitchButtonAt("button_back", Screens.MAINMENU, 0, 1100);
 		}
@@ -51,6 +35,7 @@
 		public override function OnExit() : void
 		{
 			Results.instance().ResetValues();
+			ActionValues.instance().ResetModifiers();
 			
 			super.OnExit();
 		}
