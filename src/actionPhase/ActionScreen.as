@@ -18,10 +18,13 @@
 	import flash.geom.Rectangle;
 	import src.display.Img;
 	import flash.events.TimerEvent;
+	import src.gui.PopupWindow;
 	
 	public class ActionScreen extends GameScreen {
 		
 		private var gameTimerField: TextField;
+		
+		private var babyField: TextField;
 		
 		private var pleasureTimer: PauseTimer;
 
@@ -51,6 +54,8 @@
 			addPopupController();
 				
 			addPleasureTimer();
+			
+			addBabyField();
 
 			// Only to show the area, for testing! Should not be in the final game.
 			//addPopupArea(); 
@@ -95,6 +100,19 @@
 			this.dispose();
 		}		
 		
+		public function addBabyField(): void {
+			
+			var squasize: Number = 220 / 720 * Capabilities.screenResolutionX;
+			var textsize: Number = 38 / 720 * Capabilities.screenResolutionX;
+			
+			babyField = new TextField(squasize, squasize / 2, "", "Arial", textsize, Color.RED);
+			babyField.border = true;
+			babyField.x = 20
+			babyField.y = 20;
+			
+			updateBabyText()
+			addChild(babyField);
+		}
 		
 		// In de tweede level pauzeert hij niet fatsoenlijk, hij telt door maar de bar wordt pas geupdate als hij verder gaat
 		private function addPleasureTimer(): void {
@@ -172,11 +190,28 @@
 			riskFill.setRatio(ratio);
 		}
 		
+		public function updateBabyText(): void {
+			babyField.text = 'Babies: ' + GlobalValues.instance().babies.toString();
+		}
+		
 		public function alterRisk(ratio: Number) {
 			setRiskRatio(GlobalValues.instance().risk + ratio);
 			
 			if (GlobalValues.instance().risk >= 1) {
-				trace("Risk full! Pregnant!");
+				
+				GlobalValues.instance().babies++;
+				
+				pause();
+				
+				var popupWindow: PopupWindow = new PopupWindow('Baby!', "You've made a baby!");
+				trace("Risk full! Baby!");
+				this.addChild(popupWindow);
+				
+				popupWindow.addEventListener(Event.REMOVED_FROM_STAGE, function(e: Event): void {
+					setRiskRatio(0.0);
+					updateBabyText();
+					resume();	
+				});
 			}
 		}
 		
@@ -220,9 +255,32 @@
 			setRiskRatio(GlobalValues.instance().risk);
 		}
 		
+		
 		private var pauseStartTime: Number;
 		private var paused: Boolean = false;
 		private var pausedTime: Number;
+		
+		
+		public function pause(): void {
+			pauseStartTime = getTimer();
+					
+			pleasureTimer.pause();
+					
+			popupController.pause();
+			paused = true;
+		}
+
+		public function resume(): void {
+			pleasureTimer.resume();
+			
+			pausedTime = getTimer() - pauseStartTime;
+			startTime = startTime + pausedTime;
+			
+			popupController.resume();
+			
+			paused = false;
+		}
+		
 		
 		/*
 			What happens when the pause button is touched
@@ -232,24 +290,8 @@
 			if (touch.phase == TouchPhase.ENDED) {
 				trace("Pause button clicked");
 				
-				if (!isPaused()) {
-					pauseStartTime = getTimer();
-					
-					pleasureTimer.pause();
-					
-					popupController.pause();
-	
-				} else {
-					
-					pleasureTimer.resume();
-					
-					pausedTime = getTimer() - pauseStartTime;
-					startTime = startTime + pausedTime;
-					
-					popupController.resume();
-
-				}
-				paused = !paused;
+				isPaused()? resume() : pause();
+				
 			}
 		}
 		
@@ -265,13 +307,17 @@
 			if (!isPaused()) {
 				timeLeft = Math.ceil(timeLimit - (getTimer() - startTime) / 1000);
 				gameTimerField.text = timeLeft.toString();
-				
+			
 				if (timeLeft <= 0) {
 					paused = true;
 					trace("Game over!");
 					
 					Game.instance().SwitchScreen(new ScoreScreen());
+					
+					//GlobalValues.instance().babies
+					
 				}
+
 			}	
 		}
 

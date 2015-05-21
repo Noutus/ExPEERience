@@ -57,6 +57,17 @@
 			return _returnValue;
 		}
 		
+		public function toString(): String {
+			
+			var rv: String = 'MODIFIERS: ';
+			for (var _object : Object in modifiers)
+			{
+				rv += 'name: ' + _object + ', value: ' + modifiers[_object] + '. ';
+			}
+			
+			return rv;
+		}
+		
 		/**
 		* Sets the value for the modifer with a certain name.
 		* 
