@@ -82,6 +82,8 @@
 			
 		}		
 		
+		
+		// In de tweede level pauzeert hij niet fatsoenlijk, hij telt door maar de bar wordt pas geupdate als hij verder gaat
 		private function addPleasureTimer(): void {
 			pleasureTimer = new PauseTimer(100);
 
@@ -135,6 +137,11 @@
 		}
 		
 		private function setPleasureRatio(ratio: Number) {
+			if (ratio > 1)
+				ratio = 1;
+			if (ratio < 0)
+				ratio = 0;
+			
 			GlobalValues.instance().pleasure = ratio;
 			pleasureFill.setRatio(ratio);
 		}
@@ -149,6 +156,11 @@
 		}
 		
 		public function setRiskRatio(ratio: Number) {
+			if (ratio > 1) 
+				ratio = 1;
+			if (ratio < 0)
+				ratio = 0;
+
 			GlobalValues.instance().risk = ratio;
 			riskFill.setRatio(ratio);
 		}
