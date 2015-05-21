@@ -26,7 +26,12 @@
 		
 		public override function OnEnter() : void
 		{
+			trace("Entering Score Screen: ");
+			trace("Risk sex: " + ActionValues.instance().GetModifier(ActionValues.RISK_SEX));
+			trace("Buttons per second: " + ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND));
+			
 			GlobalValues.instance().SaveGame();
+			ActionValues.instance().ResetModifiers();
 			
 			Img.CreateScreenSwitchButtonAt("button_next", Screens.PRESSURE, 520, 1100);
 			Img.CreateScreenSwitchButtonAt("button_back", Screens.MAINMENU, 0, 1100);
@@ -35,7 +40,6 @@
 		public override function OnExit() : void
 		{
 			Results.instance().ResetValues();
-			ActionValues.instance().ResetModifiers();
 			
 			super.OnExit();
 		}

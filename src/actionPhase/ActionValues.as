@@ -49,7 +49,7 @@
 		*/
 		public function GetModifier(_name : String) : Number
 		{
-			var _returnValue : Number = 0;
+			var _returnValue : Number = 0.0;
 			for (var _object : Object in modifiers)
 			{
 				if (_name == _object) _returnValue = modifiers[_object];
@@ -65,13 +65,19 @@
 		*/
 		public function SetModifier(_name : String, _value : Number) : void
 		{
-			modifiers[_name] = _value;
+			for (var _object : Object in modifiers)
+			{
+				if (_name == _object) modifiers[_object] = _value;
+			}
+			
 			trace("Set modifier " + _name + " to value " + _value.toString());
 		}
 		
 		// TODO: Rename.
 		public function ActionValues()
 		{
+			if (!_instance) _instance = this;
+			
 			modifiers = new Dictionary();
 			
 			/*
@@ -82,7 +88,7 @@
 			var _xmlList : XMLList = describeType(ActionValues).child("constant");
 			for each(var _key : XML in _xmlList)
 			{
-				modifiers[_key.attribute("name")] = 1;
+				modifiers[_key.attribute("name")] = 1.0;
 			}
 		}
 		
@@ -91,9 +97,9 @@
 		*/
 		public function ResetModifiers() : void
 		{
-			for each(var _value : Number in modifiers)
+			for (var _object : Object in modifiers)
 			{
-				_value = 1;
+				modifiers[_object] = 1.0;
 			}
 		}
 	}

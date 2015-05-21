@@ -123,7 +123,7 @@
 			
 		
 			popupTimer.delay = getTimeBetweenSpawns();
-			trace("popupTimer.delay: " + popupTimer.delay);
+			//trace("popupTimer.delay: " + popupTimer.delay);
 
 			//var popupButton: PopupButton = new PopupButton(Game.instance().assets.getTexture(ActionValues.PLEASURE_TOUCH null);
 			//actionScreen.addChild();

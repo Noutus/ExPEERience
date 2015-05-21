@@ -39,6 +39,10 @@
 		{
 			super.OnEnter();
 			
+			trace("Entering Pressure Screen: ");
+			trace("Risk sex: " + ActionValues.instance().GetModifier(ActionValues.RISK_SEX));
+			trace("Buttons per second: " + ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND));
+			
 			CreateRandomPeer();
 			
 			buttonPeer = Img.GetNewImageAt("button_no", 80, 550);
@@ -111,7 +115,7 @@
 			var _touch : Touch = e.getTouch(this, TouchPhase.ENDED);
 			if (_touch)
 			{
-				ActionValues.instance().SetModifier(ActionValues.RISK_SEX, 0);
+				ActionValues.instance().SetModifier(ActionValues.RISK_SEX, 0.0);
 				Game.instance().SwitchScreen(new ActionScreen());
 			}
 		}
