@@ -64,18 +64,12 @@
 				popupButton.increaseTouches();
 
 				if (popupButton.touchedEnough()) {
-					
-					if (popupButton.getPleasure() > 0)
-					{
-						actionScreen.alterPleasure(popupButton.getPleasure());
-						Results.instance().AddPleasure(100);
-					}
-					
-					if (popupButton.getRisk() > 0)
-					{
-						actionScreen.alterRisk(popupButton.getRisk());
-						Results.instance().AddRisk(100);
-					}
+
+					actionScreen.alterPleasure(popupButton.getPleasure());
+					Results.instance().AddPleasure(100);
+
+					actionScreen.alterRisk(popupButton.getRisk());
+					Results.instance().AddRisk(100);
 					
 					removeButton(popupButton);
 				}

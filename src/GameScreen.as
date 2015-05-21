@@ -37,6 +37,7 @@
 		public function OnExit() : void
 		{
 			this.removeFromParent(true);
+			this.dispose();
 		}
 	}
 }

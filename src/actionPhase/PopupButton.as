@@ -109,7 +109,7 @@
 			var popups: Vector.<PopupButton> = popupController.getPopups();
 
 			for each (var button: PopupButton in popups) {
-				trace("This button: " + x + ", " + y + ", " + this.width + ", " + this.height + ", checking button: " +button.x + ", " + button.y + ", " + button.width + ", " + button.height);
+				//trace("This button: " + x + ", " + y + ", " + this.width + ", " + this.height + ", checking button: " +button.x + ", " + button.y + ", " + button.width + ", " + button.height);
 				// if overlap
 				if ((x + this.width >= button.x) && 
 					(x <= button.x + button.width) && 

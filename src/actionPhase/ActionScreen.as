@@ -54,7 +54,9 @@
 
 			// Only to show the area, for testing! Should not be in the final game.
 			//addPopupArea(); 
-			
+			//this.setRiskRatio(1.0);
+			//this.setPleasureRatio(1.0);
+
 			// test
 			//trace('Changing maximum number of taps to 3');
 			//ActionValues.instance().SetModifier(ActionValues.BUTTONS_MAXIMUM_NUMBER_OF_TAPS, 3);
@@ -77,9 +79,16 @@
 			super.OnExit();
 			
 			if (popupController && popupController.isSpawning()) {
+				trace('Stopping the popupController');
 				popupController.stopSpawning();
 			}
 			
+			if (pleasureTimer) {
+				pleasureTimer.stop();
+				pleasureTimer.removeEventListener('timer', pleasureDecrease);
+			}
+			
+			this.dispose();
 		}		
 		
 		
@@ -137,10 +146,7 @@
 		}
 		
 		private function setPleasureRatio(ratio: Number) {
-			if (ratio > 1)
-				ratio = 1;
-			if (ratio < 0)
-				ratio = 0;
+			ratio = Math.max(0.0, Math.min(1.0, ratio));
 			
 			GlobalValues.instance().pleasure = ratio;
 			pleasureFill.setRatio(ratio);
@@ -156,10 +162,7 @@
 		}
 		
 		public function setRiskRatio(ratio: Number) {
-			if (ratio > 1) 
-				ratio = 1;
-			if (ratio < 0)
-				ratio = 0;
+			ratio = Math.max(0.0, Math.min(1.0, ratio));
 
 			GlobalValues.instance().risk = ratio;
 			riskFill.setRatio(ratio);
@@ -181,7 +184,7 @@
 			pleasureImage.x = 35;
 			pleasureImage.y = 1080;
 			
-			pleasureFill.x = pleasureImage.x + 9;
+			pleasureFill.x = pleasureImage.x + 11;
 			pleasureFill.y = pleasureImage.y + 11;
 			
 			Img.ChangeSpriteSize(pleasureFill);
@@ -201,7 +204,7 @@
 			riskImage.x = 35;			
 			riskImage.y = 1200;
 			
-			riskFill.x = riskImage.x + 9;
+			riskFill.x = riskImage.x + 11;
 			riskFill.y = riskImage.y + 11;
 			
 			Img.ChangeSpriteSize(riskFill);
