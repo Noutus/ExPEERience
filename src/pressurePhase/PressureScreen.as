@@ -32,7 +32,7 @@
 		
 		public function PressureScreen()
 		{
-			setBackground("pressure_background_placeholder");
+			
 		}
 		
 		public override function OnEnter() : void
@@ -70,6 +70,7 @@
 				// TODO: Put into static function CreateSpriteAt();
 				trace("pressure_peer_placeholder_" + _peersXML.PEER[_randomPeer].@NAME);
 				
+				setBackground("pressure_background_" + _peersXML.PEER[_randomPeer].@NAME);
 				Img.CreateImageAt("pressure_peer_placeholder_" + _peersXML.PEER[_randomPeer].@NAME, 410, 480);
 				Img.CreateImageAt("pressure_cloud_placeholder", 0, 0);
 				
