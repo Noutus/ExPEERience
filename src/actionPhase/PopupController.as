@@ -57,6 +57,9 @@
 			return popupTimer.running;
 		}
 
+		public function ratioToPoints(ratio: Number): int {
+			return Math.floor(ratio * 100);
+		}
 		
 		public function popupClicked(popupButton: PopupButton) {
 			if (!actionScreen.isPaused()) {
@@ -66,10 +69,10 @@
 				if (popupButton.touchedEnough()) {
 
 					actionScreen.alterPleasure(popupButton.getPleasure());
-					Results.instance().AddPleasure(100);
+					Results.instance().AddPleasure(ratioToPoints(popupButton.getPleasure()));
 
 					actionScreen.alterRisk(popupButton.getRisk());
-					Results.instance().AddRisk(100);
+					Results.instance().AddRisk(ratioToPoints(popupButton.getRisk()));
 					
 					removeButton(popupButton);
 				}
