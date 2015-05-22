@@ -116,6 +116,7 @@
 			var _touch : Touch = e.getTouch(this, TouchPhase.ENDED);
 			if (_touch)
 			{
+				ActionValues.instance().SetModifier(ActionValues.BUTTONS_PER_SECOND, 1.75);
 				ActionValues.instance().SetModifier(ActionValues.RISK_SEX, 0.0);
 				Game.instance().SwitchScreen(new ActionScreen());
 			}
