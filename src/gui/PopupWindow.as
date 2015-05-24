@@ -9,9 +9,12 @@
 	import starling.text.TextField;
 	import src.Game;
 	import flash.system.Capabilities;
+	import starling.events.Event;
 	
 	public class PopupWindow extends Sprite
 	{
+		public static const CLOSE_CLICKED: String = "CLOSE_CLICKED";
+		
 		var background : DisplayObject;
 		var exitButton : DisplayObject;
 		var title : TextField;
@@ -45,6 +48,8 @@
 			if (_touch)
 			{
 				trace("Exit Button clicked.");
+				
+				dispatchEvent(new Event(PopupWindow.CLOSE_CLICKED));
 				
 				background.removeFromParent(true);
 				title.removeFromParent(true);

@@ -174,13 +174,23 @@
 			pleasureFill.setRatio(ratio);
 		}
 		
+		
 		// AS3 isn't multithreaded, so this code will not be interrupted. (no race conditions)
 		public function alterPleasure(ratio: Number) { 
+
 			setPleasureRatio(GlobalValues.instance().pleasure + ratio);
-			
+
 			if (GlobalValues.instance().pleasure >= 1) {
-				trace("Pleasure full!");
+				trace("Pleasure full, next level!");
+				Game.instance().SwitchScreen(new ScoreScreen(true));
+				GlobalValues.instance().pleasure = 0.5;	
 			}
+			if (GlobalValues.instance().pleasure <= 0) {
+				trace("Pleasure empty, game over!");
+				Game.instance().SwitchScreen(new ScoreScreen(false));
+				GlobalValues.instance().pleasure = 0.5;			
+			}
+
 		}
 		
 		public function setRiskRatio(ratio: Number) {
@@ -194,8 +204,8 @@
 			babyField.text = 'Babies: ' + GlobalValues.instance().babies.toString();
 		}
 		
-		public function alterRisk(ratio: Number) {
-			setRiskRatio(GlobalValues.instance().risk + ratio);
+		public function alterBars(riskRatio: Number, pleasureRatio: Number) {
+			setRiskRatio(GlobalValues.instance().risk + riskRatio);
 			
 			if (GlobalValues.instance().risk >= 1) {
 				
@@ -207,11 +217,15 @@
 				trace("Risk full! Baby!");
 				this.addChild(popupWindow);
 				
-				popupWindow.addEventListener(Event.REMOVED_FROM_STAGE, function(e: Event): void {
+				popupWindow.addEventListener(PopupWindow.CLOSE_CLICKED, function(e: Event): void {
 					setRiskRatio(0.0);
 					updateBabyText();
-					resume();	
+					resume();
+					alterPleasure(pleasureRatio);
 				});
+				
+			} else {
+				alterPleasure(pleasureRatio);
 			}
 		}
 		
@@ -312,7 +326,7 @@
 					paused = true;
 					trace("Game over!");
 					
-					Game.instance().SwitchScreen(new ScoreScreen());
+					Game.instance().SwitchScreen(new ScoreScreen(false));
 					
 					//GlobalValues.instance().babies
 					

@@ -14,11 +14,17 @@
 	
 	public class ScoreScreen extends GameScreen
 	{
-		public function ScoreScreen()
+		var won: Boolean;
+		
+		public function ScoreScreen(won: Boolean)
 		{
+			this.won = won;
+			
 			var pleasure : int = Results.instance().GetPleasure();
 			var risk : int = Results.instance().GetRisk();
 			
+			var wonText : TextField = Img.CreateTextAt(this, won? "Succesfull night, next level!": "Bad night, game over!", 0, 400, 720, 100, 50);
+
 			var pleasureText : TextField = Img.CreateTextAt(this, "Pleasure Gained: " + pleasure.toString(), 0, 640, 720, 100, 32);
 			var riskText : TextField = Img.CreateTextAt(this, "Risk Gained: " + risk.toString(), 0, 768, 720, 100, 32);
 			var scoreText : TextField = Img.CreateTextAt(this, "Total Score: " + (pleasure - risk).toString(), 0, 896, 720, 100, 48);
@@ -33,7 +39,7 @@
 			GlobalValues.instance().SaveGame();
 			ActionValues.instance().ResetModifiers();
 			
-			Img.CreateScreenSwitchButtonAt("button_next", Screens.PRESSURE, 520, 1100);
+			Img.CreateScreenSwitchButtonAt("button_next", won? Screens.PRESSURE: Screens.MAINMENU, 520, 1100);
 			Img.CreateScreenSwitchButtonAt("button_back", Screens.MAINMENU, 0, 1100);
 		}
 		
