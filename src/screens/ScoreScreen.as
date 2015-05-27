@@ -23,7 +23,8 @@
 			var pleasure : int = Results.instance().GetPleasure();
 			var risk : int = Results.instance().GetRisk();
 			
-			var wonText : TextField = Img.CreateTextAt(this, won? "Succesfull night, next level!": "Bad night, game over!", 0, 400, 720, 100, 50);
+			var wonText : TextField = Img.CreateTextAt(this, won? "Succesfull night, next level!": "Bad night, game over!", 0, 200, 720, 200, 50);
+			var levelText : TextField = Img.CreateTextAt(this, won? "Next level: " + GlobalValues.instance().level: "Got to level: " + GlobalValues.instance().level, 0, 500, 720, 200, 50);
 
 			var pleasureText : TextField = Img.CreateTextAt(this, "Pleasure Gained: " + pleasure.toString(), 0, 640, 720, 100, 32);
 			var riskText : TextField = Img.CreateTextAt(this, "Risk Gained: " + risk.toString(), 0, 768, 720, 100, 32);

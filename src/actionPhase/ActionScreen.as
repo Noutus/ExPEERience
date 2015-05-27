@@ -174,7 +174,13 @@
 			pleasureFill.setRatio(ratio);
 		}
 		
-		
+		public function gameOver(won: Boolean) {
+			if (won) {
+				GlobalValues.instance().level++;
+			}
+			Game.instance().SwitchScreen(new ScoreScreen(won));
+		}
+
 		// AS3 isn't multithreaded, so this code will not be interrupted. (no race conditions)
 		public function alterPleasure(ratio: Number) { 
 
@@ -182,12 +188,12 @@
 
 			if (GlobalValues.instance().pleasure >= 1) {
 				trace("Pleasure full, next level!");
-				Game.instance().SwitchScreen(new ScoreScreen(true));
+				gameOver(true);
 				GlobalValues.instance().pleasure = 0.5;	
 			}
 			if (GlobalValues.instance().pleasure <= 0) {
 				trace("Pleasure empty, game over!");
-				Game.instance().SwitchScreen(new ScoreScreen(false));
+				gameOver(false);
 				GlobalValues.instance().pleasure = 0.5;			
 			}
 
@@ -231,6 +237,18 @@
 		
 		private var pleasureFill: Bar;
 		private function addPleasureBar(): void {
+			
+			/*var squasize: Number = 100 / 720 * Capabilities.screenResolutionX;
+			var textsize: Number = 22 / 720 * Capabilities.screenResolutionX;
+			
+			var pleasureField: TextField = new TextField(squasize, squasize/2, "Pleasure", "Arial", textsize, Color.NAVY);
+			pleasureField.border = true;
+			pleasureField.x = 35
+			pleasureField.y = 1080;//1030;
+			
+			addChild(pleasureField);*/
+			
+			
 			pleasureFill = new Bar(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_FILL));
 			var pleasureImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_IMG));
 			
@@ -251,6 +269,17 @@
 		
 		private var riskFill: Bar;
 		private function addRiskBar(): void {
+			/*var squasize: Number = 100 / 720 * Capabilities.screenResolutionX;
+			var textsize: Number = 22 / 720 * Capabilities.screenResolutionX;
+			
+			var riskField: TextField = new TextField(squasize, squasize/2, "Risk", "Arial", textsize, Color.NAVY);
+			riskField.border = true;
+			riskField.x = 35
+			riskField.y = 1200;//1150;
+			
+			addChild(riskField);*/
+			
+			
 			riskFill = new Bar(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_FILL));
 			var riskImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_IMG));
 			
@@ -326,7 +355,7 @@
 					paused = true;
 					trace("Game over!");
 					
-					Game.instance().SwitchScreen(new ScoreScreen(false));
+					gameOver(false);
 					
 					//GlobalValues.instance().babies
 					

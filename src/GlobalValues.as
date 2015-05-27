@@ -37,7 +37,7 @@
 		{
 			gender = false;
 			babies = 0;
-			level = 0;
+			level = 1;
 			pleasure = 0.50;
 			risk = 0.00;
 		}
