@@ -25,6 +25,8 @@
 		public var pleasure : Number;
 		public var risk : Number;
 		
+		public var totalScore: int;
+		
 		public function GlobalValues()
 		{
 			ResetValues();
@@ -40,6 +42,7 @@
 			level = 1;
 			pleasure = 0.50;
 			risk = 0.00;
+			totalScore = 0;
 		}
 		
 		/**
@@ -53,6 +56,7 @@
 			level = _data.data.level;
 			pleasure = _data.data.pleasure;
 			risk = _data.data.risk;
+			totalScore = _data.data.totalScore;
 		}
 		
 		/**
@@ -66,6 +70,7 @@
 			_data.data.level = level;
 			_data.data.pleasure = pleasure;
 			_data.data.risk = risk;
+			_data.data.totalScore = totalScore;
 		}
 	}
 }

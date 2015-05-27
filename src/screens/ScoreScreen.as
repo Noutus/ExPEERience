@@ -23,12 +23,18 @@
 			var pleasure : int = Results.instance().GetPleasure();
 			var risk : int = Results.instance().GetRisk();
 			
+			var levelScore: int = (pleasure - risk);
+			
+			GlobalValues.instance().totalScore += levelScore;
+			
 			var wonText : TextField = Img.CreateTextAt(this, won? "Succesfull night, next level!": "Bad night, game over!", 0, 200, 720, 200, 50);
-			var levelText : TextField = Img.CreateTextAt(this, won? "Next level: " + GlobalValues.instance().level: "Got to level: " + GlobalValues.instance().level, 0, 500, 720, 200, 50);
+			var levelText : TextField = Img.CreateTextAt(this, won? "Next level: " + GlobalValues.instance().level: "Got to level: " + GlobalValues.instance().level, 0, 400, 720, 200, 50);
 
-			var pleasureText : TextField = Img.CreateTextAt(this, "Pleasure Gained: " + pleasure.toString(), 0, 640, 720, 100, 32);
-			var riskText : TextField = Img.CreateTextAt(this, "Risk Gained: " + risk.toString(), 0, 768, 720, 100, 32);
-			var scoreText : TextField = Img.CreateTextAt(this, "Total Score: " + (pleasure - risk).toString(), 0, 896, 720, 100, 48);
+			Img.CreateTextAt(this, "Pleasure Gained: " + pleasure.toString(), 0, 540, 720, 100, 32);
+			Img.CreateTextAt(this, "Risk Gained: " + risk.toString(), 0, 668, 720, 100, 32);
+			Img.CreateTextAt(this, "Level Score: " + levelScore.toString(), 0, 796, 720, 100, 48);
+			
+			Img.CreateTextAt(this, "Total Score: " + GlobalValues.instance().totalScore.toString(), 0, 924, 720, 100, 48);
 		}
 		
 		public override function OnEnter() : void
