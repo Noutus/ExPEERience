@@ -1,6 +1,8 @@
 ﻿package src {
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
+	import flash.media.SoundTransform;
+	import flash.media.SoundMixer;
 	
 	
 	/**
@@ -9,7 +11,9 @@
 	*/
 	public class Sound {
 		
-		public static var loopingSoundChannel: SoundChannel = new SoundChannel();
+		private static var loopingSoundChannel: SoundChannel = new SoundChannel();
+		
+		private static var soundTransform: SoundTransform = new SoundTransform(1,0);
 		
 		public static function playLooping(assetName: String) {
 			stopLooping();
@@ -21,7 +25,7 @@
 		}
 				
 		
-		public static var soundChannel: SoundChannel = new SoundChannel();
+		private static var soundChannel: SoundChannel = new SoundChannel();
 
 		public static function play(assetName: String) {
 			stop();
@@ -30,6 +34,11 @@
 		
 		public static function stop() {
 			soundChannel.stop();
+		}
+		
+		public static function setMute(muteOn: Boolean) {
+			soundTransform.volume = muteOn? 0: 1;
+			SoundMixer.soundTransform = soundTransform;
 		}
 
 	}
