@@ -10,5 +10,6 @@
 		public static const GENDER = "gender";
 		public static const STORYBOY = "story boy";
 		public static const STORYGIRL = "story girl";
+		public static const OPTION = "option";
 	}
 }

@@ -38,6 +38,7 @@
 					case Screens.GENDER: Game.instance().SwitchScreen(new GenderScreen()); break;
 					case Screens.STORYGIRL: Game.instance().SwitchScreen(new StoryGirlScreen()); break;
 					case Screens.STORYBOY: Game.instance().SwitchScreen(new StoryBoyScreen()); break;
+					case Screens.OPTION: Game.instance().SwitchScreen(new OptionScreen()); break;
 				}
 			}
 		}

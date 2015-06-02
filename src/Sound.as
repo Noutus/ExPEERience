@@ -41,6 +41,9 @@
 			SoundMixer.soundTransform = soundTransform;
 		}
 
+		public static function isMuted(): Boolean {
+			return soundTransform.volume == 0;
+		}
 	}
 	
 }

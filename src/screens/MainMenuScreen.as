@@ -7,6 +7,7 @@
 	import starling.core.Starling;
 	import src.display.Img;
 	import src.GlobalValues;
+	import src.Sound;
 
 	public class MainMenuScreen extends GameScreen
 	{
@@ -21,9 +22,11 @@
 			
 			Img.CreateScreenSwitchButtonAt("main_button_play", Screens.GENDER, 120, 210);
 			Img.CreateScreenSwitchButtonAt("main_button_rules", Screens.GENDER, 120, 510);
-			Img.CreateScreenSwitchButtonAt("main_button_options", Screens.GENDER, 120, 810);
+			Img.CreateScreenSwitchButtonAt("main_button_options", Screens.OPTION, 120, 810);
 			
 			GlobalValues.instance().ResetValues();
+			
+			Sound.playLooping("HANZE GAME");
 		}
 	}
 }
