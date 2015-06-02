@@ -20,30 +20,39 @@
 	import src.display.Img;
 	import flash.events.TimerEvent;
 	import src.gui.PopupWindow;
+	import src.actionPhase.Baby;
+	import starling.display.DisplayObject;
+	import starling.display.Sprite;
 	import src.global.Messages;
+	
+	public class ActionScreen extends GameScreen {
 
-	public class ActionScreen extends GameScreen
-	{
+		public var bottomLayer: Sprite = new Sprite();
+		public var topLayer: Sprite = new Sprite();
 
-		private var gameTimerField:TextField;
+		private var gameTimerField: TextField;
 
-		private var babyField:TextField;
+		private var babyField: TextField;
 
-		private var pleasureTimer:PauseTimer;
+		private var pleasureTimer: PauseTimer;
 
 		private var activeButtons: Vector.<PopupButton> = new Vector.<PopupButton>();
 
-		private var popupController:PopupController;
+		private var popupController: PopupController;
 
-		public static var popupArea: Rectangle = 
-		new Rectangle(0, 130 / 1280 * Capabilities.screenResolutionY, Starling.current.stage.stageWidth / 720 * Capabilities.screenResolutionX, (Starling.current.stage.stageHeight - 330) / 1280 * Capabilities.screenResolutionY);
+		private var babyController: BabyController;
 
-		private var startTime:Number;
+		public static var popupArea: Rectangle = new Rectangle(0, 130 / 1280 * Capabilities.screenResolutionY, Starling.current.stage.stageWidth / 720 * Capabilities.screenResolutionX, (Starling.current.stage.stageHeight - 330) / 1280 * Capabilities.screenResolutionY);
+
+		private var startTime: Number;
 
 		// ActionScreen constructor
 		public function ActionScreen()
 		{
 			super();
+
+			addChildAt(bottomLayer, 0)
+			addChild(topLayer);
 
 			setBackground(AssetNames.ACTION_BACKGROUND);
 
@@ -56,6 +65,8 @@
 			addTimer();
 
 			addPopupController();
+
+			addBabyController();
 
 			addPleasureTimer();
 
@@ -71,8 +82,7 @@
 			//ActionValues.instance().SetModifier(ActionValues.BUTTONS_MAXIMUM_NUMBER_OF_TAPS, 3);
 		}
 
-		public override function OnEnter():void
-		{
+		public override function OnEnter(): void {
 			super.OnEnter();
 
 			trace("Entering Action Screen: ");
@@ -112,8 +122,7 @@
 				popupController.stopSpawning();
 			}
 
-			if (pleasureTimer)
-			{
+			if (pleasureTimer) {
 				pleasureTimer.stop();
 				pleasureTimer.removeEventListener('timer', pleasureDecrease);
 			}
@@ -128,13 +137,16 @@
 			var textsize:Number = 38 / 720 * Capabilities.screenResolutionX;
 
 			babyField = new TextField(squasize,squasize / 2,"","Arial",textsize,Color.RED);
+
 			babyField.border = true;
 			babyField.x = 20;
 			babyField.y = 20;
 
-			updateBabyText();
-			addChild(babyField);
+
+			updateBabyText()
+			bottomLayer.addChild(babyField);
 		}
+
 
 		// In de tweede level pauzeert hij niet fatsoenlijk, hij telt door maar de bar wordt pas geupdate als hij verder gaat
 		private function addPleasureTimer():void
@@ -144,47 +156,50 @@
 			pleasureTimer.addEventListener("timer", pleasureDecrease);
 		}
 
-		private function pleasureDecrease(event: TimerEvent):void
-		{
-			alterPleasure(- 0.005 * ActionValues.instance().GetModifier(ActionValues.PLEASURE_DECREASE));
+
+		private function pleasureDecrease(event: TimerEvent): void {
+			alterPleasure(-0.005 * ActionValues.instance().GetModifier(ActionValues.PLEASURE_DECREASE));
 		}
 
 		// Only for testing to show where this area is.
-		private function addPopupArea():void
-		{
-			var areaTest:Quad = new Quad(popupArea.width,popupArea.height);
+		private function addPopupArea(): void {
+			var areaTest: Quad = new Quad(popupArea.width, popupArea.height);
 			areaTest.x = popupArea.x;
 			areaTest.y = popupArea.y;
 
-			addChild(areaTest);
+			bottomLayer.addChild(areaTest);
+
 		}
 
 		private function addPopupController():void
 		{
 			popupController = new PopupController(this);
 
+
 		}
 
-		private function addTimer():void
-		{
+		private function addBabyController(): void {
+			babyController = new BabyController(this);
+		}
 
-			var squasize:Number = 100 / 720 * Capabilities.screenResolutionX;
-			var textsize:Number = 45 / 720 * Capabilities.screenResolutionX;
+		private function addTimer(): void {
 
-			gameTimerField = new TextField(squasize,squasize,"","Arial",textsize,Color.NAVY);
+			var squasize: Number = 100 / 720 * Capabilities.screenResolutionX;
+			var textsize: Number = 45 / 720 * Capabilities.screenResolutionX;
+
+			gameTimerField = new TextField(squasize, squasize, "", "Arial", textsize, Color.NAVY);
 			gameTimerField.border = true;
 			gameTimerField.x = (Starling.current.stage.stageWidth - gameTimerField.width) / 1440 * Capabilities.screenResolutionX;
 			gameTimerField.y = 10;
-			addChild(gameTimerField);
-
+			bottomLayer.addChild(gameTimerField);
 		}
 
 		/*
 		Make the pause button and add it to the screen.
 		*/
-		private function addPauseButton():void
-		{
-			var button:Button = new Button(Game.instance().assets.getTexture(AssetNames.BUTTON_PAUSE));
+
+		private function addPauseButton(): void {
+			var button: Button = new Button(Game.instance().assets.getTexture(AssetNames.BUTTON_PAUSE));
 
 			button.x = Starling.current.stage.stageWidth - button.width - 20;
 			button.y = 20;
@@ -192,29 +207,26 @@
 
 			Img.ChangeSpriteSize(button);
 
-			addChild(button);
+			bottomLayer.addChild(button);
 		}
 
-		private function setPleasureRatio(ratio: Number)
-		{
-			ratio = Math.max(0.0,Math.min(1.0,ratio));
+		private function setPleasureRatio(ratio: Number) {
+			ratio = Math.max(0.0, Math.min(1.0, ratio));
 
 			GlobalValues.instance().pleasure = ratio;
 			pleasureFill.setRatio(ratio);
 		}
 
-		public function gameOver(won: Boolean)
-		{
-			if (won)
-			{
-				GlobalValues.instance().addLevel();
+
+		public function gameOver(won: Boolean) {
+			if (won) {
+				GlobalValues.instance().level++;
 			}
 			Game.instance().SwitchScreen(new ScoreScreen(won));
 		}
 
-		// AS3 isn't multithreaded, so this code will not be interrupted. (no race conditions);
-		public function alterPleasure(ratio: Number)
-		{
+		// AS3 isn't multithreaded, so this code will not be interrupted. (no race conditions)
+		public function alterPleasure(ratio: Number) {
 
 			setPleasureRatio(GlobalValues.instance().pleasure + ratio);
 
@@ -233,51 +245,48 @@
 
 		}
 
-		public function setRiskRatio(ratio: Number)
-		{
-			ratio = Math.max(0.0,Math.min(1.0,ratio));
+		public function setRiskRatio(ratio: Number) {
+			ratio = Math.max(0.0, Math.min(1.0, ratio));
 
 			GlobalValues.instance().risk = ratio;
 			riskFill.setRatio(ratio);
 		}
 
-		public function updateBabyText():void
-		{
+		public function updateBabyText(): void {
 			babyField.text = 'Babies: ' + GlobalValues.instance().babies.toString();
 		}
 
-		public function alterBars(riskRatio: Number, pleasureRatio: Number)
-		{
+		public function addBaby(): void {
+			GlobalValues.instance().babies++;
+			babyController.newBaby();
+		}
+
+		public function alterBars(riskRatio: Number, pleasureRatio: Number) {
 			setRiskRatio(GlobalValues.instance().risk + riskRatio);
 
-			if (GlobalValues.instance().risk >= 1)
-			{
-
-				GlobalValues.instance().babies++;
+			if (GlobalValues.instance().risk >= 1) {
+				addBaby();
 
 				pause();
 
-				var popupWindow:PopupWindow = new PopupWindow('Baby!',"You've made a baby!");
+				var popupWindow: PopupWindow = new PopupWindow('Baby!', "You've made a baby!");
 				trace("Risk full! Baby!");
-				this.addChild(popupWindow);
+				addChild(popupWindow);
 
-				popupWindow.addEventListener(PopupWindow.CLOSE_CLICKED, function(e: Event): void {
-				setRiskRatio(0.0);
-				updateBabyText();
-				resume();
-				alterPleasure(pleasureRatio);
+				popupWindow.addEventListener(PopupWindow.CLOSE_CLICKED, function (e: Event): void {
+					setRiskRatio(0.0);
+					updateBabyText();
+					resume();
+					alterPleasure(pleasureRatio);
 				});
 
-			}
-			else
-			{
+			} else {
 				alterPleasure(pleasureRatio);
 			}
 		}
 
-		private var pleasureFill:Bar;
-		private function addPleasureBar():void
-		{
+		private var pleasureFill: Bar;
+		private function addPleasureBar(): void {
 
 			/*var squasize: Number = 100 / 720 * Capabilities.screenResolutionX;
 			var textsize: Number = 22 / 720 * Capabilities.screenResolutionX;
@@ -291,7 +300,8 @@
 
 
 			pleasureFill = new Bar(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_FILL));
-			var pleasureImage:Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_IMG));
+
+			var pleasureImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_IMG));
 
 			pleasureImage.x = 35;
 			pleasureImage.y = 1080;
@@ -302,15 +312,14 @@
 			Img.ChangeSpriteSize(pleasureFill);
 			Img.ChangeSpriteSize(pleasureImage);
 
-			addChild(pleasureFill);
-			addChild(pleasureImage);
+			bottomLayer.addChild(pleasureFill);
+			bottomLayer.addChild(pleasureImage);
 
 			setPleasureRatio(GlobalValues.instance().pleasure);
 		}
 
-		private var riskFill:Bar;
-		private function addRiskBar():void
-		{
+		private var riskFill: Bar;
+		private function addRiskBar(): void {
 			/*var squasize: Number = 100 / 720 * Capabilities.screenResolutionX;
 			var textsize: Number = 22 / 720 * Capabilities.screenResolutionX;
 			
@@ -323,7 +332,7 @@
 
 
 			riskFill = new Bar(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_FILL));
-			var riskImage:Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_IMG));
+			var riskImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_IMG));
 
 			riskImage.x = 35;
 			riskImage.y = 1200;
@@ -334,20 +343,19 @@
 			Img.ChangeSpriteSize(riskFill);
 			Img.ChangeSpriteSize(riskImage);
 
-			addChild(riskFill);
-			addChild(riskImage);
+			bottomLayer.addChild(riskFill);
+			bottomLayer.addChild(riskImage);
 
 			setRiskRatio(GlobalValues.instance().risk);
 		}
 
 
-		private var pauseStartTime:Number;
-		private var paused:Boolean = false;
-		private var pausedTime:Number;
+		private var pauseStartTime: Number;
+		private var paused: Boolean = false;
+		private var pausedTime: Number;
 
 
-		public function pause():void
-		{
+		public function pause(): void {
 			pauseStartTime = getTimer();
 
 			pleasureTimer.pause();
@@ -370,38 +378,38 @@
 
 
 		/*
-		What happens when the pause button is touched
+			What happens when the pause button is touched
 		*/
-		private function pauseTouched(event:TouchEvent):void
-		{
-			var touch:Touch = event.touches[0];
-			if (touch.phase == TouchPhase.ENDED)
-			{
+		private function pauseTouched(event: TouchEvent): void {
+			var touch: Touch = event.touches[0];
+			if (touch.phase == TouchPhase.ENDED) {
 				trace("Pause button clicked");
 
-				isPaused() ? resume():pause();
+				isPaused() ? resume() : pause();
 
 			}
 		}
 
-		public function isPaused():Boolean
-		{
+		public function isPaused(): Boolean {
 			return paused;
 		}
 
-		private var timeLeft:int;
-		// Base time limit is 100.
-		private var timeLimit:int = 15 * ActionValues.instance().GetModifier(ActionValues.TIME_LIMIT);
+		public function moveBabies(): void {
+			babyController.moveBabies();
+		}
 
-		private function update(event:Event)
-		{
-			if (! isPaused())
-			{
+
+
+		private var timeLeft: int;
+		// Base time limit is 100.
+		private var timeLimit: int = 15 * ActionValues.instance().GetModifier(ActionValues.TIME_LIMIT);
+
+		private function update(event: Event) {
+			if (!isPaused()) {
 				timeLeft = Math.ceil(timeLimit - (getTimer() - startTime) / 1000);
 				gameTimerField.text = timeLeft.toString();
 
-				if (timeLeft <= 0)
-				{
+				if (timeLeft <= 0) {
 					paused = true;
 					trace("Game over!");
 
@@ -411,6 +419,7 @@
 
 				}
 
+				moveBabies();
 			}
 		}
 

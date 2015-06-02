@@ -81,7 +81,7 @@
 		public function removeButton(popupButton: PopupButton) {
 			if (actionScreen.contains(popupButton)) {
 				popups.splice(popups.indexOf(popupButton), 1);
-				actionScreen.removeChild(popupButton, true);
+				actionScreen.bottomLayer.removeChild(popupButton, true);
 			}
 		}
 		
@@ -119,7 +119,7 @@
 			if (popupButton.placeAtRandomSpot()) { 
 				popups.push(popupButton);
 
-				actionScreen.addChild(popupButton);
+				actionScreen.bottomLayer.addChild(popupButton);
 			} else
 				popupButton.dispose();
 			
