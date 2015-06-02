@@ -84,6 +84,16 @@
 			trace("Set modifier " + _name + " to value " + _value.toString());
 		}
 		
+		public function AddModifier(_name : String, _value : Number) : void
+		{
+			for (var _object : Object in modifiers)
+			{
+				if (_name == _object) modifiersp_object] += _value;
+			}
+			
+			trace("Set modifier " + _name + " to value " + _value.toString());
+		}
+		
 		// TODO: Rename.
 		public function ActionValues()
 		{
