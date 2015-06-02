@@ -1,6 +1,7 @@
 ﻿package src.actionPhase
 {
 	import flash.utils.*;
+	import src.GlobalValues;
 
 	public class ActionValues
 	{
@@ -41,57 +42,56 @@
 		private var modifiers : Dictionary;
 		
 		/**
-		* Retreives the value for the modifer with a certain name.
+		* Retreives the __value for the modifer with a certain name.
 		* 
-		* @param _name Name of the required modifier.
+		* @param modifierName Name of the required modifier.
 		* 
-		* @return Returns a <code>Number</code> linked to the modifier by _name.
+		* @return Returns a <code>Number</code> linked to the modifier by modifierName.
 		*/
-		public function GetModifier(_name : String) : Number
+		public function GetModifier(modifierName : String) : Number
 		{
-			var _returnValue : Number = 0.0;
-			for (var _object : Object in modifiers)
+			var returnValue : Number = 0.0;
+			for (var object : Object in modifiers)
 			{
-				if (_name == _object) _returnValue = modifiers[_object];
+				if (modifierName == object) returnValue = modifiers[object];
 			}
-			return _returnValue;
+			return returnValue;
 		}
 		
 		public function toString(): String {
 			
 			var rv: String = 'MODIFIERS: ';
-			for (var _object : Object in modifiers)
+			for (var object : Object in modifiers)
 			{
-				rv += 'name: ' + _object + ', value: ' + modifiers[_object] + '. ';
+				rv += 'name: ' + object + ', _value: ' + modifiers[object] + '. ';
 			}
 			
 			return rv;
 		}
 		
 		/**
-		* Sets the value for the modifer with a certain name.
+		* Sets the _value for the modifer with a certain name.
 		* 
-		* @param _name Name of the required modifier.
-		* @param _value Value the modifier by _name is set to.
+		* @param modifierName Name of the required modifier.
+		* @param _value Value the modifier by modifierName is set to.
 		*/
-		public function SetModifier(_name : String, _value : Number) : void
+		public function SetModifier(modifierName : String, _value : Number) : void
 		{
-			for (var _object : Object in modifiers)
+			for (var object : Object in modifiers)
 			{
-				if (_name == _object) modifiers[_object] = _value;
+				if (modifierName == object) modifiers[object] = (0.8 + 0.2 * GlobalValues.instance().level) * _value;
 			}
 			
-			trace("Set modifier " + _name + " to value " + _value.toString());
+			trace("Set modifier " + modifierName + " to _value " + _value.toString());
 		}
 		
-		public function AddModifier(_name : String, _value : Number) : void
+		public function AddModifier(modifierName : String, _value : Number) : void
 		{
-			for (var _object : Object in modifiers)
+			for (var object : Object in modifiers)
 			{
-				if (_name == _object) modifiersp_object] += _value;
+				if (modifierName == object) modifiers[object] += _value * 0.2 * GlobalValues.instance().level;
+				if (modifiers[object] < 0) modifiers[object] = 0;
 			}
-			
-			trace("Set modifier " + _name + " to value " + _value.toString());
 		}
 		
 		// TODO: Rename.
@@ -102,7 +102,7 @@
 			modifiers = new Dictionary();
 			
 			/*
-			* Used for shorter code. Takes all const values from this class and puts them in a dictionary linked to value 1.
+			* Used for shorter code. Takes all const _values from this class and puts them in a dictionary linked to _value 1.
 			* 
 			* source: http://stackoverflow.com/questions/11596475/as3-how-can-i-get-an-array-of-constants-of-a-class
 			*/
@@ -114,13 +114,13 @@
 		}
 		
 		/**
-		* Resets all modifiers back to their base value.
+		* Resets all modifiers back to their base _value.
 		*/
 		public function ResetModifiers() : void
 		{
-			for (var _object : Object in modifiers)
+			for (var object : Object in modifiers)
 			{
-				modifiers[_object] = 1.0;
+				modifiers[object] = 0.8 + 0.2 * GlobalValues.instance().level;
 			}
 		}
 	}

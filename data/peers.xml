@@ -3,12 +3,12 @@
 <DATA>
 	<PEER NAME="Boyfriend">
 		<PRESSURE MESSAGE="Sex doesn’t feel as good with a condom. It’s so unnatural.">
-			<ABILITY NAME="BUTTONS_PER_SECOND">2.25</ABILITY>
-			<ABILITY NAME="BUTTONS_PER_SECOND">2.25</ABILITY>
+			<ABILITY NAME="SPAWN_CHANCE_KISS">2.25</ABILITY>
+			<ABILITY NAME="SPAWN_CHANCE_SEX">2.25</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="Why bother using a condom? Just one time is not going to matter!">
-			<ABILITY NAME="BUTTONS_PER_SECOND">2.25</ABILITY>
-			<ABILITY NAME="BUTTONS_PER_SECOND">2.25</ABILITY>
+			<ABILITY NAME="SPAWN_CHANCE_KISS">2.25</ABILITY>
+			<ABILITY NAME="SPAWN_CHANCE_SEX">2.25</ABILITY>
 		</PRESSURE>
 		<PRESSURE MESSAGE="If people see that you are buying a condom, they will think that you are spoilt.">
 			<ABILITY NAME="BUTTONS_PER_SECOND">2.25</ABILITY>

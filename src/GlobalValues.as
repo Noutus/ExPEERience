@@ -21,11 +21,18 @@
 		
 		public var babies : int;
 		public var level : int;
+		public function addLevel() : void
+		{
+			previousLevel = level;
+			level++;
+		}
 		
 		public var pleasure : Number;
 		public var risk : Number;
 		
 		public var totalScore: int;
+		
+		public var previousLevel : int;
 		
 		public function GlobalValues()
 		{
@@ -40,6 +47,7 @@
 			gender = false;
 			babies = 0;
 			level = 1;
+			previousLevel = 0;
 			pleasure = 0.50;
 			risk = 0.00;
 			totalScore = 0;
@@ -54,6 +62,7 @@
 			gender = _data.data.gender;
 			babies = _data.data.babies;
 			level = _data.data.level;
+			previousLevel = _data.data.previousLevel;
 			pleasure = _data.data.pleasure;
 			risk = _data.data.risk;
 			totalScore = _data.data.totalScore;
@@ -68,9 +77,15 @@
 			_data.data.gender = gender;
 			_data.data.babies = babies;
 			_data.data.level = level;
+			_data.data.previousLevel = previousLevel;
 			_data.data.pleasure = pleasure;
 			_data.data.risk = risk;
 			_data.data.totalScore = totalScore;
+		}
+		
+		public function LevelChanged() : Boolean
+		{
+			return !(level == previousLevel);
 		}
 	}
 }

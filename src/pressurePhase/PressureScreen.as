@@ -107,6 +107,7 @@
 			if (_touch)
 			{
 				activePeer.GetAbility().ChooseAbility();
+				AddLevelModifiers();
 				Game.instance().SwitchScreen(new ActionScreen());
 			}
 		}
@@ -116,9 +117,37 @@
 			var _touch : Touch = e.getTouch(this, TouchPhase.ENDED);
 			if (_touch)
 			{
-				ActionValues.instance().SetModifier(ActionValues.BUTTONS_PER_SECOND, 1.75);
 				ActionValues.instance().SetModifier(ActionValues.RISK_SEX, 0.0);
+				AddLevelModifiers();
 				Game.instance().SwitchScreen(new ActionScreen());
+			}
+		}
+		
+		public function AddLevelModifiers()
+		{
+			var _URLLoader : URLLoader = new URLLoader();
+			var levelXML : XML;
+			var _s : String = Game.APPLICATION_PATH.nativePath + "/data/levels.xml";
+			
+			_URLLoader.addEventListener(Event.COMPLETE, loadComplete);
+			_URLLoader.addEventListener(IOErrorEvent.IO_ERROR, loadError);
+			_URLLoader.load(new URLRequest(_s));
+			
+			function loadComplete(e : Event) : void
+			{
+				levelXML = new XML(_URLLoader.data);
+				
+				for(var i : int = 0; i < levelXML.LEVEL[GlobalValues.instance().level].ABILITY.length(); i++)
+				{
+					ActionValues.instance().AddModifier(levelXML.LEVEL[GlobalValues.instance().level].ABILITY[i].@NAME,
+														levelXML.LEVEL[GlobalValues.instance().level].ABILITY[i].text());
+					trace("Level " + GlobalValues.instance().level + " : modifier " + levelXML.LEVEL[GlobalValues.instance().level].ABILITY[i].@NAME);
+				}
+			}
+			
+			function loadError(e : IOErrorEvent) : void
+			{
+				trace(e.text);
 			}
 		}
 	}
