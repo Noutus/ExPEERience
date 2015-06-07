@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="../assets/walk.png">
+	<!-- Created with Adobe Flash Professional version 14.0.0.110 -->
+	<!-- http://www.adobe.com/products/flash.html -->
+	<SubTexture name="walk0" x="0" y="0" width="117" height="203" pivotX="80" pivotY="109.5"/>
+	<SubTexture name="walk1" x="117" y="0" width="117" height="203"/>
+	<SubTexture name="walk2" x="234" y="0" width="117" height="203"/>
+	<SubTexture name="walk3" x="351" y="0" width="117" height="203"/>
+	<SubTexture name="walk4" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk5" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk6" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk7" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk8" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk9" x="117" y="203" width="117" height="203"/>
+	<SubTexture name="walk10" x="234" y="203" width="117" height="203"/>
+	<SubTexture name="walk11" x="351" y="203" width="117" height="203"/>
+	<SubTexture name="walk12" x="0" y="406" width="117" height="203"/>
+	<SubTexture name="walk13" x="117" y="406" width="117" height="203"/>
+	<SubTexture name="walk14" x="117" y="406" width="117" height="203"/>
+	<SubTexture name="walk15" x="117" y="406" width="117" height="203"/>
+	<SubTexture name="walk16" x="117" y="406" width="117" height="203"/>
+	<SubTexture name="walk17" x="117" y="406" width="117" height="203"/>
+	<SubTexture name="walk18" x="234" y="406" width="117" height="203"/>
+	<SubTexture name="walk19" x="351" y="406" width="117" height="203"/>
+	<SubTexture name="walk20" x="0" y="609" width="117" height="203"/>
+	<SubTexture name="walk21" x="117" y="609" width="117" height="203"/>
+	<SubTexture name="walk22" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk23" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk24" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk25" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk26" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk27" x="234" y="406" width="117" height="203"/>
+	<SubTexture name="walk28" x="351" y="406" width="117" height="203"/>
+	<SubTexture name="walk29" x="0" y="609" width="117" height="203"/>
+	<SubTexture name="walk30" x="117" y="609" width="117" height="203"/>
+	<SubTexture name="walk31" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk32" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk33" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk34" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk35" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk36" x="234" y="406" width="117" height="203"/>
+	<SubTexture name="walk37" x="234" y="609" width="117" height="203"/>
+	<SubTexture name="walk38" x="351" y="609" width="117" height="203"/>
+	<SubTexture name="walk39" x="0" y="812" width="117" height="203"/>
+	<SubTexture name="walk40" x="117" y="406" width="117" height="203"/>
+	<SubTexture name="walk41" x="117" y="406" width="117" height="203"/>
+	<SubTexture name="walk42" x="117" y="406" width="117" height="203"/>
+	<SubTexture name="walk43" x="117" y="406" width="117" height="203"/>
+	<SubTexture name="walk44" x="117" y="406" width="117" height="203"/>
+	<SubTexture name="walk45" x="234" y="406" width="117" height="203"/>
+	<SubTexture name="walk46" x="351" y="406" width="117" height="203"/>
+	<SubTexture name="walk47" x="0" y="609" width="117" height="203"/>
+	<SubTexture name="walk48" x="117" y="609" width="117" height="203"/>
+	<SubTexture name="walk49" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk50" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk51" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk52" x="0" y="203" width="117" height="203"/>
+	<SubTexture name="walk53" x="0" y="203" width="117" height="203"/>
+</TextureAtlas>

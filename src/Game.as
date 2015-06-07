@@ -10,9 +10,13 @@
 	import starling.utils.ScaleMode;
 	import flash.system.Capabilities;
 	import starling.core.Starling;
+	import src.assets.EmbeddedAssets;
 	
 	public class Game extends Sprite
 	{
+		[Embed(source="../data/roofrunners.ttf", embedAsCFF="false", fontFamily="Arial")]
+		private static const RoofRunners:Class;
+		
 		private static var _instance:Game;
 
 		/**
@@ -42,6 +46,7 @@
 			SwitchScreen(loadingScreen);
 
 			assets = new AssetManager();
+			assets.enqueue(EmbeddedAssets);
 			assets.enqueue(APPLICATION_PATH.resolvePath("assets"));
 			assets.loadQueue(loadingScreen.update);
 		}

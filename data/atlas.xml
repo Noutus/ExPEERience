@@ -1,0 +1,5 @@
+<TextureAtlas imagePath="action_popup.png">
+	<SubTexture name="kiss" x="0" y="0" width="180" height="180"/>;
+	<SubTexture name="sex" x="180" y="0" width="180" height="180"/>;
+	<SubTexture name="hug" x="360" y="0" width="180" height="180"/>;
+</TextureAtlas>

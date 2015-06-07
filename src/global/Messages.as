@@ -16,6 +16,19 @@
 			switch(level)
 			{
 				case 1: rv = "Hug!"; break;
+				case 3: rv = "Kiss!"; break;
+			}
+			
+			return rv;
+		}
+		
+		public function getNewLevelImage(level : int) : String
+		{
+			var rv : String = "babyface";
+			
+			switch(level)
+			{
+				case 1: rv = "action_popup_touch"; break;
 			}
 			
 			return rv;

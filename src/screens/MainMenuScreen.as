@@ -8,6 +8,7 @@
 	import src.display.Img;
 	import src.GlobalValues;
 	import src.Sound;
+	import src.display.AnimatedObject;
 
 	public class MainMenuScreen extends GameScreen
 	{

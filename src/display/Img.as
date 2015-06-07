@@ -44,6 +44,7 @@
 			var scale : Vector.<Number> = Img.GetScaledVector(boxWidth, boxHeight);
 			
 			var field : TextField = new TextField(scale[0], scale[1], boxText);
+				field.fontName = "RoofRunners";
 				field.fontSize = fontSize / 720 * Capabilities.screenResolutionX;
 				field.x = position[0];
 				field.y = position[1];

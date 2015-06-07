@@ -102,7 +102,8 @@
 			{
 				pause();
 				
-				var popupWindow:PopupWindow = new PopupWindow(Messages.instance().getNewLevelTitle(GlobalValues.instance().level),
+				var popupWindow : PopupWindow = new PopupWindow(Messages.instance().getNewLevelTitle(GlobalValues.instance().level),
+															  Messages.instance().getNewLevelImage(GlobalValues.instance().level),
 															  Messages.instance().getNewLevelText(GlobalValues.instance().level));
 				this.addChild(popupWindow);
 
@@ -269,7 +270,7 @@
 
 				pause();
 
-				var popupWindow: PopupWindow = new PopupWindow('Baby!', "You've made a baby!");
+				var popupWindow: PopupWindow = new PopupWindow('Baby!', "babyface" , "You've made a baby!");
 				trace("Risk full! Baby!");
 				addChild(popupWindow);
 

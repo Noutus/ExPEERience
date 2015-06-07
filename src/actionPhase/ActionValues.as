@@ -79,7 +79,7 @@
 		{
 			for (var object : Object in modifiers)
 			{
-				if (modifierName == object) modifiers[object] = (0.8 + 0.2 * GlobalValues.instance().level) * _value;
+				if (modifierName == object) modifiers[object] = (0.9 + 0.1 * GlobalValues.instance().level) * _value;
 			}
 			
 			trace("Set modifier " + modifierName + " to _value " + _value.toString());
@@ -89,7 +89,7 @@
 		{
 			for (var object : Object in modifiers)
 			{
-				if (modifierName == object) modifiers[object] += _value * 0.2 * GlobalValues.instance().level;
+				if (modifierName == object) modifiers[object] += _value * 0.1 * GlobalValues.instance().level;
 				if (modifiers[object] < 0) modifiers[object] = 0;
 			}
 		}
@@ -120,7 +120,7 @@
 		{
 			for (var object : Object in modifiers)
 			{
-				modifiers[object] = 0.8 + 0.2 * GlobalValues.instance().level;
+				modifiers[object] = 0.9 + 0.1 * GlobalValues.instance().level;
 			}
 		}
 	}

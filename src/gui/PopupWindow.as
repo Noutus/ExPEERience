@@ -10,35 +10,47 @@
 	import src.Game;
 	import flash.system.Capabilities;
 	import starling.events.Event;
+	import src.display.Img;
+	import starling.core.Starling;
 	
 	public class PopupWindow extends Sprite
 	{
 		public static const CLOSE_CLICKED: String = "CLOSE_CLICKED";
 		
-		var background : DisplayObject;
-		var exitButton : DisplayObject;
-		var title : TextField;
-		var text : TextField;
+		var titleText : String;
+		var imagePath : String;
+		var textText : String;
 		
-		public function PopupWindow(titleText : String, textText : String)
+		var bg : DisplayObject;
+		var exitButton : DisplayObject;
+		var image : DisplayObject;
+		var tTitle : TextField;
+		var tText : TextField;
+		
+		public function PopupWindow(_titleText : String, _imagePath : String, _textText : String)
 		{
-			background = Img.GetNewImageAt("window_popup", 0, 0);
+			this.titleText = _titleText;
+			this.imagePath = _imagePath;
+			this.textText = _textText;
 			
-			title = new TextField(480, 72, titleText);
-			title.x = 120;
-			title.y = 256;
-			title.fontSize = 48 / 720 * Capabilities.screenResolutionX;
-			Img.ChangeSpriteSize(title);
-			Game.instance().currentScreen.addChild(title);
+			this.addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		public function init(e : Event) : void
+		{
+			bg = Img.GetNewImageAt("window_popup", 0, 0);
 			
-			text = new TextField(480, 720, textText);
-			text.x = 120;
-			text.y = 320;
-			text.fontSize = 32 / 720 * Capabilities.screenResolutionX;
-			Img.ChangeSpriteSize(text);
-			Game.instance().currentScreen.addChild(text);
+			tTitle = Img.CreateTextAt(Game.instance().currentScreen, titleText, 120, 256, 480, 72, 48);
+			
+			image = Img.GetNewImageAt(imagePath, Starling.current.stage.width / 2, 320);
+			image.x -= image.width / 2;
+			Game.instance().currentScreen.addChild(image);
+			
+			tText = Img.CreateTextAt(Game.instance().currentScreen, textText, 120, 320 + image.height, 480, 720, 32);
 			
 			exitButton = Img.GetNewImageAt("button_exit", 532, 272);
+			Game.instance().currentScreen.addChild(exitButton);
+			
 			exitButton.addEventListener(TouchEvent.TOUCH, OnTouch);
 		}
 		
@@ -47,14 +59,14 @@
 			var _touch : Touch = e.getTouch(exitButton, TouchPhase.ENDED);
 			if (_touch)
 			{
-				trace("Exit Button clicked.");
+				bg.removeFromParent(true);
+				tTitle.removeFromParent(true);
+				image.removeFromParent(true);
+				tText.removeFromParent(true);
+				exitButton.removeFromParent(true);
 				
 				dispatchEvent(new Event(PopupWindow.CLOSE_CLICKED));
 				
-				background.removeFromParent(true);
-				title.removeFromParent(true);
-				text.removeFromParent(true);
-				exitButton.removeFromParent(true);
 				this.removeFromParent(true);
 			}
 		}
