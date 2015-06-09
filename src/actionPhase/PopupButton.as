@@ -28,9 +28,9 @@
 
 		// Base values, altered by the ActionValues modifiers upon creation of the button
 		public static const RISK_SEX: Number = 0.20;
-		public static const PLEASURE_SEX: Number = 0.20;
-		public static const PLEASURE_KISS: Number = 0.05;
-		public static const PLEASURE_TOUCH: Number = 0.03;
+		public static const PLEASURE_SEX: Number = 0.04;
+		public static const PLEASURE_KISS: Number = 0.025;
+		public static const PLEASURE_TOUCH: Number = 0.02;
 		
 		private var popupController: PopupController;
 		private var popupKind: int;

@@ -24,6 +24,7 @@
 				pleasureText.fontSize = 48 / 720 * Capabilities.screenResolutionX;
 				pleasureText.x = position[0];
 				pleasureText.y = position[1];
+				pleasureText.fontName = "RoofRunners";
 				addChild(pleasureText);
 		}
 	}

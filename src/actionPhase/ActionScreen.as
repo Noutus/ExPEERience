@@ -137,7 +137,7 @@
 			var squasize:Number = 220 / 720 * Capabilities.screenResolutionX;
 			var textsize:Number = 38 / 720 * Capabilities.screenResolutionX;
 
-			babyField = new TextField(squasize,squasize / 2,"","Arial",textsize,Color.RED);
+			babyField = new TextField(squasize,squasize / 2,"","RoofRunners",textsize,Color.RED);
 
 			babyField.border = true;
 			babyField.x = 20;
@@ -188,7 +188,7 @@
 			var squasize: Number = 100 / 720 * Capabilities.screenResolutionX;
 			var textsize: Number = 45 / 720 * Capabilities.screenResolutionX;
 
-			gameTimerField = new TextField(squasize, squasize, "", "Arial", textsize, Color.NAVY);
+			gameTimerField = new TextField(squasize, squasize, "", "RoofRunners", textsize, Color.NAVY);
 			gameTimerField.border = true;
 			gameTimerField.x = (Starling.current.stage.stageWidth - gameTimerField.width) / 1440 * Capabilities.screenResolutionX;
 			gameTimerField.y = 10;

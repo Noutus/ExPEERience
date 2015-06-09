@@ -91,6 +91,8 @@
 				
 				var v : Vector.<Number> = Img.GetScaledVector(620, 400);
 				var _text : TextField = new TextField(v[0], v[1], activePeer.GetAbility().message);
+				_text.x = 50 / 720 * Capabilities.screenResolutionX;
+				_text.fontName = "RoofRunners";
 				_text.fontSize = 48 / 720 * Capabilities.screenResolutionX;
 				Game.instance().currentScreen.addChild(_text);
 			}

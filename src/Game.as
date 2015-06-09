@@ -14,7 +14,7 @@
 	
 	public class Game extends Sprite
 	{
-		[Embed(source="../data/roofrunners.ttf", embedAsCFF="false", fontFamily="Arial")]
+		[Embed(source="../data/roofrunners.ttf", embedAsCFF="false", fontFamily="RoofRunners")]
 		private static const RoofRunners:Class;
 		
 		private static var _instance:Game;
