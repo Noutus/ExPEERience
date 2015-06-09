@@ -7,9 +7,9 @@
 		[Embed(source="../../data/atlas.xml", mimeType="application/octet-stream")]
 		public static const actionPopupsXML:Class;
 		
-		[Embed(source="../../assets/walk.png")]
-		public static const walkAnim:Class;
-		[Embed(source="../../data/walk.xml", mimeType="application/octet-stream")]
-		public static const walkAnimXML:Class;
+		//[Embed(source="../../assets/walk.png")]
+		//public static const walkAnim:Class;
+		//[Embed(source="../../data/walk.xml", mimeType="application/octet-stream")]
+		//public static const walkAnimXML:Class;
 	}
-}
+}	

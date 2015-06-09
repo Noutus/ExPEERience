@@ -11,6 +11,9 @@
 	import starling.core.Starling;
 	import starling.textures.Texture;
 	import starling.events.Event;
+	import starling.display.Image;
+	import flash.geom.Point;
+	import src.display.AnimatedObject;
 	
 	public class TransitionScreen extends GameScreen {
 	
@@ -28,7 +31,13 @@
 			
 		}
 		
-		var movieClip: MovieClip;
+		var movieClip: AnimatedObject;
+		var movieStart, movieEnd: Point;
+		
+		var sun, moon: Image; // sun/moon
+		
+		var sunStart, sunEnd: Point;
+		var moonStart, moonEnd: Point;
 		
 		public override function OnEnter(): void {		
 			var position : Vector.<Number> = Img.GetScaledVector(0, 0);
@@ -40,17 +49,58 @@
 				text.y = position[1];
 				addChild(text);
 			
-			Img.CreateScreenSwitchButtonAt("button_next", (transitionKind == TransitionScreen.DAY_TO_NIGHT)? Screens.ACTION: Screens.PRESSURE , 500, 1100);
-
+			//Img.CreateScreenSwitchButtonAt("button_next", (transitionKind == TransitionScreen.DAY_TO_NIGHT)? Screens.ACTION: Screens.PRESSURE , 500, 1100);
 			
 			
-			var textures: Vector.<Texture> = Game.instance().assets.getTextures("MoleWhacked"); //"MoleWhacked": "MoleOK"
-			movieClip = new MovieClip(textures, 24);
+			sun = new Image(Game.instance().assets.getTexture("sun"));
+			moon = new Image(Game.instance().assets.getTexture("moon"));
+			
+			if (transitionKind == TransitionScreen.DAY_TO_NIGHT) {
+				sunStart = new Point((Starling.current.stage.stageWidth - sun.width) / 2, 300);
+				sunEnd = new Point(Starling.current.stage.stageWidth + sun.width, 500);
+				
+				moonStart = new Point(-moon.width, 500);
+				moonEnd = new Point((Starling.current.stage.stageWidth - sun.width) / 2, 300);
+			} else {
+				moonStart = new Point((Starling.current.stage.stageWidth - sun.width) / 2, 300);
+				moonEnd = new Point(Starling.current.stage.stageWidth + sun.width, 500);
+				
+				sunStart = new Point(-moon.width, 500);
+				sunEnd = new Point((Starling.current.stage.stageWidth - sun.width) / 2, 300);
+			}
+			//"Sun" "Moon"
+		
+			trace('Sun initialized');
+			sun.x = sunStart.x;
+			sun.y = sunStart.y;
+			addChild(sun);
+		
+			moon.x = moonStart.x;
+			moon.y = moonStart.y;
+			addChild(moon);
+			
+			movieClip = new AnimatedObject("walk", 17); // bier
+			//var textures: Vector.<Texture> = Game.instance().assets.getTextures("walk"); //"MoleWhacked": "MoleOK"
+			//movieClip = new MovieClip(textures, 24);
 			//movieClip.addEventListener(TouchEvent.TOUCH, MoleTouched);
-			movieClip.x = (transitionKind == TransitionScreen.DAY_TO_NIGHT)? -movieClip.width: Starling.current.stage.stageWidth + movieClip.width;
-			movieClip.y = Img.GetScaledVector(0, 900)[1];
+			movieStart = new Point(
+				(transitionKind == TransitionScreen.DAY_TO_NIGHT)? -movieClip.width: Starling.current.stage.stageWidth + movieClip.width, 
+				Img.GetScaledVector(0, 800)[1]
+			);
+			
+			movieClip.x = movieStart.x;
+			movieClip.y = movieStart.y;
+
+			if (transitionKind == TransitionScreen.NIGHT_TO_DAY)
+				movieClip.scaleX = -1;
+			
+			movieEnd = new Point(
+				(transitionKind == TransitionScreen.DAY_TO_NIGHT)? (Starling.current.stage.stageWidth): -movieClip.width,
+				movieStart.y
+			);
+			
 			addChild(movieClip);
-			Starling.juggler.add(movieClip);
+			//Starling.juggler.add(movieClip);
 			
 			this.addEventListener(Event.ENTER_FRAME, update);
 
@@ -62,23 +112,30 @@
 			//Img.CreateScreenSwitchButtonAt("button_next", (transitionKind == TransitionScreen.DAY_TO_NIGHT)? Screens.ACTION: Screens.PRESSURE , 500, 1100);
 			Game.instance().SwitchScreen((transitionKind == TransitionScreen.DAY_TO_NIGHT)? new ActionScreen(): new PressureScreen());
 		}
-		
-		
+	
+		var frames: int = 72;//48;
 
-		private function update(event: Event) {
-			if (transitionKind == TransitionScreen.DAY_TO_NIGHT) {
-				if (movieClip.x <= (Starling.current.stage.stageWidth)) {
-					movieClip.x += (Starling.current.stage.stageWidth / 48); // 24 fps, 48 = 2 seconds
-				} else {
-					moveOn();
-				}
+		private function update(event: Event) {			
+			//if (transitionKind == TransitionScreen.DAY_TO_NIGHT) {
+				
+			if ((transitionKind == TransitionScreen.DAY_TO_NIGHT)? movieClip.x <= movieEnd.x: movieClip.x >= movieEnd.x) {
+				
+				movieClip.x += (movieEnd.x - movieStart.x) / frames; // 24 fps, 48 = 2 seconds
+				
+				sun.x += (sunEnd.x - sunStart.x) / frames;
+				sun.y += (sunEnd.y - sunStart.y) / frames;
+				
+				moon.x += (moonEnd.x - moonStart.x) / frames;
+				moon.y += (moonEnd.y - moonStart.y) / frames;
 			} else {
-				if (movieClip.x >= -movieClip.width) {
-					movieClip.x -= (Starling.current.stage.stageWidth / 48); // 24 fps, 48 = 2 seconds
-				} else {
+				this.removeEventListener(Event.ENTER_FRAME, update);
+				
+				Starling.juggler.delayCall(function() {
 					moveOn();
-				}
+				}, 2);
+				//moveOn();
 			}
+
 		}
 	}
 	
