@@ -46,7 +46,7 @@
 			GlobalValues.instance().SaveGame();
 			ActionValues.instance().ResetModifiers();
 			
-			Img.CreateScreenSwitchButtonAt("button_next", won? Screens.PRESSURE: Screens.MAINMENU, 520, 1100);
+			Img.CreateScreenSwitchButtonAt("button_next", won? Screens.NIGHTTODAY: Screens.MAINMENU, 520, 1100);
 			Img.CreateScreenSwitchButtonAt("button_back", Screens.MAINMENU, 0, 1100);
 		}
 		

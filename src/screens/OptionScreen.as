@@ -50,50 +50,6 @@
 			soundText.addEventListener(TouchEvent.TOUCH, onSoundTouch);
 			
 			
-			
-				/*
-				
-			var button: Button = new Button(new Texture, "Sound");
-
-			button.x = Starling.current.stage.stageWidth - button.width - 20;
-			button.y = 20;
-			button.addEventListener(TouchEvent.TOUCH, soundTouched);
-
-			Img.ChangeSpriteSize(button);
-
-			addChild(button);
-			
-			*/
-			
-			
-			
-			/*
-			
-			tMessages.text=" Pick your favorite color" ;
-
-			//Labels the button at runtime
-			bRed.label = " Turn Red" ;
-			//sets the toggle mode
-			bRed.toggle = true;
-
-			//Click listener
-			bRed.addEventListener(MouseEvent.CLICK, fRed);
-
-			function fRed(event:MouseEvent):void {
-			trace(event.target.selected);
-			//Checks to see if button is toggled down
-				if (event.target.selected==true) {
-					//changes the text color
-					pleasureText.textColor = 0xFF0000;
-					//changes the button label
-					event.target.label = " Turn White" ;
-				} else {
-					tMessages.textColor = 0xFFFFFF;
-					event.target.label = " Turn Red" ;
-				}
-			}
-			
-			*/
 		}
 		public function setSoundText() {
 			soundText.text = "Sound: " + (Sound.isMuted()? "OFF": "ON");
@@ -104,7 +60,6 @@
 			if (touch.phase == TouchPhase.ENDED) {
 				Sound.setMute(!Sound.isMuted());
 				setSoundText();
-
 			}
 
 		}

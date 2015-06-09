@@ -22,6 +22,7 @@
 	import starling.events.Touch;
 	import starling.events.TouchPhase;
 	import src.actionPhase.ActionScreen;
+	import src.screens.TransitionScreen;
 
 	public class PressureScreen extends GameScreen
 	{
@@ -110,7 +111,7 @@
 			{
 				activePeer.GetAbility().ChooseAbility();
 				AddLevelModifiers();
-				Game.instance().SwitchScreen(new ActionScreen());
+				Game.instance().SwitchScreen(new TransitionScreen(TransitionScreen.DAY_TO_NIGHT));
 			}
 		}
 		
@@ -121,7 +122,7 @@
 			{
 				ActionValues.instance().SetModifier(ActionValues.RISK_SEX, 0.0);
 				AddLevelModifiers();
-				Game.instance().SwitchScreen(new ActionScreen());
+				Game.instance().SwitchScreen(new TransitionScreen(TransitionScreen.DAY_TO_NIGHT));
 			}
 		}
 		

@@ -405,6 +405,7 @@
 		// Base time limit is 100.
 		private var timeLimit: int = 15 * ActionValues.instance().GetModifier(ActionValues.TIME_LIMIT);
 
+
 		private function update(event: Event) {
 			if (!isPaused()) {
 				timeLeft = Math.ceil(timeLimit - (getTimer() - startTime) / 1000);

@@ -11,5 +11,7 @@
 		public static const STORYBOY = "story boy";
 		public static const STORYGIRL = "story girl";
 		public static const OPTION = "option";
+		public static const DAYTONIGHT = "daytonight";
+		public static const NIGHTTODAY = "nighttoday";
 	}
 }
