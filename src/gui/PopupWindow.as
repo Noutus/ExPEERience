@@ -43,7 +43,7 @@
 			tTitle = Img.CreateTextAt(Game.instance().currentScreen, titleText, 120, 256, 480, 72, 48);
 			
 			image = Img.GetNewImageAt(imagePath, Starling.current.stage.width / 2, 320);
-			image.x -= image.width / 2;
+			//image.x -= image.width / 2;
 			Game.instance().currentScreen.addChild(image);
 			
 			tText = Img.CreateTextAt(Game.instance().currentScreen, textText, 120, 320 + image.height, 480, 720, 32);

@@ -43,6 +43,15 @@
 			trace("Risk sex: " + ActionValues.instance().GetModifier(ActionValues.RISK_SEX));
 			trace("Buttons per second: " + ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND));
 			
+			if (won)
+			{
+				GlobalValues.instance().pleasure = 0.5;
+			}
+			else
+			{
+				GlobalValues.instance().ResetValues();
+			}
+			
 			GlobalValues.instance().SaveGame();
 			ActionValues.instance().ResetModifiers();
 			

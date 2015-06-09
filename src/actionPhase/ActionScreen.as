@@ -100,16 +100,18 @@
 			// TODO: Add check if certain level has just been reached and show message
 			if (GlobalValues.instance().LevelChanged())
 			{
-				pause();
-				
-				var popupWindow : PopupWindow = new PopupWindow(Messages.instance().getNewLevelTitle(GlobalValues.instance().level),
-															  Messages.instance().getNewLevelImage(GlobalValues.instance().level),
-															  Messages.instance().getNewLevelText(GlobalValues.instance().level));
-				this.addChild(popupWindow);
+				if (Messages.instance().getNewLevelTitle(GlobalValues.instance().level) != "")
+				{
+					pause();
+					var popupWindow : PopupWindow = new PopupWindow(Messages.instance().getNewLevelTitle(GlobalValues.instance().level),
+																  Messages.instance().getNewLevelImage(GlobalValues.instance().level),
+																  Messages.instance().getNewLevelText(GlobalValues.instance().level));
+					this.addChild(popupWindow);
 
-				popupWindow.addEventListener(PopupWindow.CLOSE_CLICKED, function(e: Event): void {
-					resume();
-				});
+					popupWindow.addEventListener(PopupWindow.CLOSE_CLICKED, function(e: Event): void {
+						resume();
+					});
+				}
 			}
 		}
 

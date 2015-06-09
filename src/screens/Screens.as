@@ -13,5 +13,6 @@
 		public static const OPTION = "option";
 		public static const DAYTONIGHT = "daytonight";
 		public static const NIGHTTODAY = "nighttoday";
+		public static const RULES = "rules";
 	}
 }

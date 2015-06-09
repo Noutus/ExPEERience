@@ -41,6 +41,7 @@
 					case Screens.OPTION: Game.instance().SwitchScreen(new OptionScreen()); break;
 					case Screens.DAYTONIGHT: Game.instance().SwitchScreen(new TransitionScreen(TransitionScreen.DAY_TO_NIGHT)); break;
 					case Screens.NIGHTTODAY: Game.instance().SwitchScreen(new TransitionScreen(TransitionScreen.NIGHT_TO_DAY)); break;
+					case Screens.RULES: Game.instance().SwitchScreen(new RulesScreen()); break;
 				}
 			}
 		}

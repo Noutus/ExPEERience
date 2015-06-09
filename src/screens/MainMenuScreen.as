@@ -21,11 +21,18 @@
 		{
 			this.setBackground("main_background_orange");
 			
-			Img.CreateScreenSwitchButtonAt("main_button_play", Screens.GENDER, 120, 210);
-			Img.CreateScreenSwitchButtonAt("main_button_rules", Screens.GENDER, 120, 510);
-			Img.CreateScreenSwitchButtonAt("main_button_options", Screens.OPTION, 120, 810);
+			GlobalValues.instance().LoadGame();
 			
-			GlobalValues.instance().ResetValues();
+			if (GlobalValues.instance().totalScore > 0)
+			{
+				Img.CreateScreenSwitchButtonAt("main_button_continue", Screens.PRESSURE, 170, 300); 
+			}
+			
+			else GlobalValues.instance().ResetValues();
+			
+			Img.CreateScreenSwitchButtonAt("main_button_play", Screens.GENDER, 170, 510);
+			Img.CreateScreenSwitchButtonAt("main_button_rules", Screens.RULES, 170, 720);
+			Img.CreateScreenSwitchButtonAt("main_button_options", Screens.OPTION, 170, 930);
 			
 			Sound.playLooping("HANZE GAME");
 		}
