@@ -97,7 +97,7 @@
 		}
 		
 		private function getTimeBetweenSpawns(): Number {
-			return 1000 / ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND);
+			return 1000 / (ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND) * 2);
 		}
 		
 		private function spawnRandomButton(event: TimerEvent): void {
