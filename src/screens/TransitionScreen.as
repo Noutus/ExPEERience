@@ -121,8 +121,7 @@
 			Game.instance().SwitchScreen((transitionKind == TransitionScreen.DAY_TO_NIGHT)? new ActionScreen(): pressureScreen);
 		}
 	
-		var frames: int = 72;//48;
-
+		var frames: int = 48
 		private function update(event: Event) {			
 			//if (transitionKind == TransitionScreen.DAY_TO_NIGHT) {
 				
@@ -140,7 +139,7 @@
 				
 				Starling.juggler.delayCall(function() {
 					moveOn();
-				}, 1.5);
+				}, 1);
 				//moveOn();
 			}
 

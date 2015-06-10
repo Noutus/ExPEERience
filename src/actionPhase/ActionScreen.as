@@ -75,7 +75,6 @@
 
 			addPleasureTimer();
 
-			addBabyField();
 
 			// Only to show the area, for testing! Should not be in the final game.
 			//addPopupArea(); 
@@ -137,24 +136,6 @@
 
 			this.dispose();
 		}
-
-		public function addBabyField():void
-		{
-
-			var squasize:Number = 220 / 720 * Starling.current.viewPort.width;
-			var textsize:Number = 38 / 720 * Starling.current.viewPort.width;
-
-			babyField = new TextField(squasize,squasize / 2,"","RoofRunners",textsize,Color.RED);
-
-			babyField.border = true;
-			babyField.x = 20;
-			babyField.y = 20;
-
-
-			updateBabyText()
-			bottomLayer.addChild(babyField);
-		}
-
 
 		// In de tweede level pauzeert hij niet fatsoenlijk, hij telt door maar de bar wordt pas geupdate als hij verder gaat
 		private function addPleasureTimer():void
@@ -262,10 +243,6 @@
 			riskFill.setRatio(ratio);
 		}
 
-		public function updateBabyText(): void {
-			babyField.text = 'Babies: ' + GlobalValues.instance().babies.toString();
-		}
-
 		public function addBaby(): void {
 			GlobalValues.instance().babies++;
 			babyController.newBaby();
@@ -285,7 +262,6 @@
 
 				popupWindow.addEventListener(PopupWindow.CLOSE_CLICKED, function (e: Event): void {
 					setRiskRatio(0.0);
-					updateBabyText();
 					resume();
 					alterPleasure(pleasureRatio);
 				});

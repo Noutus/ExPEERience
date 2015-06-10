@@ -49,7 +49,7 @@
 			
 			tText = Img.CreateTextAt(Game.instance().currentScreen, textText, 120, 420 + image.height, 480, 72, 32);
 			
-			exitButton = Img.GetNewImageAt("button_exit", 532, 272);
+			exitButton = Img.GetNewImageAt("button_exit", 523, 250);
 			Game.instance().currentScreen.addChild(exitButton);
 			
 			exitButton.addEventListener(TouchEvent.TOUCH, OnTouch);
