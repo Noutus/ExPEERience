@@ -5,7 +5,7 @@
 	public class PeerAbility
 	{
 		public var message : String;
-		private var modifiers : Array;
+		public var modifiers : Array;
 		
 		public function PeerAbility(_message : String, _modifiers : Array)
 		{

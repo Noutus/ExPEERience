@@ -30,10 +30,12 @@
 		
 		private var buttonCondom : DisplayObject;
 		private var buttonPeer : DisplayObject;
+
+		private var _badmodifiers : Array;		
 		
 		public function PressureScreen()
 		{
-			
+			_badmodifiers = new Array();
 		}
 		
 		public override function OnEnter() : void
@@ -84,6 +86,12 @@
 													   _peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].ABILITY[i].text()));
 				}
 				
+				for (var j : int = 0; j < _peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].BAD.length(); j++)
+				{
+					_badmodifiers.push(new ActionModifier(_peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].BAD[j].@NAME,
+														  _peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].BAD[j].text()));
+				}
+				
 				var _ability : PeerAbility = new PeerAbility(_peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].@MESSAGE, _modifiers);
 				
 				activePeer = new Peer(_ability);
@@ -109,6 +117,7 @@
 			var _touch : Touch = e.getTouch(this, TouchPhase.ENDED);
 			if (_touch)
 			{
+				activePeer.GetAbility().modifiers = _badmodifiers;
 				activePeer.GetAbility().ChooseAbility();
 				AddLevelModifiers();
 				Game.instance().SwitchScreen(new TransitionScreen(TransitionScreen.DAY_TO_NIGHT));
@@ -120,6 +129,7 @@
 			var _touch : Touch = e.getTouch(this, TouchPhase.ENDED);
 			if (_touch)
 			{
+				activePeer.GetAbility().ChooseAbility();
 				ActionValues.instance().SetModifier(ActionValues.RISK_SEX, 0.0);
 				AddLevelModifiers();
 				Game.instance().SwitchScreen(new TransitionScreen(TransitionScreen.DAY_TO_NIGHT));
