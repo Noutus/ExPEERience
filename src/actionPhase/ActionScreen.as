@@ -14,7 +14,6 @@
 	import starling.utils.Color;
 	import src.screens.ScoreScreen;
 	import src.*;
-	import flash.system.Capabilities;
 	import starling.display.Quad;
 	import flash.geom.Rectangle;
 	import src.display.Img;
@@ -42,7 +41,13 @@
 
 		private var babyController: BabyController;
 
-		public static var popupArea: Rectangle = new Rectangle(0, 130 / 1280 * Capabilities.screenResolutionY, Starling.current.stage.stageWidth / 720 * Capabilities.screenResolutionX, (Starling.current.stage.stageHeight - 330) / 1280 * Capabilities.screenResolutionY);
+		public static var popupArea: Rectangle = new 
+		Rectangle(
+			0, 
+			Img.GetScaledVector(0, 130)[1], 
+			Starling.current.viewPort.width, 
+			Img.GetScaledVector(0, 950)[1]
+		);
 
 		private var startTime: Number;
 
@@ -136,8 +141,8 @@
 		public function addBabyField():void
 		{
 
-			var squasize:Number = 220 / 720 * Capabilities.screenResolutionX;
-			var textsize:Number = 38 / 720 * Capabilities.screenResolutionX;
+			var squasize:Number = 220 / 720 * Starling.current.viewPort.width;
+			var textsize:Number = 38 / 720 * Starling.current.viewPort.width;
 
 			babyField = new TextField(squasize,squasize / 2,"","RoofRunners",textsize,Color.RED);
 
@@ -187,12 +192,12 @@
 
 		private function addTimer(): void {
 
-			var squasize: Number = 100 / 720 * Capabilities.screenResolutionX;
-			var textsize: Number = 45 / 720 * Capabilities.screenResolutionX;
+			var squasize: Number = 100 / 720 * Starling.current.viewPort.width;
+			var textsize: Number = 45 / 720 * Starling.current.viewPort.width;
 
 			gameTimerField = new TextField(squasize, squasize, "", "RoofRunners", textsize, Color.NAVY);
 			gameTimerField.border = true;
-			gameTimerField.x = (Starling.current.stage.stageWidth - gameTimerField.width) / 1440 * Capabilities.screenResolutionX;
+			gameTimerField.x = (Starling.current.viewPort.width - gameTimerField.width) / 2;
 			gameTimerField.y = 10;
 			bottomLayer.addChild(gameTimerField);
 		}
@@ -204,11 +209,13 @@
 		private function addPauseButton(): void {
 			var button: Button = new Button(Game.instance().assets.getTexture(AssetNames.BUTTON_PAUSE));
 
-			button.x = Starling.current.stage.stageWidth - button.width - 20;
+			Img.ChangeSpriteSize(button);
+			
+			button.x = Starling.current.viewPort.width - button.width - 20;
 			button.y = 20;
 			button.addEventListener(TouchEvent.TOUCH, pauseTouched);
 
-			Img.ChangeSpriteSize(button);
+			
 
 			bottomLayer.addChild(button);
 		}

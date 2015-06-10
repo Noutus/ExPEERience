@@ -42,11 +42,12 @@
 			
 			tTitle = Img.CreateTextAt(Game.instance().currentScreen, titleText, 120, 256, 480, 72, 48);
 			
-			image = Img.GetNewImageAt(imagePath, Starling.current.stage.width / 2, 320);
+			image = Img.GetNewImageAt(imagePath, 0, 320);
+			image.x = Img.GetScaledVector((720 - image.width) / 2, 0)[0];
 			//image.x -= image.width / 2;
 			Game.instance().currentScreen.addChild(image);
 			
-			tText = Img.CreateTextAt(Game.instance().currentScreen, textText, 120, 320 + image.height, 480, 720, 32);
+			tText = Img.CreateTextAt(Game.instance().currentScreen, textText, 120, 420 + image.height, 480, 72, 32);
 			
 			exitButton = Img.GetNewImageAt("button_exit", 532, 272);
 			Game.instance().currentScreen.addChild(exitButton);

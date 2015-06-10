@@ -14,7 +14,6 @@
 	import starling.display.Image;
 	import starling.display.DisplayObject;
 	import starling.text.TextField;
-	import flash.system.Capabilities;
 	import src.display.Img;
 	import src.gui.*;
 	import src.actionPhase.ActionValues;
@@ -23,6 +22,7 @@
 	import starling.events.TouchPhase;
 	import src.actionPhase.ActionScreen;
 	import src.screens.TransitionScreen;
+	import starling.core.Starling;
 
 	public class PressureScreen extends GameScreen
 	{
@@ -100,9 +100,9 @@
 				
 				var v : Vector.<Number> = Img.GetScaledVector(620, 400);
 				var _text : TextField = new TextField(v[0], v[1], activePeer.GetAbility().message);
-				_text.x = 50 / 720 * Capabilities.screenResolutionX;
+				_text.x = 50 / 720 * Starling.current.viewPort.width;
 				_text.fontName = "RoofRunners";
-				_text.fontSize = 48 / 720 * Capabilities.screenResolutionX;
+				_text.fontSize = 48 / 720 * Starling.current.viewPort.width;
 				Game.instance().currentScreen.addChild(_text);
 			}
 			

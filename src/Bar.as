@@ -5,6 +5,7 @@
     import starling.display.Sprite;
     import starling.textures.Texture;
 	import flash.system.Capabilities;
+	import starling.core.Starling;
     
     public class Bar extends Sprite {
 		
@@ -19,7 +20,7 @@
         }
         
         private function update(): void {
-            image.scaleX = ratio / 720 * Capabilities.screenResolutionX;
+            image.scaleX = ratio / 720 * Starling.current.viewPort.width;
             image.setTexCoords(1, new Point(ratio, 0.0));
             image.setTexCoords(3, new Point(ratio, 1.0));
         }

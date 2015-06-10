@@ -11,6 +11,8 @@
 	import flash.system.Capabilities;
 	import src.Game;
 	import starling.text.TextField;
+	import starling.core.Starling;
+	import flash.geom.Point;
 	
 	public class Img
 	{
@@ -45,7 +47,7 @@
 			
 			var field : TextField = new TextField(scale[0], scale[1], boxText);
 				field.fontName = "RoofRunners";
-				field.fontSize = fontSize / 720 * Capabilities.screenResolutionX;
+				field.fontSize = fontSize / 720 * Starling.current.viewPort.width;
 				field.x = position[0];
 				field.y = position[1];
 				boxParent.addChild(field);
@@ -55,7 +57,7 @@
 		
 		public static function GetScaledVector(_x : Number, _y : Number) : Vector.<Number> 
 		{
-			if (Capabilities.os.indexOf("Windows") >= 0)
+			/*if (Capabilities.os.indexOf("Windows") >= 0)
 			{
 				var v : Vector.<Number> = new Vector.<Number>(2);
 				v[0] = _x;
@@ -63,15 +65,20 @@
 				return v;
 			}
 			
-			else
+			else*/
 			{
 				var _v : Vector.<Number >  = new Vector.<Number > (2);
 	
-				_v[0] = _x / 720 * Capabilities.screenResolutionX;
-				_v[1] = _y / 1280 * Capabilities.screenResolutionY;
+				_v[0] = _x / 720 * Starling.current.viewPort.width;
+				_v[1] = _y / 1280 * Starling.current.viewPort.height;
 	
 				return _v;
 			}
+		}
+		
+		public static function getScaledPoint(x: Number, y: Number): Point {
+			var vect: Vector.<Number> = GetScaledVector(x, y); 
+			return new Point(vect[0], vect[1]);
 		}
 
 		public static function ChangeSpriteSize(_s : DisplayObject) : void

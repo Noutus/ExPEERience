@@ -3,7 +3,6 @@
 	import src.screens.Screens;
 	import src.display.Img;
 	import starling.text.TextField;
-	import flash.system.Capabilities;
 	import src.Game;
 	import src.actionPhase.ActionScreen;
 	import src.pressurePhase.PressureScreen;
@@ -27,7 +26,7 @@
 
 		public function TransitionScreen(transitionKind: int) {
 			this.transitionKind = transitionKind;
-			
+			trace(Starling.current.viewPort.width + ', ' + Starling.current.viewPort.height);
 			
 		}
 		
@@ -40,11 +39,16 @@
 		var moonStart, moonEnd: Point;
 		
 		public override function OnEnter(): void {		
+			
+			if (transitionKind == TransitionScreen.NIGHT_TO_DAY) {
+				pressureScreen = new PressureScreen();
+				
+			}
 			var position : Vector.<Number> = Img.GetScaledVector(0, 0);
 			var scale : Vector.<Number> = Img.GetScaledVector(720, 360);
 			
 			var text : TextField = new TextField(scale[0], scale[1], "Transition: " + ((transitionKind == TransitionScreen.DAY_TO_NIGHT)? "Day to night": "Night to day"));
-				text.fontSize = 48 / 720 * Capabilities.screenResolutionX;
+				text.fontSize = 48 / 720 * Starling.current.viewPort.width;
 				text.x = position[0];
 				text.y = position[1];
 				addChild(text);
@@ -55,18 +59,24 @@
 			sun = new Image(Game.instance().assets.getTexture("sun"));
 			moon = new Image(Game.instance().assets.getTexture("moon"));
 			
+			Img.ChangeSpriteSize(sun);
+			Img.ChangeSpriteSize(moon);
+			
+			
+			
 			if (transitionKind == TransitionScreen.DAY_TO_NIGHT) {
-				sunStart = new Point((Starling.current.stage.stageWidth - sun.width) / 2, 300);
-				sunEnd = new Point(Starling.current.stage.stageWidth + sun.width, 500);
+	
+				sunStart = new Point((Starling.current.viewPort.width - sun.width) / 2, Img.GetScaledVector(0, 300)[1]);
+				sunEnd = new Point(Starling.current.viewPort.width + sun.width, Img.GetScaledVector(0, 500)[1]);
 				
-				moonStart = new Point(-moon.width, 500);
-				moonEnd = new Point((Starling.current.stage.stageWidth - sun.width) / 2, 300);
+				moonStart = new Point(-moon.width, Img.GetScaledVector(0, 500)[1]);
+				moonEnd = new Point((Starling.current.viewPort.width - sun.width) / 2, Img.GetScaledVector(0, 300)[1]);
 			} else {
-				moonStart = new Point((Starling.current.stage.stageWidth - sun.width) / 2, 300);
-				moonEnd = new Point(Starling.current.stage.stageWidth + sun.width, 500);
+				moonStart = new Point((Starling.current.viewPort.width - sun.width) / 2, Img.GetScaledVector(0, 300)[1]);
+				moonEnd = new Point(Starling.current.viewPort.width + sun.width, Img.GetScaledVector(0, 500)[1]);
 				
-				sunStart = new Point(-moon.width, 500);
-				sunEnd = new Point((Starling.current.stage.stageWidth - sun.width) / 2, 300);
+				sunStart = new Point(-moon.width, Img.GetScaledVector(0, 500)[1]);
+				sunEnd = new Point((Starling.current.viewPort.width - sun.width) / 2, Img.GetScaledVector(0, 300)[1]);
 			}
 			//"Sun" "Moon"
 		
@@ -79,12 +89,10 @@
 			moon.y = moonStart.y;
 			addChild(moon);
 			
-			movieClip = new AnimatedObject("walk", 17); // bier
-			//var textures: Vector.<Texture> = Game.instance().assets.getTextures("walk"); //"MoleWhacked": "MoleOK"
-			//movieClip = new MovieClip(textures, 24);
-			//movieClip.addEventListener(TouchEvent.TOUCH, MoleTouched);
+			movieClip = new AnimatedObject("walk", 17);
+			
 			movieStart = new Point(
-				(transitionKind == TransitionScreen.DAY_TO_NIGHT)? -movieClip.width: Starling.current.stage.stageWidth + movieClip.width, 
+				(transitionKind == TransitionScreen.DAY_TO_NIGHT)? -movieClip.width: Starling.current.viewPort.width + movieClip.width, 
 				Img.GetScaledVector(0, 800)[1]
 			);
 			
@@ -95,7 +103,7 @@
 				movieClip.scaleX = -1;
 			
 			movieEnd = new Point(
-				(transitionKind == TransitionScreen.DAY_TO_NIGHT)? (Starling.current.stage.stageWidth): -movieClip.width,
+				(transitionKind == TransitionScreen.DAY_TO_NIGHT)? (Starling.current.viewPort.width): -movieClip.width,
 				movieStart.y
 			);
 			
@@ -107,10 +115,10 @@
 
 		}
 		
-		
+		var pressureScreen: PressureScreen;
 		private function moveOn() {
 			//Img.CreateScreenSwitchButtonAt("button_next", (transitionKind == TransitionScreen.DAY_TO_NIGHT)? Screens.ACTION: Screens.PRESSURE , 500, 1100);
-			Game.instance().SwitchScreen((transitionKind == TransitionScreen.DAY_TO_NIGHT)? new ActionScreen(): new PressureScreen());
+			Game.instance().SwitchScreen((transitionKind == TransitionScreen.DAY_TO_NIGHT)? new ActionScreen(): pressureScreen);
 		}
 	
 		var frames: int = 72;//48;
@@ -132,7 +140,7 @@
 				
 				Starling.juggler.delayCall(function() {
 					moveOn();
-				}, 2);
+				}, 1.5);
 				//moveOn();
 			}
 
