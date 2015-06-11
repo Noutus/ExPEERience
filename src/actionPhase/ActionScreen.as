@@ -332,6 +332,10 @@
 
 			setRiskRatio(GlobalValues.instance().risk);
 		}
+		
+		public static function getLocation(): String {
+			return "Partner";
+		}
 
 
 		private var pauseStartTime: Number;
