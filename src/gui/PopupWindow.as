@@ -24,6 +24,7 @@
 		var bg : DisplayObject;
 		var exitButton : DisplayObject;
 		var image : DisplayObject;
+		var baseWidth, baseHeight: int;
 		var tTitle : TextField;
 		var tText : TextField;
 		
@@ -36,6 +37,7 @@
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
+		var imageMultiplier: Number;
 		public function init(e : Event) : void
 		{
 			bg = Img.GetNewImageAt("window_popup", 0, 0);
@@ -44,6 +46,9 @@
 			
 			image = Img.GetNewImageAt(imagePath, 360, 350);
 			image.x = Img.GetScaledVector((720 - image.width) / 2, 0)[0];
+			
+			baseWidth = image.width;
+			baseHeight = image.height;
 			//image.x -= image.width / 2;
 			Game.instance().currentScreen.addChild(image);
 			
@@ -53,6 +58,13 @@
 			Game.instance().currentScreen.addChild(exitButton);
 			
 			exitButton.addEventListener(TouchEvent.TOUCH, OnTouch);
+		}
+		
+		public function setImageSizeMultiplier(multiplier: Number) {
+			this.imageMultiplier = multiplier;
+			image.width = baseWidth *= imageMultiplier;
+			image.height = baseHeight *= imageMultiplier;
+			image.x = Img.GetScaledVector((720 - image.width) / 2, 0)[0];
 		}
 		
 		public function OnTouch(e : TouchEvent) : void

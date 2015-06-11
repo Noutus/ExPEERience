@@ -375,16 +375,27 @@
 		}
 
 
+		var pausedWindow: PopupWindow;
 		/*
 			What happens when the pause button is touched
 		*/
 		private function pauseTouched(event: TouchEvent): void {
 			var touch: Touch = event.touches[0];
-			if (touch.phase == TouchPhase.ENDED) {
+			if (touch.phase == TouchPhase.BEGAN) {
 				trace("Pause button clicked");
 
-				isPaused() ? resume() : pause();
+				
+				if (!isPaused()) {
+					pause();
 
+					pausedWindow = new PopupWindow('Paused!', AssetNames.LOGO, "You have paused the game.");
+					addChild(pausedWindow);
+					pausedWindow.setImageSizeMultiplier(2);
+
+					pausedWindow.addEventListener(PopupWindow.CLOSE_CLICKED, function (e: Event): void {
+						resume();
+					});
+				}
 			}
 		}
 
