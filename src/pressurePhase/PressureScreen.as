@@ -157,11 +157,29 @@
 		
 		public function AddLevelModifiers()
 		{
-			for(var i : int = 0; i < levelXML.LEVEL[GlobalValues.instance().level].ABILITY.length(); i++)
+			var _URLLoader : URLLoader = new URLLoader();
+			var levelXML : XML;
+			var _s : String = Game.APPLICATION_PATH.nativePath + "/data/levels.xml";
+			
+			_URLLoader.addEventListener(flash.events.Event.COMPLETE, loadComplete);
+			_URLLoader.addEventListener(IOErrorEvent.IO_ERROR, loadError);
+			_URLLoader.load(new URLRequest(_s));
+			
+			function loadComplete(e : flash.events.Event) : void
 			{
-				ActionValues.instance().AddModifier(levelXML.LEVEL[GlobalValues.instance().level].ABILITY[i].@NAME,
-													levelXML.LEVEL[GlobalValues.instance().level].ABILITY[i].text());
-				trace("Level " + GlobalValues.instance().level + " : modifier " + levelXML.LEVEL[GlobalValues.instance().level].ABILITY[i].@NAME);
+				levelXML = new XML(_URLLoader.data);
+				
+				for(var i : int = 0; i < levelXML.LEVEL[GlobalValues.instance().level].ABILITY.length(); i++)
+				{
+					ActionValues.instance().AddModifier(levelXML.LEVEL[GlobalValues.instance().level].ABILITY[i].@NAME,
+														levelXML.LEVEL[GlobalValues.instance().level].ABILITY[i].text());
+					trace("Level " + GlobalValues.instance().level + " : modifier " + levelXML.LEVEL[GlobalValues.instance().level].ABILITY[i].@NAME);
+				}
+			}
+			
+			function loadError(e : IOErrorEvent) : void
+			{
+				trace(e.text);
 			}
 		}
 	}
