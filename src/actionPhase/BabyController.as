@@ -24,7 +24,7 @@
 		
 		public function newBaby(): void {
 			
-			var baby: Baby = new Baby(this);
+			var baby: Baby = new Baby(this, actionScreen);
 			if (baby.placeAtRandomSpot()) { 
 				babies.push(baby);
 
@@ -40,6 +40,18 @@
 		public function moveBabies(): void {
 			for each(var baby: Baby in babies) {
 				baby.move();
+			}
+		}
+		
+		public function pause(): void {
+			for each(var baby: Baby in babies) {
+				baby.pause();
+			}
+		}
+		
+		public function resume(): void {
+			for each(var baby: Baby in babies) {
+				baby.resume();
 			}
 		}
 	}

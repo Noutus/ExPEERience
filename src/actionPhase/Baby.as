@@ -7,6 +7,12 @@
 	import src.GlobalValues;
 	import starling.core.Starling;
 	import flash.geom.Rectangle;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
+	import starling.events.Touch;
+	import starling.animation.IAnimatable;
+	import src.PauseTimer;
+	import flash.events.TimerEvent;
 	
 	public class Baby extends Sprite {
 
@@ -25,12 +31,16 @@
 		}
 		
 		private var babyController: BabyController;
+		private var actionScreen: ActionScreen;
 		
-		public function Baby(babyController: BabyController) {
+		public function Baby(babyController: BabyController, actionScreen: ActionScreen) {
 			this.babyController = babyController;
+			this.actionScreen = actionScreen;
 			
-			addChild(new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BABY)));
+			addChild(img_sleeping);
 			placeAtRandomSpot();
+			
+			this.addEventListener(TouchEvent.TOUCH, OnTouch); 
 		}
 		
 		private static const maxRandomSpotTries: int = 30;
@@ -138,7 +148,68 @@
 			}*/
 		}
 		
+		private var crying: Boolean = false;
+		
+		private var img_crying: Image = createCryingImage();
+		private var img_sleeping: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BABY_SLEEPING));
+		
+		private static function createCryingImage(): Image {
+			var rv: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BABY_CRYING));
+			rv.width = rv.width * 1.5;
+			rv.height = rv.height * 1.5;
+			return rv;
+		}
+		// Time the baby will cry for in ms, once it gets hit (don't hit babies you bastard!)
+		public static var cryTime: Number = 3000; 
+		
+		private var backToSleepTimer: PauseTimer;
 
+		public function clicked() {
+			trace('clicked');
+			if (crying) {
+				// Maybe put the time until it sleeps again to cryTime again here?
+				trace('clicked on the crying baby.');
+			} else {
+				trace('GOING TO CRY');
+				crying = true;
+				removeChild(img_sleeping);
+				addChild(img_crying);
+				
+				backToSleepTimer = new PauseTimer(cryTime, 1);
+				backToSleepTimer.addEventListener(TimerEvent.TIMER_COMPLETE, backToSleep);
+					
+				backToSleepTimer.start();
+				//var backToSleepTimer: IAnimatable = Starling.current.juggler.delayCall(backToSleep, cryTime);
+			}
+
+		}
+
+		
+		public function pause() {
+			trace('pausing a baby');
+			if (backToSleepTimer)
+				backToSleepTimer.pause();
+		}
+		
+		public function resume() {
+			trace('resuming a baby');
+			if (backToSleepTimer)
+				backToSleepTimer.resume();
+		}
+
+		public function backToSleep(event: TimerEvent) {
+			removeChild(img_crying);
+			addChild(img_sleeping);
+			crying = false;
+		}
+
+		public function OnTouch(event: TouchEvent): void {
+			var touch:Touch = event.touches[0];
+			if (touch.phase == TouchPhase.BEGAN) {
+				if (!actionScreen.isPaused())
+					clicked();
+			}
+		}		
 	}
 	
 }

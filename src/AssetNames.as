@@ -13,8 +13,8 @@
 		public static const ACTION_POPUP_KISS: String = "action_popup_kiss";
 		public static const ACTION_POPUP_SEX: String = "action_popup_sex";
 		
-		public static const ACTION_BABY: String = "babyface";
-
+		public static const ACTION_BABY_CRYING: String = "action_baby_crying";
+		public static const ACTION_BABY_SLEEPING: String = "action_baby_sleeping";
 	}
 	
 }

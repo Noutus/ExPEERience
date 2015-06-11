@@ -49,7 +49,7 @@
 			Img.GetScaledVector(0, 950)[1]
 		);
 
-		private var startTime: Number;
+		private var startTime: Number = getTimer();
 
 		// ActionScreen constructor
 		public function ActionScreen()
@@ -92,8 +92,6 @@
 			trace("Entering Action Screen: ");
 			trace("Risk sex: " + ActionValues.instance().GetModifier(ActionValues.RISK_SEX));
 			trace("Buttons per second: " + ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND));
-
-			startTime = getTimer();
 
 			popupController.startSpawning();
 
@@ -176,7 +174,7 @@
 			var squasize: Number = 100 / 720 * Starling.current.viewPort.width;
 			var textsize: Number = 45 / 720 * Starling.current.viewPort.width;
 
-			gameTimerField = new TextField(squasize, squasize, "", "RoofRunners", textsize, Color.NAVY);
+			gameTimerField = new TextField(squasize, squasize, getTimeLeft().toString(), "RoofRunners", textsize, Color.NAVY);
 			gameTimerField.border = true;
 			gameTimerField.x = (Starling.current.viewPort.width - gameTimerField.width) / 2;
 			gameTimerField.y = 10;
@@ -225,13 +223,13 @@
 			{
 				trace("Pleasure full, next level!");
 				gameOver(true);
-				GlobalValues.instance().pleasure = 0.5;
+				GlobalValues.instance().pleasure = 0.50;
 			}
 			if (GlobalValues.instance().pleasure <= 0)
 			{
-				trace("Pleasure empty, game over!");
+				trace("Pleasure empty, try this level again!!");
 				gameOver(false);
-				GlobalValues.instance().pleasure = 0.5;
+				GlobalValues.instance().pleasure = 0.50;
 			}
 
 		}
@@ -256,7 +254,7 @@
 
 				pause();
 
-				var popupWindow: PopupWindow = new PopupWindow('Baby!', "babyface" , "You've made a baby!");
+				var popupWindow: PopupWindow = new PopupWindow('Baby!', AssetNames.ACTION_BABY_SLEEPING, "You've made a baby!");
 				trace("Risk full! Baby!");
 				addChild(popupWindow);
 
@@ -347,6 +345,9 @@
 			pleasureTimer.pause();
 
 			popupController.pause();
+			
+			babyController.pause();
+			
 			paused = true;
 		}
 
@@ -358,6 +359,8 @@
 			startTime = startTime + pausedTime;
 
 			popupController.resume();
+			
+			babyController.resume();
 
 			paused = false;
 		}
@@ -384,25 +387,23 @@
 			babyController.moveBabies();
 		}
 
-
-
-		private var timeLeft: int;
 		// Base time limit is 100.
 		private var timeLimit: int = 15 * ActionValues.instance().GetModifier(ActionValues.TIME_LIMIT);
 
+		private function getTimeLeft(): int {
+			return Math.ceil(timeLimit - (getTimer() - startTime) / 1000);
+		}
 
 		private function update(event: Event) {
 			if (!isPaused()) {
-				timeLeft = Math.ceil(timeLimit - (getTimer() - startTime) / 1000);
-				gameTimerField.text = timeLeft.toString();
+				
+				gameTimerField.text = getTimeLeft().toString();
 
-				if (timeLeft <= 0) {
+				if (getTimeLeft() <= 0) {
 					paused = true;
 					trace("Game over!");
 
 					gameOver(false);
-
-					//GlobalValues.instance().babies
 
 				}
 

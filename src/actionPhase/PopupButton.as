@@ -86,11 +86,13 @@
 		}
 		
 		public function pause() {
-			removeTimer.pause();
+			if (removeTimer)
+				removeTimer.pause();
 		}
 		
 		public function resume() {
-			removeTimer.resume();
+			if (removeTimer)
+				removeTimer.resume();
 		}
 		
 		/*
