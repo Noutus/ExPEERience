@@ -89,8 +89,14 @@
 			// TODO: Put into static function CreateSpriteAt();
 			trace("pressure_peer_placeholder_" + _peersXML.PEER[_randomPeer].@NAME);
 			
+			if (peerName == "Partner")
+			{
+				if (GlobalValues.instance().gender) peerName = "Male";
+				else peerName = "Female";
+			}			
+			
 			this.setBackground("pressure_background_" + _peersXML.PEER[_randomPeer].@NAME);
-			Img.CreateImageAt("pressure_peer_placeholder_" + _peersXML.PEER[_randomPeer].@NAME, 410, 480);
+			Img.CreateImageAt("pressure_peer_placeholder_" + peerName, 410, 480);
 			Img.CreateImageAt("pressure_cloud_placeholder", 0, 0);
 			
 			var _randomPressure : int = Math.floor(Math.random() * _peersXML.PEER[_randomPeer].PRESSURE.length());

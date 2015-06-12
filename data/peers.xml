@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <DATA>
-	<PEER NAME="Boyfriend">
+	<PEER NAME="Male_Friends">
 		<PRESSURE MESSAGE="Why bother using a condom? Just one time is not going to matter!">
 			<ABILITY NAME="BUTTONS_PER_SECOND">1.5</ABILITY>
 			<BAD NAME="PLEASURE_DECREASE">0.75</BAD>
@@ -28,7 +28,7 @@
 			<BAD NAME="TIME_LIMIT">0.75</BAD>
 		</PRESSURE>
 	</PEER>
-	<PEER NAME="Girlfriend">
+	<PEER NAME="Female_Friends">
 		<PRESSURE MESSAGE="Sex doesn’t feel as good with a condom. It’s so unnatural.">
 			<ABILITY NAME="PLEASURE_TOUCH">1.5</ABILITY>
 			<BAD NAME="PLEASURE_SEX">1.5</BAD>
@@ -72,7 +72,7 @@
 			<BAD NAME="BUTTON_ALIVE_TIME">0.75</BAD>
 		</PRESSURE>
 	</PEER>
-	<PEER NAME="Mother">
+	<PEER NAME="Parents">
 		<PRESSURE MESSAGE="Excuse us to say, but be careful with what you're doing with your partner tonight!">
 			<ABILITY NAME="PLEASURE_KISS">0.75</ABILITY>
 			<BAD NAME="BUTTON_SIZE">1.5</BAD>
@@ -94,7 +94,7 @@
 			<BAD NAME="BUTTON_ALIVE_TIME">0.75</BAD>
 		</PRESSURE>
 	</PEER>
-	<PEER NAME="Teacher">
+	<PEER NAME="School">
 		<PRESSURE MESSAGE="I don't want to see any condoms in the classroom.">
 			<ABILITY NAME="PLEASURE_DECREASE">1.5</ABILITY>
 			<BAD NAME="PLEASURE_TOUCH">1.5</BAD>
