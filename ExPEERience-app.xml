@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<application xmlns="http://ns.adobe.com/air/application/3.8">
+<application xmlns="http://ns.adobe.com/air/application/17.0">
   <id>ExPEERience</id>
   <versionNumber>1.0.0</versionNumber>
-  <versionLabel></versionLabel>
+  <versionLabel/>
   <filename>ExPEERience</filename>
   <description/>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
   
 
   
@@ -191,6 +205,20 @@
 
   
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
   <!-- To localize the name, use the following format for the name element.<name><text xml:lang="en">English App name goes here</text><text xml:lang="fr">French App name goes here</text><text xml:lang="ja">Japanese App name goes here</text></name>-->
   <copyright/>
   <initialWindow>
@@ -202,7 +230,12 @@
     <aspectRatio>portrait</aspectRatio>
     <renderMode>direct</renderMode>
     <autoOrients>true</autoOrients></initialWindow>
-  <icon/>
+  <icon>
+    <image96x96>AppIconsForPublish/logox96.png</image96x96>
+    <image72x72>AppIconsForPublish/logox72.png</image72x72>
+    <image48x48>AppIconsForPublish/logox48.png</image48x48>
+    <image36x36>AppIconsForPublish/logox36.png</image36x36>
+  </icon>
   <customUpdateUI>false</customUpdateUI>
   <allowBrowserInvocation>false</allowBrowserInvocation>
   <android>
