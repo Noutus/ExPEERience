@@ -24,7 +24,8 @@
 	import starling.core.Starling;
 	import starling.events.Event;
 	import starling.events.EnterFrameEvent;
-
+	import flash.text.TextFormat;
+	
 	public class PressureScreen extends GameScreen
 	{
 		private var activePeer : Peer;
@@ -52,11 +53,6 @@
 			trace("Buttons per second: " + ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND));
 			
 			makeScreen();
-			
-			buttonPeer = Img.GetNewImageAt("button_no", 80, 550);
-			buttonPeer.addEventListener(TouchEvent.TOUCH, OnNo);
-			buttonCondom = Img.GetNewImageAt("button_condom", 80, 900);
-			buttonCondom.addEventListener(TouchEvent.TOUCH, OnCondom);
 			
 		}
 		
@@ -126,7 +122,32 @@
 			_text.x = 50 / 720 * Starling.current.viewPort.width;
 			_text.fontName = "RoofRunners";
 			_text.fontSize = 48 / 720 * Starling.current.viewPort.width;
-			addChild(_text);*/  
+			addChild(_text);*/
+			
+			buttonPeer = Img.GetNewImageAt("button_no", 30, 550);
+			buttonPeer.addEventListener(TouchEvent.TOUCH, OnNo);
+			buttonCondom = Img.GetNewImageAt("button_condom", 30, 900);
+			buttonCondom.addEventListener(TouchEvent.TOUCH, OnCondom);
+			
+			for	(var i : int = 0; i < _modifiers.length; i++)
+			{
+				var n : Number = _peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].ABILITY[i].text();
+				var s: String = _modifiers[i].modifierName;
+				var myPattern:RegExp = /_/g;
+				var tf : TextField = Img.CreateTextAt(this, s.replace(myPattern, " ") + " " + GetModStatus(n), 0, 1137 + 30 * i, 360, 29, 24);
+				if (n > 1) tf.color = 0x00AA00;
+				else tf.color = 0xAA0000;
+			}
+			
+			for (var j : int = 0; j < _badmodifiers.length; j++)
+			{
+				var n : Number = _peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].BAD[j].text();
+				var s : String = _badmodifiers[j].modifierName;
+				var myPattern:RegExp = /_/g;
+				var tf : TextField = Img.CreateTextAt(this, s.replace(myPattern, " ") + " " + GetModStatus(n), 0, 770 + 30 * j, 360, 29, 24);
+				if (n > 1) tf.color = 0x00AA00;
+				else tf.color = 0xAA0000;
+			}
 		}
 		
 		private static function loadError(e : IOErrorEvent) : void
@@ -188,6 +209,12 @@
 			{
 				trace(e.text);
 			}
+		}
+		
+		public static function GetModStatus(n : Number) : String {
+			if (n > 1) return "++";
+			if (n < 1) return "--";
+			return "";
 		}
 	}
 }

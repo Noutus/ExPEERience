@@ -4,8 +4,8 @@
 	
 	public class ActionModifier
 	{
-		private var modifierName;
-		private var modifierValue;
+		public var modifierName;
+		public var modifierValue;
 		
 		public function ActionModifier(_name : String, _value : Number)
 		{
