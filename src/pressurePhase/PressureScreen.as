@@ -70,11 +70,15 @@
 				
 				var _randomPeer : int = Math.floor(Math.random() * _peersXML.PEER.length());
 				
-				// TODO: Put into static function CreateSpriteAt();
-				trace("pressure_peer_placeholder_" + _peersXML.PEER[_randomPeer].@NAME);
+				var peerName = _peersXML.PEER[_randomPeer].@NAME;
+				if (peerName == "Partner")
+				{
+					if (GlobalValues.instance().gender) peerName = "Boyfriend";
+					else peerName = "Female";
+				}
 				
 				setBackground("pressure_background_" + _peersXML.PEER[_randomPeer].@NAME);
-				Img.CreateImageAt("pressure_peer_placeholder_" + _peersXML.PEER[_randomPeer].@NAME, 410, 480);
+				Img.CreateImageAt("pressure_peer_placeholder_" + peerName, 410, 480);
 				Img.CreateImageAt("pressure_cloud_placeholder", 0, 0);
 				
 				var _randomPressure : int = Math.floor(Math.random() * _peersXML.PEER[_randomPeer].PRESSURE.length());
@@ -98,7 +102,7 @@
 				
 				trace(_randomPeer + " : " + _randomPressure + " : " + activePeer.GetAbility().message);
 				
-				var v : Vector.<Number> = Img.GetScaledVector(620, 400);
+				var v : Vector.<Number> = Img.GetScaledVector(620, 310);
 				var _text : TextField = new TextField(v[0], v[1], activePeer.GetAbility().message);
 				_text.x = 50 / 720 * Starling.current.viewPort.width;
 				_text.fontName = "RoofRunners";
