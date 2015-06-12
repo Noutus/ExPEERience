@@ -395,6 +395,7 @@
 					pausedWindow.addEventListener(PopupWindow.CLOSE_CLICKED, function (e: Event): void {
 						resume();
 					});
+					
 				}
 			}
 		}

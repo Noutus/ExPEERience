@@ -24,6 +24,7 @@
 		
 		public override function OnEnter() : void
 		{
+			GlobalValues.instance().ResetValues();
 			GlobalValues.instance().gender = true;
 			
 			this.setBackground("story_comic_placeholder");

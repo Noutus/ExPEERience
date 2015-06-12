@@ -62,7 +62,7 @@
 			<BAD NAME="SPAWN_CHANCE_TOUCH">0.75</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="If we have a baby, it will make me really happy.">
-			<ABILITY NAME="TIME_LIMIT"></ABILITY>
+			<ABILITY NAME="TIME_LIMIT">1.5</ABILITY>
 			<BAD NAME="TIME_LIMIT">1.5</BAD>
 			<BAD NAME="RISK_SEX">1.5</BAD>
 		</PRESSURE>

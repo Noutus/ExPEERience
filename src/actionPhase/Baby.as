@@ -13,6 +13,17 @@
 	import starling.animation.IAnimatable;
 	import src.PauseTimer;
 	import flash.events.TimerEvent;
+	import src.display.BitmapImage;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.events.Event;
+	import flash.display.Loader;
+	import flash.display.LoaderInfo;
+	import flash.net.URLRequest;
+	import flash.globalization.LastOperationStatus;
+	import src.events.BitmapEvent;
+	import src.events.BitmapLoader;
+	import src.screens.MainMenuScreen;
 	
 	public class Baby extends Sprite {
 
@@ -37,10 +48,8 @@
 			this.babyController = babyController;
 			this.actionScreen = actionScreen;
 			
-			addChild(img_sleeping);
-			placeAtRandomSpot();
-			
-			this.addEventListener(TouchEvent.TOUCH, OnTouch); 
+			createCryingImage();
+			createSleepingImage();
 		}
 		
 		private static const maxRandomSpotTries: int = 30;
@@ -150,15 +159,50 @@
 		
 		private var crying: Boolean = false;
 		
-		private var img_crying: Image = createCryingImage();
-		private var img_sleeping: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BABY_SLEEPING));
+		private var img_crying: BitmapImage;
+		private var img_sleeping: BitmapImage;
 		
-		private static function createCryingImage(): Image {
-			var rv: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BABY_CRYING));
-			rv.width = rv.width * 1.5;
-			rv.height = rv.height * 1.5;
-			return rv;
+		private function createCryingImage() : void {
+			var bitmapData:BitmapData;
+			var loader:BitmapLoader = new BitmapLoader();
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onCryLoadComplete);
+				loader.load(new URLRequest(Game.APPLICATION_PATH.nativePath + "/assets/action_baby_crying.png"));
+				loader.addEventListener(BitmapEvent.GOT_RESULT, onBitmapLoaded);
+			
+			function onCryLoadComplete(event : Event)
+			{
+				bitmapData = Bitmap(LoaderInfo(event.target).content).bitmapData;
+				loader.onCryLoadComplete(bitmapData);
+			}
 		}
+
+		private function createSleepingImage() : void {
+			var bitmapData: BitmapData;
+			var loader:BitmapLoader = new BitmapLoader();
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onSleepLoadComplete);
+				loader.load(new URLRequest(Game.APPLICATION_PATH.nativePath + "/assets/action_baby_sleeping.png"));
+				loader.addEventListener(BitmapEvent.GOT_RESULT, onBitmapLoaded);
+			
+			function onSleepLoadComplete(event : Event)
+			{
+				bitmapData = Bitmap(LoaderInfo(event.target).content).bitmapData;
+				loader.onSleepLoadComplete(bitmapData);
+			}
+		}
+		
+		public function onBitmapLoaded(e : BitmapEvent) : void {
+			if (e.imageName == "sleep") {
+				img_sleeping = new BitmapImage(new Bitmap(e.result));
+				LoadComplete();
+			}
+			
+			if (e.imageName == "cry") {
+				img_crying = new BitmapImage(new Bitmap(e.result));
+				img_crying.width = img_crying.width * 1.5;
+				img_crying.height = img_crying.height * 1.5;
+			}
+		}
+		
 		// Time the baby will cry for in ms, once it gets hit (don't hit babies you bastard!)
 		public static var cryTime: Number = 3000; 
 		
@@ -210,6 +254,13 @@
 					clicked();
 			}
 		}		
+		
+		public function LoadComplete()
+		{
+			addChild(img_sleeping);
+			placeAtRandomSpot();			
+			this.addEventListener(TouchEvent.TOUCH, OnTouch);
+		}
 	}
-	
 }
+
