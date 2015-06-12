@@ -44,14 +44,8 @@
 				pressureScreen = new PressureScreen();
 				
 			}
-			var position : Vector.<Number> = Img.GetScaledVector(0, 0);
-			var scale : Vector.<Number> = Img.GetScaledVector(720, 360);
 			
-			var text : TextField = new TextField(scale[0], scale[1], "Going to: " + getNextLocation());//"Transition: " + ((transitionKind == TransitionScreen.DAY_TO_NIGHT)? "Day to night": "Night to day"));
-				text.fontSize = 48 / 720 * Starling.current.viewPort.width;
-				text.x = position[0];
-				text.y = position[1];
-				addChild(text);
+			Img.CreateTextAt(this, "Going to: " + getNextLocation(), 0, 0, 720, 360, 48);
 			
 			//Img.CreateScreenSwitchButtonAt("button_next", (transitionKind == TransitionScreen.DAY_TO_NIGHT)? Screens.ACTION: Screens.PRESSURE , 500, 1100);
 			

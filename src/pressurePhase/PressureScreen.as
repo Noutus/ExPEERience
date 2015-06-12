@@ -114,12 +114,13 @@
 			
 			trace(_randomPeer + " : " + _randomPressure + " : " + activePeer.GetAbility().message);
 			
+			Img.CreateTextAt(this, activePeer.GetAbility().message, 32, 23, 655, 264, 48);/*
 			var v : Vector.<Number> = Img.GetScaledVector(620, 400);
 			var _text : TextField = new TextField(v[0], v[1], activePeer.GetAbility().message);
 			_text.x = 50 / 720 * Starling.current.viewPort.width;
 			_text.fontName = "RoofRunners";
 			_text.fontSize = 48 / 720 * Starling.current.viewPort.width;
-			addChild(_text);
+			addChild(_text);*/  
 		}
 		
 		private static function loadError(e : IOErrorEvent) : void
