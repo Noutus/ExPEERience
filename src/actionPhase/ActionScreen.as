@@ -206,12 +206,17 @@
 			pleasureFill.setRatio(ratio);
 		}
 
-
-		public function gameOver(won: Boolean) {
-			if (won) {
+		// Make it finishGame() with 3 options
+		// ActionScren.won, ActionScreen.failed, ActionScreen.lost (?)
+		public static const WON: int = 0;
+		public static const FAILED: int = 1;
+		public static const LOST: int = 2;
+		
+		public function gameOver(kind: int) {
+			if (kind == WON) {
 				GlobalValues.instance().level++;
 			}
-			Game.instance().SwitchScreen(new ScoreScreen(won));
+			Game.instance().SwitchScreen(new ScoreScreen(kind));
 		}
 
 		// AS3 isn't multithreaded, so this code will not be interrupted. (no race conditions)
@@ -222,13 +227,13 @@
 			if (GlobalValues.instance().pleasure >= 1)
 			{
 				trace("Pleasure full, next level!");
-				gameOver(true);
+				gameOver(WON);
 				GlobalValues.instance().pleasure = 0.50;
 			}
 			if (GlobalValues.instance().pleasure <= 0)
 			{
-				trace("Pleasure empty, try this level again!!");
-				gameOver(false);
+				trace("Pleasure empty, lost the game!");
+				gameOver(LOST);
 				GlobalValues.instance().pleasure = 0.50;
 			}
 
@@ -332,6 +337,10 @@
 
 			setRiskRatio(GlobalValues.instance().risk);
 		}
+		
+		public static function getLocation(): String {
+			return "Partner";
+		}
 
 
 		private var pauseStartTime: Number;
@@ -366,16 +375,27 @@
 		}
 
 
+		var pausedWindow: PopupWindow;
 		/*
 			What happens when the pause button is touched
 		*/
 		private function pauseTouched(event: TouchEvent): void {
 			var touch: Touch = event.touches[0];
-			if (touch.phase == TouchPhase.ENDED) {
+			if (touch.phase == TouchPhase.BEGAN) {
 				trace("Pause button clicked");
 
-				isPaused() ? resume() : pause();
+				
+				if (!isPaused()) {
+					pause();
 
+					pausedWindow = new PopupWindow('Paused!', AssetNames.LOGO, "You have paused the game.");
+					addChild(pausedWindow);
+					pausedWindow.setImageSizeMultiplier(2);
+
+					pausedWindow.addEventListener(PopupWindow.CLOSE_CLICKED, function (e: Event): void {
+						resume();
+					});
+				}
 			}
 		}
 
@@ -403,7 +423,7 @@
 					paused = true;
 					trace("Game over!");
 
-					gameOver(false);
+					gameOver(FAILED);
 
 				}
 

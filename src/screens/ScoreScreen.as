@@ -11,14 +11,34 @@
 	import src.display.Img;
 	import src.GlobalValues;
 	import src.actionPhase.ActionValues;
+	import src.actionPhase.ActionScreen;
 	
 	public class ScoreScreen extends GameScreen
 	{
-		var won: Boolean;
+		var kind: int;
 		
-		public function ScoreScreen(won: Boolean)
+		// kind = ActionScreen. WON/FAILED/LOST
+		public function ScoreScreen(kind: int)
 		{
-			this.won = won;
+			this.kind = kind;
+			
+			var upperText: String;
+			var nextLevelText: String;
+			
+			switch(kind) {
+				case ActionScreen.WON:
+					upperText = "Succesfull night, next level!";
+					nextLevelText = "Next level: " + GlobalValues.instance().level;
+				break;
+				case ActionScreen.FAILED:
+					upperText = "Could have gone better, try again!";
+					nextLevelText = "Repeating level: " + GlobalValues.instance().level;
+				break;
+				case ActionScreen.LOST:
+					upperText = "Bad night, game over!";
+					nextLevelText = "Got to level: " + GlobalValues.instance().level;
+				break;
+			}
 			
 			var pleasure : int = Results.instance().GetPleasure();
 			var risk : int = Results.instance().GetRisk();
@@ -27,8 +47,8 @@
 			
 			GlobalValues.instance().totalScore += levelScore;
 			
-			var wonText : TextField = Img.CreateTextAt(this, won? "Succesfull night, next level!": "Bad night, game over!", 0, 200, 720, 200, 50);
-			var levelText : TextField = Img.CreateTextAt(this, won? "Next level: " + GlobalValues.instance().level: "Got to level: " + GlobalValues.instance().level, 0, 400, 720, 200, 50);
+			var wonText : TextField = Img.CreateTextAt(this, upperText, 0, 200, 720, 200, 50);
+			var levelText : TextField = Img.CreateTextAt(this, nextLevelText, 0, 400, 720, 200, 50);
 
 			Img.CreateTextAt(this, "Pleasure Gained: " + pleasure.toString(), 0, 540, 720, 100, 32);
 			Img.CreateTextAt(this, "Risk Gained: " + risk.toString(), 0, 668, 720, 100, 32);
@@ -43,19 +63,16 @@
 			trace("Risk sex: " + ActionValues.instance().GetModifier(ActionValues.RISK_SEX));
 			trace("Buttons per second: " + ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND));
 			
-			if (won)
-			{
+			if (kind == ActionScreen.WON) {
 				GlobalValues.instance().pleasure = 0.5;
-			}
-			else
-			{
+			} else if (kind == ActionScreen.LOST) {
 				GlobalValues.instance().ResetValues();
 			}
 			
 			GlobalValues.instance().SaveGame();
 			ActionValues.instance().ResetModifiers();
 			
-			Img.CreateScreenSwitchButtonAt("button_next", won? Screens.NIGHTTODAY: Screens.MAINMENU, 520, 1100);
+			Img.CreateScreenSwitchButtonAt("button_next", (kind == ActionScreen.LOST)? Screens.MAINMENU: Screens.NIGHTTODAY, 520, 1100);
 			Img.CreateScreenSwitchButtonAt("button_back", Screens.MAINMENU, 0, 1100);
 		}
 		

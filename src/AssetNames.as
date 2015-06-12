@@ -15,6 +15,8 @@
 		
 		public static const ACTION_BABY_CRYING: String = "action_baby_crying";
 		public static const ACTION_BABY_SLEEPING: String = "action_baby_sleeping";
+		
+		public static const LOGO: String = "logo";
 	}
 	
 }

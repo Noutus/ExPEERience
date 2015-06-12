@@ -47,7 +47,7 @@
 			var position : Vector.<Number> = Img.GetScaledVector(0, 0);
 			var scale : Vector.<Number> = Img.GetScaledVector(720, 360);
 			
-			var text : TextField = new TextField(scale[0], scale[1], "Transition: " + ((transitionKind == TransitionScreen.DAY_TO_NIGHT)? "Day to night": "Night to day"));
+			var text : TextField = new TextField(scale[0], scale[1], "Going to: " + getNextLocation());//"Transition: " + ((transitionKind == TransitionScreen.DAY_TO_NIGHT)? "Day to night": "Night to day"));
 				text.fontSize = 48 / 720 * Starling.current.viewPort.width;
 				text.x = position[0];
 				text.y = position[1];
@@ -113,6 +113,14 @@
 			this.addEventListener(Event.ENTER_FRAME, update);
 
 
+		}
+		
+		private function getNextLocation(): String {
+			if (transitionKind == TransitionScreen.NIGHT_TO_DAY) {
+				return pressureScreen.getLocation();
+			} else {
+				return ActionScreen.getLocation();
+			}
 		}
 		
 		var pressureScreen: PressureScreen;

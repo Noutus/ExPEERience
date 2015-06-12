@@ -13,6 +13,7 @@
 	
 	import src.GlobalValues;
 	import flash.display.Stage;
+	import src.pressurePhase.PressureScreen;
 	
 	public class Main extends MovieClip
 	{
@@ -20,6 +21,9 @@
 		
 		public function Main()
 		{
+			// Do something in the class so it'll initialize the static things. 
+			PressureScreen.lelflash = 1;
+			
 			starling = new Starling(src.Game, stage);
 			starling.start();		
 			
