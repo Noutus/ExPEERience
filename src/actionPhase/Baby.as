@@ -24,6 +24,7 @@
 	import src.events.BitmapEvent;
 	import src.events.BitmapLoader;
 	import src.screens.MainMenuScreen;
+	import src.display.Img;
 	
 	public class Baby extends Sprite {
 
@@ -190,16 +191,25 @@
 			}
 		}
 		
+		private var newSize: Vector.<Number>;
 		public function onBitmapLoaded(e : BitmapEvent) : void {
 			if (e.imageName == "sleep") {
 				img_sleeping = new BitmapImage(new Bitmap(e.result));
 				LoadComplete();
+				
+				newSize = Img.GetScaledVector(img_sleeping.width, img_sleeping.height);
+				img_sleeping.width = newSize[0];
+				img_sleeping.height = newSize[1];
 			}
 			
 			if (e.imageName == "cry") {
 				img_crying = new BitmapImage(new Bitmap(e.result));
 				img_crying.width = img_crying.width * 1.5;
 				img_crying.height = img_crying.height * 1.5;
+				
+				newSize = Img.GetScaledVector(img_crying.width, img_crying.height);
+				img_crying.width = newSize[0];
+				img_crying.height = newSize[1];
 			}
 		}
 		
