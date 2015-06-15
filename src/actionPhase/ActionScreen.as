@@ -46,7 +46,7 @@
 			0, 
 			Img.GetScaledVector(0, 130)[1], 
 			Starling.current.viewPort.width, 
-			Img.GetScaledVector(0, 950)[1]
+			Img.GetScaledVector(0, 890)[1]
 		);
 
 		private var startTime: Number = getTimer();
@@ -293,10 +293,10 @@
 			var pleasureImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_PLEASURE_IMG));
 
 			pleasureImage.x = 35;
-			pleasureImage.y = 1080;
+			pleasureImage.y = 1020;
 
-			pleasureFill.x = pleasureImage.x + 11;
-			pleasureFill.y = pleasureImage.y + 11;
+			pleasureFill.x = pleasureImage.x;// + 11;
+			pleasureFill.y = pleasureImage.y;// + 11;
 
 			Img.ChangeSpriteSize(pleasureFill);
 			Img.ChangeSpriteSize(pleasureImage);
@@ -324,10 +324,10 @@
 			var riskImage: Image = new Image(Game.instance().assets.getTexture(AssetNames.ACTION_BAR_RISK_IMG));
 
 			riskImage.x = 35;
-			riskImage.y = 1200;
+			riskImage.y = 1150;
 
-			riskFill.x = riskImage.x + 11;
-			riskFill.y = riskImage.y + 11;
+			riskFill.x = riskImage.x;// + 11;
+			riskFill.y = riskImage.y;// + 11;
 
 			Img.ChangeSpriteSize(riskFill);
 			Img.ChangeSpriteSize(riskImage);
