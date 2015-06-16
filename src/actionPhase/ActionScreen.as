@@ -295,8 +295,8 @@
 			pleasureImage.x = 35;
 			pleasureImage.y = 1020;
 
-			pleasureFill.x = pleasureImage.x + 11;
-			pleasureFill.y = pleasureImage.y + 11;
+			pleasureFill.x = pleasureImage.x + 10;
+			pleasureFill.y = pleasureImage.y + 10;
 
 			Img.ChangeSpriteSize(pleasureFill);
 			Img.ChangeSpriteSize(pleasureImage);
@@ -326,8 +326,8 @@
 			riskImage.x = 35;
 			riskImage.y = 1150;
 
-			riskFill.x = riskImage.x + 11;
-			riskFill.y = riskImage.y + 11;
+			riskFill.x = riskImage.x + 10;
+			riskFill.y = riskImage.y + 10;
 
 			Img.ChangeSpriteSize(riskFill);
 			Img.ChangeSpriteSize(riskImage);
