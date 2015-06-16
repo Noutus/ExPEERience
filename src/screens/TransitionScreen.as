@@ -47,7 +47,7 @@
 				
 			}
 			
-			Img.CreateTextAt(this, "Going to: " + getNextLocation(), 0, 0, 720, 360, 48);
+			Img.CreateTextAt(this, "Going to: " + getNextLocation().replace('_', ' '), 0, 0, 720, 360, 48);
 			
 			//Img.CreateScreenSwitchButtonAt("button_next", (transitionKind == TransitionScreen.DAY_TO_NIGHT)? Screens.ACTION: Screens.PRESSURE , 500, 1100);
 			
