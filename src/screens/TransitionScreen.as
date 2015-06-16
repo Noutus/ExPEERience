@@ -44,10 +44,9 @@
 			
 			if (transitionKind == TransitionScreen.NIGHT_TO_DAY) {
 				pressureScreen = new PressureScreen();
-				
 			}
 			
-			Img.CreateTextAt(this, "Going to: " + getNextLocation().replace('_', ' '), 0, 0, 720, 360, 48);
+			Img.CreateTextAt(this, "Going to: " + getNextLocation().replace('Female_', '').replace('Male_', ''), 0, 0, 720, 360, 48);
 			
 			//Img.CreateScreenSwitchButtonAt("button_next", (transitionKind == TransitionScreen.DAY_TO_NIGHT)? Screens.ACTION: Screens.PRESSURE , 500, 1100);
 			

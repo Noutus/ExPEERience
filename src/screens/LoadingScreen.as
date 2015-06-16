@@ -19,10 +19,10 @@
 			var texture: Texture = Texture.fromBitmapData(new Logo());
 			var logo: Image = new Image(texture);
 			
-			logo.x = (Starling.current.viewPort.width - logo.width) / 2;
+			//logo.x = (Starling.current.viewPort.width - logo.width) / 2;
 			logo.y = 300;
 			Img.ChangeSpriteSize(logo);
-			//logo.x = (Starling.current.viewPort.width - logo.width) / 2;
+			logo.x = (Starling.current.viewPort.width - logo.width) / 2;
 
 			this.addChild(logo);
 			
