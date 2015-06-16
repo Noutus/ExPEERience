@@ -20,6 +20,7 @@
 		// kind = ActionScreen. WON/FAILED/LOST
 		public function ScoreScreen(kind: int)
 		{
+			this.setBackground("main_background_orange");
 			this.kind = kind;
 			
 			var upperText: String;

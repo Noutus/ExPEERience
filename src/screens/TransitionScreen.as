@@ -40,6 +40,8 @@
 		
 		public override function OnEnter(): void {		
 			
+			this.setBackground("background_transition");			
+			
 			if (transitionKind == TransitionScreen.NIGHT_TO_DAY) {
 				pressureScreen = new PressureScreen();
 				

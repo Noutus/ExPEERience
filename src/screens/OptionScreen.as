@@ -24,6 +24,8 @@
 		
 		public override function OnEnter() : void
 		{
+			this.setBackground("main_background_orange");
+			
 			Img.CreateScreenSwitchButtonAt("button_back", Screens.MAINMENU, 100, 1100);
 			
 			Img.CreateTextAt(this, "Options", 0, 0, 720, 360, 48);

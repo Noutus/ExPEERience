@@ -14,6 +14,8 @@
 		
 		public override function OnEnter() : void
 		{
+			this.setBackground("main_background_orange");			
+			
 			Img.CreateScreenSwitchButtonAt("button_gender_female", Screens.STORYGIRL, 70, 256);
 			Img.CreateScreenSwitchButtonAt("button_gender_male", Screens.STORYBOY, 360, 256);
 			
