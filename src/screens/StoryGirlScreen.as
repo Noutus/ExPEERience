@@ -15,6 +15,7 @@
 
 	public class StoryGirlScreen extends GameScreen
 	{
+		private var currentY = 0;
 		private var previousY;
 		
 		public function StoryGirlScreen()
@@ -27,7 +28,7 @@
 			GlobalValues.instance().ResetValues();
 			GlobalValues.instance().gender = true;
 			
-			this.setBackground("story_comic_placeholder");
+			this.setBackground("comic_start");
 			Img.CreateScreenSwitchButtonAt("button_next", Screens.PRESSURE, 520, 1080);
 			
 			backGround.addEventListener(TouchEvent.TOUCH, OnTouch);
@@ -45,13 +46,12 @@
 				
 				if (_touch.phase == TouchPhase.MOVED)
 				{
-					backGround.y += _touch.globalY - previousY;
+					currentY += _touch.globalY - previousY;
 					previousY = _touch.globalY;
 					
-					if (backGround.y > 0) backGround.y = 0;
+					if (currentY > 0) currentY = 0;
 					
-					var maxY : Number = -(backGround.height - Capabilities.screenResolutionY);
-					if (backGround.y < maxY) backGround.y = maxY;
+					backGround.y = currentY;
 				}
 			}
 		}

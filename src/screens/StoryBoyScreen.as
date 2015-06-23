@@ -12,9 +12,11 @@
 	import starling.events.TouchPhase;
 	import starling.animation.Tween;
 	import flash.system.Capabilities;
+	import starling.display.Image;
 
 	public class StoryBoyScreen extends GameScreen
 	{
+		private var currentY = 0;
 		private var previousY;
 		
 		public function StoryBoyScreen()
@@ -27,7 +29,10 @@
 			GlobalValues.instance().ResetValues();
 			GlobalValues.instance().gender = false;
 			
-			this.setBackground("story_comic_placeholder");
+			this.setBackground("comic_start");
+			var img : Image = new Image(Game.instance().assets.getTexture("comic_start"));
+			//Img.AddDisplayObject(backGround, Starling.current.stage.width, backGround.height); 
+			
 			Img.CreateScreenSwitchButtonAt("button_next", Screens.PRESSURE, 520, 1080);
 			
 			backGround.addEventListener(TouchEvent.TOUCH, OnTouch);
@@ -45,13 +50,14 @@
 				
 				if (_touch.phase == TouchPhase.MOVED)
 				{
-					backGround.y += _touch.globalY - previousY;
+					currentY += _touch.globalY - previousY;
 					previousY = _touch.globalY;
 					
-					if (backGround.y > 0) backGround.y = 0;
+					trace(currentY);
 					
-					var maxY : Number = -(backGround.height - Capabilities.screenResolutionY);
-					if (backGround.y < maxY) backGround.y = maxY;
+					if (currentY > 0) currentY = 0;
+					
+					backGround.y = currentY;
 				}
 			}
 		}
