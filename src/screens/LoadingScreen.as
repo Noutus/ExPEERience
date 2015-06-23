@@ -7,12 +7,24 @@
 	import starling.core.Starling;
 	import src.GameScreen;
 	import src.display.Img;
+	import starling.textures.Texture;
+	import flash.display.BitmapData;
 	
 	public class LoadingScreen extends GameScreen {
 		
 		var progress: TextField;
 		
 		public function LoadingScreen() {
+
+			var texture: Texture = Texture.fromBitmapData(new Logo());
+			var logo: Image = new Image(texture);
+			
+			//logo.x = (Starling.current.viewPort.width - logo.width) / 2;
+			logo.y = 300;
+			Img.ChangeSpriteSize(logo);
+			logo.x = (Starling.current.viewPort.width - logo.width) / 2;
+
+			this.addChild(logo);
 			
 			progress = Img.CreateTextAt(this, "", 0, 0, 720, 1280, 55);
 			
