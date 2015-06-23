@@ -30,6 +30,8 @@
 			
 			this.setBackground("comic_start");
 			Img.CreateScreenSwitchButtonAt("button_next", Screens.PRESSURE, 520, 1080);
+			backGround.width *= 2;
+			backGround.height *= 2;
 			
 			backGround.addEventListener(TouchEvent.TOUCH, OnTouch);
 		}

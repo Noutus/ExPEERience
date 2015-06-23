@@ -31,6 +31,8 @@
 			
 			this.setBackground("comic_start");
 			var img : Image = new Image(Game.instance().assets.getTexture("comic_start"));
+			backGround.width *= 2;
+			backGround.height *= 2;
 			//Img.AddDisplayObject(backGround, Starling.current.stage.width, backGround.height); 
 			
 			Img.CreateScreenSwitchButtonAt("button_next", Screens.PRESSURE, 520, 1080);
