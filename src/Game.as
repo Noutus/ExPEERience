@@ -11,6 +11,7 @@
 	import flash.system.Capabilities;
 	import starling.core.Starling;
 	import src.assets.EmbeddedAssets;
+	import flash.desktop.NativeApplication;
 	
 	public class Game extends Sprite
 	{
@@ -80,6 +81,10 @@
 			currentScreen = _newScreen;
 			this.addChild(currentScreen);
 			currentScreen.OnEnter();
+		}
+		
+		public function exit(): void {
+			NativeApplication.nativeApplication.exit();
 		}
 	}
 }
