@@ -19,6 +19,10 @@
 	import flash.geom.Rectangle;
 	import flash.system.Capabilities;
 	import src.display.Img;
+	import starling.display.DisplayObject;
+	import starling.text.TextField;
+	import starling.display.Sprite;
+	import starling.display.Image;
 	
 	public class PopupButton extends BasicButton {
 		
@@ -28,9 +32,9 @@
 
 		// Base values, altered by the ActionValues modifiers upon creation of the button
 		public static const RISK_SEX: Number = 0.20;
-		public static const PLEASURE_SEX: Number = 0.06;
-		public static const PLEASURE_KISS: Number = 0.04;
-		public static const PLEASURE_TOUCH: Number = 0.03;
+		public static const PLEASURE_SEX: Number = 0.03;
+		public static const PLEASURE_KISS: Number = 0.02;
+		public static const PLEASURE_TOUCH: Number = 0.015;
 		
 		private var popupController: PopupController;
 		private var popupKind: int;
@@ -39,6 +43,9 @@
 		private var pleasure: Number = 0.00;
 		
 		private var removeTimer: PauseTimer;
+		
+		private var field : TextField;
+		private var circle : Image;
 		
 		// The maximum amount of times it will generate a random spot in the popupArea before just removing this popupButton
 		// (if all tries fail. A try fails when the popup would clash with another popup.
@@ -71,11 +78,28 @@
 				break;			
 			}
 			
-			
 			super(Game.instance().assets.getTexture(textureName), null);
 			
-			Img.ChangeSpriteSize(this);
+			if (maxTouches > 1)
+			{
+				var texture : Texture = Game.instance().assets.getTexture("number");
+				circle = new Image(texture);
+				circle.x = 116;
+				addChild(circle);
+				
+				field = new TextField(64, 64, (maxTouches - touches).toString());
+				field.fontName = "RoofRunners";
+				field.fontSize = 40;
+				field.x = 116;
+				addChild(field);			
+			}
 
+			Img.ChangeSpriteSize(this);
+			
+			// Set the size according to the BUTTON_SIZE value.
+			this.width *= ActionValues.instance().GetModifier(ActionValues.BUTTON_SIZE);
+			this.height *= ActionValues.instance().GetModifier(ActionValues.BUTTON_SIZE);
+			
 			removeTimer = new PauseTimer(1000 * ActionValues.instance().GetModifier(ActionValues.BUTTONS_ALIVE_TIME), 1);
 			removeTimer.addEventListener(TimerEvent.TIMER_COMPLETE, 
 				function (event: TimerEvent): void {
@@ -139,7 +163,17 @@
 		
 				
 		public function increaseTouches(): void {
-			touches++; 
+			touches++;
+			if (maxTouches - touches > 1)
+			{
+				field.text = (maxTouches - touches).toString();
+			}
+			
+			else if (circle != null)
+			{
+				field.removeFromParent(true);
+				circle.removeFromParent(true);
+			}
 		}
 		
 		public function touchedEnough(): Boolean {

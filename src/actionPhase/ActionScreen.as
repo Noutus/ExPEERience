@@ -91,7 +91,6 @@
 
 			trace("Entering Action Screen: ");
 			trace("Risk sex: " + ActionValues.instance().GetModifier(ActionValues.RISK_SEX));
-			trace("Buttons per second: " + ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND));
 
 			popupController.startSpawning();
 

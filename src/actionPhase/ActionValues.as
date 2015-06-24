@@ -19,6 +19,7 @@
 		public static const SPAWN_CHANCE_TOUCH : String = "SPAWN_CHANCE_TOUCH";
 		public static const SPAWN_CHANCE_KISS : String = "SPAWN_CHANCE_KISS";
 		public static const SPAWN_CHANCE_SEX : String = "SPAWN_CHANCE_SEX";
+		public static const BUTTON_SIZE : String = "BUTTON_SIZE";
 		
 		public static const BUTTONS_MAXIMUM_NUMBER_OF_TAPS : String = "BUTTONS_MAXIMUM_NUMBER_OF_TAPS";
 		
@@ -79,7 +80,7 @@
 		{
 			for (var object : Object in modifiers)
 			{
-				if (modifierName == object) modifiers[object] = (0.9 + 0.1 * GlobalValues.instance().level) * _value;
+				if (modifierName == object) modifiers[object] = 1;
 			}
 			
 			trace("Set modifier " + modifierName + " to _value " + _value.toString());
@@ -89,8 +90,8 @@
 		{
 			for (var object : Object in modifiers)
 			{
-				if (modifierName == object) modifiers[object] += _value * 0.1 * GlobalValues.instance().level;
-				if (modifiers[object] < 0) modifiers[object] = 0;
+				if (modifierName == object) modifiers[object] *= _value;
+				trace("Adding modifier " + modifierName + " value " + _value.toString());
 			}
 		}
 		
@@ -120,7 +121,7 @@
 		{
 			for (var object : Object in modifiers)
 			{
-				modifiers[object] = 0.9 + 0.1 * GlobalValues.instance().level;
+				modifiers[object] = 1;
 			}
 		}
 	}

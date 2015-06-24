@@ -3,26 +3,30 @@
 <DATA>
 	<PEER NAME="Male_Friends">
 		<PRESSURE MESSAGE="Why bother using a condom? Just one time is not going to matter!">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="BUTTONS_PER_SECOND">1.5</ABILITY>
 			<BAD NAME="PLEASURE_DECREASE">0.75</BAD>
 			<BAD NAME="RISK_SEX">1.5</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="If people see that you are buying a condom, they will think that you are spoilt.">
-			<ABILITY NAME="RISK_SEX">0.75</ABILITY>
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<BAD NAME="PLEASURE_DECREASE">1.5</BAD>
 			<BAD NAME="BUTTON_ALIVE_TIME">1.5</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="Using a condom? But your girlfriend might think that you don’t really love her.">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="BUTTON_ALIVE_TIME">1.5</ABILITY>
 			<BAD NAME="PLEASURE_KISS">1.5</BAD>
 			<BAD NAME="BUTTON_ALIVE_TIME">0.75</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="Screw the condoms. You are not the one who is getting pregnant.">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="TIME_LIMIT">1.5</ABILITY>
 			<BAD NAME="PLEASURE_KISS">1.5</BAD>
 			<BAD NAME="BUTTONS_PER_SECOND">0.75</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="If you get a baby, you better have some money to raise it.">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="PLEASURE_TOUCH">1.5</ABILITY>
 			<BAD NAME="BUTTONS_PER_SECOND">1.5</BAD>
 			<BAD NAME="TIME_LIMIT">0.75</BAD>
@@ -30,21 +34,24 @@
 	</PEER>
 	<PEER NAME="Female_Friends">
 		<PRESSURE MESSAGE="Sex doesn’t feel as good with a condom. It’s so unnatural.">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="PLEASURE_TOUCH">1.5</ABILITY>
 			<BAD NAME="PLEASURE_SEX">1.5</BAD>
 			<BAD NAME="RISK_SEX">0.75</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="If you carry condoms with you, people will think that you are looking for sex.">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="TIME_LIMIT">1.5</ABILITY>
 			<BAD NAME="PLEASURE_TOUCH">1.5</BAD>
 			<BAD NAME="BUTTON_ALIVE_TIME">0.75</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="Using a condom? But your boyfriend  might think that you’ve been unfaithful.">
-			<ABILITY NAME="RISK_SEX">0.75</ABILITY>
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<BAD NAME="PLEASURE_SEX">1.5</BAD>
 			<BAD NAME="PLEASURE_DECREASE">1.5</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="If you suggest using a condom, your boyfriend will think that you have a disease.">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="BUTTON_SIZE">1.5</ABILITY>
 			<BAD NAME="PLEASURE_TOUCH">1.5</BAD>
 			<BAD NAME="TIME_LIMIT">0.75</BAD>
@@ -52,21 +59,25 @@
 	</PEER>
 	<PEER NAME="Partner">
 		<PRESSURE MESSAGE="I don't like using a condom, it doesn't feel good.">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="RISK_SEX">0.75</ABILITY>
 			<BAD NAME="PLEASURE_SEX">1.5</BAD>
 			<BAD NAME="PLEASURE_DECREASE">1.5</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="Why using a condom now? You're not cheating on me, right?">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="BUTTON_SIZE">1.5</ABILITY>
 			<BAD NAME="PLEASURE_SEX">1.5</BAD>
 			<BAD NAME="SPAWN_CHANCE_TOUCH">0.75</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="If we have a baby, it will make me really happy.">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="TIME_LIMIT">1.5</ABILITY>
 			<BAD NAME="TIME_LIMIT">1.5</BAD>
 			<BAD NAME="RISK_SEX">1.5</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="The baby is crying all the time. Please do something.">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="PLEASURE_DECREASE">0.75</ABILITY>
 			<BAD NAME="BUTTON_SIZE">1.5</BAD>
 			<BAD NAME="BUTTON_ALIVE_TIME">0.75</BAD>
@@ -74,21 +85,25 @@
 	</PEER>
 	<PEER NAME="Parents">
 		<PRESSURE MESSAGE="Excuse us to say, but be careful with what you're doing with your partner tonight!">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="PLEASURE_KISS">0.75</ABILITY>
 			<BAD NAME="BUTTON_SIZE">1.5</BAD>
 			<BAD NAME="TIME_LIMIT">0.75</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="Kofi, if you make our daughter pregnant, you will have to marry her.">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="BUTTON_SIZE">1.5</ABILITY>
 			<BAD NAME="BUTTON_ALIVE_TIME">1.5</BAD>
 			<BAD NAME="BUTTONS_PER_SECOND">0.75</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="After being together for a longer time, every couple should start thinking about babies.">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="PLEASURE_DECREASE">0.75</ABILITY>
 			<BAD NAME="BUTTONS_PER_SECOND">1.5</BAD>
 			<BAD NAME="PLEASURE_KISS">0.75</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="I know that having a baby is not easy, but you have to take good care of your baby.">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="PLEASURE_DECREASE">0.75</ABILITY>
 			<BAD NAME="BUTTON_SIZE">1.5</BAD>
 			<BAD NAME="BUTTON_ALIVE_TIME">0.75</BAD>
@@ -96,17 +111,19 @@
 	</PEER>
 	<PEER NAME="School">
 		<PRESSURE MESSAGE="I don't want to see any condoms in the classroom.">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="PLEASURE_DECREASE">1.5</ABILITY>
 			<BAD NAME="PLEASURE_TOUCH">1.5</BAD>
 			<BAD NAME="BUTTON_SIZE">0.75</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="Do you know that abortion complications sometimes can lead to death?">
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="PLEASURE_KISS">1.5</ABILITY>
 			<BAD NAME="PLEASURE_DECREASE">0.75</BAD>
 			<BAD NAME="RISK_SEX">0.75</BAD>
 		</PRESSURE>
 		<PRESSURE MESSAGE="If you have a baby, you would need to drop out of school.">
-			<ABILITY NAME="RISK_SEX">0.75</ABILITY>
+			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<BAD NAME="BUTTON_SIZE">1.5</BAD>
 			<BAD NAME="TIME_LIMIT">0.75</BAD>
 		</PRESSURE>

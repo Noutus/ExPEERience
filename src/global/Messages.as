@@ -21,7 +21,7 @@
 				case 4: rv = ""; break;
 				case 5: rv = "Sex!"; break;
 				case 6: rv = ""; break;
-				case 7: rv = ""; break;
+				case 7: rv = "Twice!"; break;
 				case 8: rv = ""; break;
 				case 9: rv = ""; break;
 				case 10: rv = ""; break;
@@ -42,7 +42,7 @@
 				case 4: rv = "babyface"; break;
 				case 5: rv = "action_popup_sex"; break;
 				case 6: rv = "babyface"; break;
-				case 7: rv = "babyface"; break;
+				case 7: rv = "action_popup_sex"; break;
 				case 8: rv = "babyface"; break;
 				case 9: rv = "babyface"; break;
 				case 10: rv = "babyface"; break;
@@ -63,7 +63,7 @@
 				case 4: rv = ""; break;
 				case 5: rv = "Tap the 'sex' buttons to gain more fun. But beware! Having sex without a condom also increases the risk to have a baby."; break;
 				case 6: rv = ""; break;
-				case 7: rv = ""; break;
+				case 7: rv = "Some buttons require multiple taps. Tap the buttons equal to the amount displayed on the top right corner."; break;
 				case 8: rv = ""; break;
 				case 9: rv = ""; break;
 				case 10: rv = ""; break;

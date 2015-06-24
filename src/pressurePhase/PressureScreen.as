@@ -177,7 +177,7 @@
 			if (_touch)
 			{
 				activePeer.GetAbility().ChooseAbility();
-				ActionValues.instance().SetModifier(ActionValues.RISK_SEX, 0.0);
+				ActionValues.instance().AddModifier(ActionValues.RISK_SEX, 0);
 				AddLevelModifiers();
 				Game.instance().SwitchScreen(new TransitionScreen(TransitionScreen.DAY_TO_NIGHT));
 			}
