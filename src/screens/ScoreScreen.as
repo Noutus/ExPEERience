@@ -64,6 +64,8 @@
 			trace("Risk sex: " + ActionValues.instance().GetModifier(ActionValues.RISK_SEX));
 			trace("Buttons per second: " + ActionValues.instance().GetModifier(ActionValues.BUTTONS_PER_SECOND));
 			
+			GlobalValues.instance().SetNewScore();
+			
 			if (kind == ActionScreen.WON) {
 				GlobalValues.instance().pleasure = 0.5;
 			} else if (kind == ActionScreen.LOST) {
@@ -73,8 +75,16 @@
 			GlobalValues.instance().SaveGame();
 			ActionValues.instance().ResetModifiers();
 			
-			Img.CreateScreenSwitchButtonAt("button_next", (kind == ActionScreen.LOST)? Screens.MAINMENU: Screens.NIGHTTODAY, 520, 1100);
-			Img.CreateScreenSwitchButtonAt("button_back", Screens.MAINMENU, 0, 1100);
+			if (GlobalValues.instance().level > 10)
+			{
+				Img.CreateScreenSwitchButtonAt("button_next", Screens.WIN, 520, 1100);
+			}
+			else
+			{
+				Img.CreateScreenSwitchButtonAt("button_next", (kind == ActionScreen.LOST)? Screens.LOSE: Screens.NIGHTTODAY, 520, 1100);
+			}
+			
+			if (kind != ActionScreen.LOST) Img.CreateScreenSwitchButtonAt("button_back", Screens.MAINMENU, 0, 1100);
 		}
 		
 		public override function OnExit() : void

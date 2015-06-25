@@ -23,6 +23,8 @@
 	import starling.display.DisplayObject;
 	import starling.display.Sprite;
 	import src.global.Messages;
+	import src.screens.LoseScreen;
+	import src.screens.Screens;
 	
 	public class ActionScreen extends GameScreen {
 

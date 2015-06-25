@@ -14,5 +14,7 @@
 		public static const DAYTONIGHT = "daytonight";
 		public static const NIGHTTODAY = "nighttoday";
 		public static const RULES = "rules";
+		public static const LOSE = "lose";
+		public static const WIN = "win";
 	}
 }

@@ -14,15 +14,18 @@
 	import flash.system.Capabilities;
 	import starling.display.Image;
 
-	public class LoseScreen extends StoryScreen
+	public class BoyScreen extends StoryScreen
 	{
-		public function LoseScreen(name : String, next : *)
+		public function BoyScreen(name : String, next : *)
 		{
 			super(name, next);
 		}
 		
 		public override function OnEnter() : void
 		{
+			GlobalValues.instance().ResetValues();
+			GlobalValues.instance().gender = false;
+			
 			super.OnEnter();
 		}
 	}

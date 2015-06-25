@@ -16,13 +16,16 @@
 
 	public class WinScreen extends StoryScreen
 	{
-		public function StoryBoyScreen(name : String, next : *)
+		public function WinScreen(name : String, next : *)
 		{
 			super(name, next);
 		}
 		
 		public override function OnEnter() : void
 		{
+			GlobalValues.instance().ResetValues();
+			GlobalValues.instance().SaveGame();
+			
 			super.OnEnter();
 		}
 	}

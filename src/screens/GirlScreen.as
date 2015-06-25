@@ -12,17 +12,19 @@
 	import starling.events.TouchPhase;
 	import starling.animation.Tween;
 	import flash.system.Capabilities;
-	import starling.display.Image;
 
-	public class LoseScreen extends StoryScreen
+	public class GirlScreen extends StoryScreen
 	{
-		public function LoseScreen(name : String, next : *)
+		public function GirlScreen(name : String, next : *)
 		{
 			super(name, next);
 		}
 		
 		public override function OnEnter() : void
 		{
+			GlobalValues.instance().ResetValues();
+			GlobalValues.instance().gender = true;
+			
 			super.OnEnter();
 		}
 	}

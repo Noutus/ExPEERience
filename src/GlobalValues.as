@@ -39,6 +39,8 @@
 			ResetValues();
 		}
 		
+		public var highScore : int;
+		
 		/**
 		* Resets all values back to their base value.
 		*/
@@ -51,6 +53,7 @@
 			pleasure = 0.50;
 			risk = 0.00;
 			totalScore = 0;
+			highScore = highScore;
 		}
 		
 		/**
@@ -66,6 +69,7 @@
 			pleasure = _data.data.pleasure;
 			risk = _data.data.risk;
 			totalScore = _data.data.totalScore;
+			highScore = _data.data.highScore;
 		}
 		
 		/**
@@ -81,11 +85,17 @@
 			_data.data.pleasure = pleasure;
 			_data.data.risk = risk;
 			_data.data.totalScore = totalScore;
+			_data.data.highScore = highScore;
 		}
 		
 		public function LevelChanged() : Boolean
 		{
 			return !(level == previousLevel);
+		}
+		
+		public function SetNewScore() : void
+		{
+			if (totalScore > highScore) highScore = totalScore;
 		}
 	}
 }

@@ -51,11 +51,13 @@
 				
 				if (_touch.phase == TouchPhase.MOVED)
 				{
-					currentY += _touch.globalY - previousY;
+					if ((currentY + _touch.globalY - previousY) < (- backGround.height + Starling.current.viewPort.height)) 
+						currentY = -backGround.height + Starling.current.viewPort.height
+					else
+						currentY += _touch.globalY - previousY;
+					
 					previousY = _touch.globalY;
-					
-					trace(currentY);
-					
+	
 					if (currentY > 0) currentY = 0;
 					
 					backGround.y = currentY;
