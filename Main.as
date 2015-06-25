@@ -15,6 +15,7 @@
 	import flash.display.Stage;
 	import src.pressurePhase.PressureScreen;
 	
+	[SWF(backgroundColor="#D07C4A")]
 	public class Main extends MovieClip
 	{
 		private var starling : Starling;
