@@ -30,7 +30,7 @@
 			
 			Img.CreateTextAt(this, "Options", 0, 0, 720, 360, 48);
 					
-			soundText = Img.CreateTextAt(this, "", 0, 0, 720, 1000, 30); 
+			soundText = Img.CreateTextAt(this, "", 0, 0, 720, 1000, 40); 
 			
 			setSoundText();
 				
