@@ -71,6 +71,16 @@
 					Results.instance().AddRisk(ratioToPoints(popupButton.getRisk()));
 					Results.instance().AddPleasure(ratioToPoints(popupButton.getPleasure()));
 					
+					if (popupButton.getRisk() != 0) {
+						var feedbackRisk : FeedbackText = new FeedbackText(popupButton.getRisk(), popupButton.x, popupButton.y, true);					
+						actionScreen.bottomLayer.addChild(feedbackRisk);
+					}
+					
+					if (popupButton.getPleasure() != 0) {
+						var feedbackPleasure : FeedbackText = new FeedbackText(popupButton.getPleasure(), popupButton.x, popupButton.y);
+						actionScreen.bottomLayer.addChild(feedbackPleasure);
+					}
+					
 					actionScreen.alterBars(popupButton.getRisk(), popupButton.getPleasure());	
 					
 					removeButton(popupButton);

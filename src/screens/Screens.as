@@ -16,5 +16,6 @@
 		public static const RULES = "rules";
 		public static const LOSE = "lose";
 		public static const WIN = "win";
+		public static const STATISTICS = "statistics";
 	}
 }

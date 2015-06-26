@@ -44,6 +44,7 @@
 					case Screens.RULES: Game.instance().SwitchScreen(new RulesScreen()); break;
 					case Screens.LOSE: Game.instance().SwitchScreen(new LoseScreen("comic_lose", Screens.MAINMENU)); break;
 					case Screens.WIN: Game.instance().SwitchScreen(new WinScreen("comic_win", Screens.MAINMENU)); break;
+					case Screens.STATISTICS: Game.instance().SwitchScreen(new StatisticsScreen()); break;
 				}
 			}
 		}
