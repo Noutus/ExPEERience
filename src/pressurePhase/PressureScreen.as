@@ -120,23 +120,23 @@
 			buttonPeer.addEventListener(TouchEvent.TOUCH, OnNo);
 			buttonCondom = Img.GetNewImageAt("button_condom", 30, 900);
 			buttonCondom.addEventListener(TouchEvent.TOUCH, OnCondom);
+			
+			var myPattern: RegExp = /_/g;
 
-			for (var i: int = 0; i < _modifiers.length; i++) {
+			for (i = 0; i < _modifiers.length; i++) {
 				var n: Number = _peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].ABILITY[i].text();
 				var s: String = _modifiers[i].modifierName;
-				var myPattern: RegExp = /_/g;
 				var tf: TextField = Img.CreateTextAt(this, s.replace(myPattern, " ") + " " + GetModStatus(n), 0, 1137 + 30 * i, 360, 29, 24);
 				if (n > 1) tf.color = 0x00AA00;
 				else tf.color = 0xAA0000;
 			}
 
-			for (var j: int = 0; j < _badmodifiers.length; j++) {
-				var n: Number = _peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].BAD[j].text();
-				var s: String = _badmodifiers[j].modifierName;
-				var myPattern: RegExp = /_/g;
-				var tf: TextField = Img.CreateTextAt(this, s.replace(myPattern, " ") + " " + GetModStatus(n), 0, 770 + 30 * j, 360, 29, 24);
-				if (n > 1) tf.color = 0x00AA00;
-				else tf.color = 0xAA0000;
+			for (j = 0; j < _badmodifiers.length; j++) {
+				n = _peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].BAD[j].text();
+				s = _badmodifiers[j].modifierName;
+				var tf2: TextField = Img.CreateTextAt(this, s.replace(myPattern, " ") + " " + GetModStatus(n), 0, 770 + 30 * j, 360, 29, 24);
+				if (n > 1) tf2.color = 0x00AA00;
+				else tf2.color = 0xAA0000;
 			}
 		}
 
