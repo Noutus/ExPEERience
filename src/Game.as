@@ -4,13 +4,13 @@
 	import starling.utils.*;
 	import flash.filesystem.File;
 	import src.pressurePhase.PressureScreen;
-	import src.buttons.ScreenSwitchButton;
+	import src.display.ScreenSwitchButton;
 	import starling.textures.Texture;
 	import src.screens.*;
 	import starling.utils.ScaleMode;
 	import flash.system.Capabilities;
 	import starling.core.Starling;
-	import src.assets.EmbeddedAssets;
+	import src.global.EmbeddedAssets;
 	import flash.desktop.NativeApplication;
 	
 	public class Game extends Sprite

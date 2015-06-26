@@ -3,7 +3,7 @@
 	import src.Game;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
-	import src.PauseTimer;
+	import src.actionPhase.PauseTimer;
 	import src.global.Results;
 	
 	public class PopupController {

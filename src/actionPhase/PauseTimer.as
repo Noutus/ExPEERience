@@ -1,4 +1,4 @@
-﻿package src {
+﻿package src.actionPhase {
 	
 		import flash.events.TimerEvent;
         import flash.utils.getTimer;

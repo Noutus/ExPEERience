@@ -1,5 +1,5 @@
 ﻿package src.screens {
-	import src.GameScreen;
+	import src.screens.GameScreen;
 	import src.screens.Screens;
 	import src.display.Img;
 	import starling.text.TextField;

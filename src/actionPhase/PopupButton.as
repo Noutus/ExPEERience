@@ -1,8 +1,6 @@
 ﻿package src.actionPhase {
 	import flash.display.Sprite;
-	import src.buttons.BasicButton;
 	import starling.textures.Texture;
-	import src.AssetNames;
 	import starling.utils.AssetManager;
 	import src.Game;
 	import starling.display.Button;
@@ -15,14 +13,15 @@
 	import starling.animation.DelayedCall;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
-	import src.PauseTimer;
 	import flash.geom.Rectangle;
 	import flash.system.Capabilities;
-	import src.display.Img;
 	import starling.display.DisplayObject;
 	import starling.text.TextField;
 	import starling.display.Sprite;
 	import starling.display.Image;
+	import src.global.*;
+	import src.display.*;
+	import src.actionPhase.PauseTimer;
 	
 	public class PopupButton extends BasicButton {
 		

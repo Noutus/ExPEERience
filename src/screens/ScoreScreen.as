@@ -1,17 +1,15 @@
 ﻿package src.screens
 {
-	import src.GameScreen;
-	import src.display.Img;
+	import src.screens.GameScreen;
 	import starling.textures.Texture;
-	import src.buttons.ScreenSwitchButton;
+	import src.display.*;
 	import starling.core.Starling;
 	import src.global.Results;
 	import flash.system.Capabilities;
 	import starling.text.TextField;
-	import src.display.Img;
-	import src.GlobalValues;
 	import src.actionPhase.ActionValues;
 	import src.actionPhase.ActionScreen;
+	import src.global.*;
 	
 	public class ScoreScreen extends GameScreen
 	{

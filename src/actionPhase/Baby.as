@@ -1,17 +1,17 @@
 ﻿package src.actionPhase {
 	import src.actionPhase.ActionValues;
-	import src.AssetNames;
+	import src.global.AssetNames;
 	import starling.display.Sprite;
 	import src.Game;
 	import starling.display.Image;
-	import src.GlobalValues;
+	import src.global.GlobalValues;
 	import starling.core.Starling;
 	import flash.geom.Rectangle;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.events.Touch;
 	import starling.animation.IAnimatable;
-	import src.PauseTimer;
+	import src.actionPhase.PauseTimer;
 	import flash.events.TimerEvent;
 	import src.display.BitmapImage;
 	import flash.display.Bitmap;

@@ -1,11 +1,11 @@
 ﻿package src.screens {
 	import src.Game;
 	import starling.display.Sprite;
-	import src.AssetNames;
+	import src.global.AssetNames;
 	import starling.display.Image;
 	import starling.text.TextField;
 	import starling.core.Starling;
-	import src.GameScreen;
+	import src.screens.GameScreen;
 	import src.display.Img;
 	import starling.textures.Texture;
 	import flash.display.BitmapData;

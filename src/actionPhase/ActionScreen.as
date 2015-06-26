@@ -1,5 +1,6 @@
 ﻿package src.actionPhase
 {
+	import src.screens.GameScreen
 	import starling.display.Button;
 	import starling.core.Starling;
 	import starling.events.TouchEvent;
@@ -16,15 +17,14 @@
 	import src.*;
 	import starling.display.Quad;
 	import flash.geom.Rectangle;
-	import src.display.Img;
 	import flash.events.TimerEvent;
-	import src.gui.PopupWindow;
 	import src.actionPhase.Baby;
 	import starling.display.DisplayObject;
 	import starling.display.Sprite;
-	import src.global.Messages;
 	import src.screens.LoseScreen;
 	import src.screens.Screens;
+	import src.display.*;
+	import src.global.*;
 	
 	public class ActionScreen extends GameScreen {
 

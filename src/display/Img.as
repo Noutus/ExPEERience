@@ -4,7 +4,7 @@
 	import starling.utils.*;
 	import flash.filesystem.File;
 	import src.pressurePhase.PressureScreen;
-	import src.buttons.ScreenSwitchButton;
+	import src.display.ScreenSwitchButton;
 	import starling.textures.Texture;
 	import src.screens.*;
 	import starling.utils.ScaleMode;

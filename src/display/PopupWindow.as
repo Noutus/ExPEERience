@@ -1,4 +1,4 @@
-﻿package src.gui
+﻿package src.display
 {
 	import starling.display.DisplayObject;
 	import starling.display.Sprite;
@@ -12,7 +12,7 @@
 	import starling.events.Event;
 	import src.display.Img;
 	import starling.core.Starling;
-	import src.buttons.ScreenSwitchButton;
+	import src.display.ScreenSwitchButton;
 	import src.screens.Screens;
 	
 	public class PopupWindow extends Sprite

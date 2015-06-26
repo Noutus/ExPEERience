@@ -1,9 +1,10 @@
-﻿package src
+﻿package src.screens
 {
 	import starling.display.Sprite;
 	import starling.textures.Texture;
 	import starling.display.Image;
 	import src.display.Img;
+	import src.Game;
 	
 	public class GameScreen extends Sprite
 	{

@@ -10,10 +10,10 @@
 	import starling.events.ResizeEvent;
 	import flash.display.Screen;
 	import starling.utils.RectangleUtil;
-	
-	import src.GlobalValues;
+	import src.global.GlobalValues;
 	import flash.display.Stage;
 	import src.pressurePhase.PressureScreen;
+	import src.Game;
 	
 	[SWF(backgroundColor="#D07C4A")]
 	public class Main extends MovieClip
@@ -25,7 +25,7 @@
 			// Do something in the class so it'll initialize the static things. 
 			PressureScreen.lelflash = 1;
 			
-			starling = new Starling(src.Game, stage);
+			starling = new Starling(Game, stage);
 			starling.start();		
 			
 			stage.addEventListener(Event.RESIZE, onResizeHandler);

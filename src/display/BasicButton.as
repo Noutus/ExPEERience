@@ -1,4 +1,4 @@
-﻿package src.buttons
+﻿package src.display
 {	
 	import starling.display.Button;
 	import starling.events.TouchEvent;

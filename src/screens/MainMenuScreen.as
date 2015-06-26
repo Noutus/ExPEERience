@@ -1,13 +1,13 @@
 ﻿package src.screens
 {	
-	import src.GameScreen;
+	import src.screens.GameScreen;
 	import starling.textures.Texture;
-	import src.buttons.ScreenSwitchButton;
+	import src.display.ScreenSwitchButton;
 	import src.Game;
 	import starling.core.Starling;
 	import src.display.Img;
-	import src.GlobalValues;
-	import src.Sound;
+	import src.global.GlobalValues;
+	import src.global.Sound;
 	import src.display.AnimatedObject;
 
 	public class MainMenuScreen extends GameScreen

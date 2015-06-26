@@ -1,7 +1,7 @@
 ﻿package src.actionPhase {
 	import src.actionPhase.ActionScreen;
 	import src.actionPhase.Baby;
-	import src.GlobalValues;
+	import src.global.GlobalValues;
 	
 	public class BabyController {
 				

@@ -1,7 +1,7 @@
 ﻿package src.actionPhase
 {
 	import flash.utils.*;
-	import src.GlobalValues;
+	import src.global.GlobalValues;
 
 	public class ActionValues
 	{

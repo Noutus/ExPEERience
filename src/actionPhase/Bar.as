@@ -1,4 +1,4 @@
-﻿package src {
+﻿package src.actionPhase {
     import flash.geom.Point;
     
     import starling.display.Image;

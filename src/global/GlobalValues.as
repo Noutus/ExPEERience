@@ -1,4 +1,4 @@
-﻿package src
+﻿package src.global
 {
 	import flash.net.SharedObject;
 

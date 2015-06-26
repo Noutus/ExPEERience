@@ -1,6 +1,6 @@
 ﻿package src.screens
 {	
-	import src.GameScreen;
+	import src.screens.GameScreen;
 	import starling.text.TextField;
 	import flash.system.Capabilities;
 	import src.display.Img;
@@ -9,7 +9,7 @@
 	import starling.core.Starling;
 	import starling.events.TouchEvent;
 	import starling.display.Sprite;
-	import src.Sound;
+	import src.global.Sound;
 	import starling.events.Touch;
 	import starling.events.TouchPhase;
 

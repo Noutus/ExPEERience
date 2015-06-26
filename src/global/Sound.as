@@ -1,8 +1,9 @@
-﻿package src {
+﻿package src.global {
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
 	import flash.media.SoundTransform;
 	import flash.media.SoundMixer;
+	import src.Game;
 	
 	
 	/**

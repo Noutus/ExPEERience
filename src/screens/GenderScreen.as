@@ -1,6 +1,6 @@
 ﻿package src.screens
 {	
-	import src.GameScreen;
+	import src.screens.GameScreen;
 	import starling.text.TextField;
 	import flash.system.Capabilities;
 	import src.display.Img;

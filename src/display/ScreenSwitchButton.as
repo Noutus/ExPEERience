@@ -1,4 +1,4 @@
-﻿package src.buttons
+﻿package src.display
 {
 	import flash.utils.getDefinitionByName;
 	import src.Game;
