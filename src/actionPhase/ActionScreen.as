@@ -389,7 +389,7 @@
 				if (!isPaused()) {
 					pause();
 
-					pausedWindow = new PopupWindow('Paused!', AssetNames.LOGO, "You have paused the game.");
+					pausedWindow = new PopupWindow('Game Paused', AssetNames.LOGO, "", true);
 					addChild(pausedWindow);
 					pausedWindow.setImageSizeMultiplier(2);
 

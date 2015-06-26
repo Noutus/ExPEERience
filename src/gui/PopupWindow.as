@@ -12,6 +12,8 @@
 	import starling.events.Event;
 	import src.display.Img;
 	import starling.core.Starling;
+	import src.buttons.ScreenSwitchButton;
+	import src.screens.Screens;
 	
 	public class PopupWindow extends Sprite
 	{
@@ -27,12 +29,17 @@
 		var baseWidth, baseHeight: int;
 		var tTitle : TextField;
 		var tText : TextField;
+		var continueButton : DisplayObject;
+		var mainMenuButton : DisplayObject;
 		
-		public function PopupWindow(_titleText : String, _imagePath : String, _textText : String)
+		var showMainMenuButton : Boolean;
+		
+		public function PopupWindow(_titleText : String, _imagePath : String, _textText : String, showMainMenuButton : Boolean = false)
 		{
 			this.titleText = _titleText;
 			this.imagePath = _imagePath;
 			this.textText = _textText;
+			this.showMainMenuButton = showMainMenuButton;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -58,6 +65,13 @@
 			Game.instance().currentScreen.addChild(exitButton);
 			
 			exitButton.addEventListener(TouchEvent.TOUCH, OnTouch);
+			
+			if (this.showMainMenuButton)
+			{
+				continueButton = Img.GetNewImageAt("popup_continue", 210, 700);
+				mainMenuButton = Img.CreateScreenSwitchButtonAt("popup_mainmenu", Screens.MAINMENU, 210, 850);
+				continueButton.addEventListener(TouchEvent.TOUCH, OnTouch);
+			}
 		}
 		
 		public function setImageSizeMultiplier(multiplier: Number) {
@@ -70,13 +84,16 @@
 		public function OnTouch(e : TouchEvent) : void
 		{
 			var _touch : Touch = e.getTouch(exitButton, TouchPhase.ENDED);
-			if (_touch)
+			var _touch2 : Touch = e.getTouch(continueButton, TouchPhase.ENDED);
+			if (_touch || _touch2)
 			{
 				bg.removeFromParent(true);
 				tTitle.removeFromParent(true);
 				image.removeFromParent(true);
 				tText.removeFromParent(true);
 				exitButton.removeFromParent(true);
+				if (continueButton != null) continueButton.removeFromParent(true);
+				if (mainMenuButton != null) mainMenuButton.removeFromParent(true);
 				
 				dispatchEvent(new Event(PopupWindow.CLOSE_CLICKED));
 				

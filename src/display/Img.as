@@ -16,12 +16,13 @@
 	
 	public class Img
 	{
-		public static function CreateScreenSwitchButtonAt(imagePath : String, screen : *, positionX : Number, positionY : Number)
+		public static function CreateScreenSwitchButtonAt(imagePath : String, screen : *, positionX : Number, positionY : Number) : DisplayObject
 		{
 			var texture : Texture = Game.instance().assets.getTexture(imagePath);
 			var button : ScreenSwitchButton = new ScreenSwitchButton(texture, texture, screen);
 
 			var obj = AddDisplayObject(button, positionX, positionY);
+			return obj;
 		}
 
 		public static function CreateImageAt(imagePath : String, positionX : Number, positionY : Number):void
