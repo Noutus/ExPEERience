@@ -29,6 +29,7 @@
 			this.setBackground("main_background_orange");
 			
 			GlobalValues.instance().LoadGame();
+			GlobalValues.instance().loadOptions();
 			
 			if (GlobalValues.instance().totalScore > 0)
 			{

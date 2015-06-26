@@ -19,6 +19,7 @@
 		
 		public var gender : Boolean;
 		
+		public var difficulty: int = 2; // 1/2/3
 		public var babies : int;
 		public var level : int;
 		public function addLevel() : void
@@ -49,11 +50,11 @@
 			gender = false;
 			babies = 0;
 			level = 1;
+			
 			previousLevel = 0;
 			pleasure = 0.50;
 			risk = 0.00;
 			totalScore = 0;
-			highScore = highScore;
 		}
 		
 		/**
@@ -93,6 +94,19 @@
 			return !(level == previousLevel);
 		}
 		
+		public function saveOptions(): void {
+			var _data : SharedObject = SharedObject.getLocal("SaveGame");
+
+			_data.data.muted = Sound.isMuted();
+			_data.data.difficulty = difficulty;
+		}
+		
+		public function loadOptions(): void {
+			var _data : SharedObject = SharedObject.getLocal("SaveGame");
+			Sound.setMute(_data.data.muted);
+			difficulty = _data.data.difficulty;
+		}
+
 		public function SetNewScore() : void
 		{
 			if (totalScore > highScore) highScore = totalScore;
