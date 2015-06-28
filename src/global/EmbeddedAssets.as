@@ -1,15 +1,16 @@
-﻿package src.global
-{
-	public class EmbeddedAssets
-	{
-		[Embed(source="../../assets/action_popup.png")]
-		public static const actionPopups:Class;
-		[Embed(source="../../data/atlas.xml", mimeType="application/octet-stream")]
-		public static const actionPopupsXML:Class;
+﻿package src.global {
+	
+	/**
+	 * Contains all embedded assets.
+	 */
+	public class EmbeddedAssets {
 		
-		//[Embed(source="../../assets/walk.png")]
-		//public static const walkAnim:Class;
-		//[Embed(source="../../data/walk.xml", mimeType="application/octet-stream")]
-		//public static const walkAnimXML:Class;
+		/** Contains the pop-up buttons for the action phase. */
+		[Embed(source = "../../assets/action_popup.png")]
+		public static const actionPopups: Class;
+		
+		/** Contains the XML data needed for the pop-up buttons for the action phase. */
+		[Embed(source = "../../data/atlas.xml", mimeType = "application/octet-stream")]
+		public static const actionPopupsXML: Class;
 	}
-}	
+}

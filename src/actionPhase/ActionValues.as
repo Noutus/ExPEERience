@@ -1,54 +1,54 @@
 ﻿package src.actionPhase {
 
-	import flash.utils.Dictionary;
 	import flash.utils.describeType;
+	import flash.utils.Dictionary;
 
 	/**
 	 * ActionValues keeps track of the modifiers applied in the action phase.
 	 */
 	public class ActionValues {
 
-		// Amount of time the player has.
+		/** Amount of time the player has. */
 		public static const TIME_LIMIT: String = "TIME_LIMIT";
 
-		// Amount of buttons appearing each second.
+		/** Amount of buttons appearing each second. */
 		public static const BUTTONS_PER_SECOND: String = "BUTTONS_PER_SECOND";
 
-		// Amount of time the buttons stay on screen.
+		/** Amount of time the buttons stay on screen. */
 		public static const BUTTONS_ALIVE_TIME: String = "BUTTONS_ALIVE_TIME";
 
-		// Size modifier for the buttons.
+		/** Size modifier for the buttons. */
 		public static const BUTTON_SIZE: String = "BUTTON_SIZE";
 
-		// Amount of times the buttons need to be tapped before collecting.
+		/** Amount of times the buttons need to be tapped before collecting. */
 		public static const BUTTONS_MAXIMUM_NUMBER_OF_TAPS: String = "BUTTONS_MAXIMUM_NUMBER_OF_TAPS";
 
-		// Amount of pleasure gained from the button types.
+		/** Amount of pleasure gained from the button types. */
 		public static const PLEASURE_KISS: String = "PLEASURE_KISS";
 		public static const PLEASURE_TOUCH: String = "PLEASURE_TOUCH";
 		public static const PLEASURE_SEX: String = "PLEASURE_SEX";
 
-		// Amount of risk gained from the sex button.
+ 		/** Amount of risk gained from the sex button. */
 		public static const RISK_SEX: String = "RISK_SEX";
 
-		// The rate at which the pleasure bar decreases.
+		/** The rate at which the pleasure bar decreases. */
 		public static const PLEASURE_DECREASE: String = "PLEASURE_DECREASE";
 
-		// Spawn chances for each button type.
+		/** Spawn chances for each button type. */
 		public static const SPAWN_CHANCE_TOUCH: String = "SPAWN_CHANCE_TOUCH";
 		public static const SPAWN_CHANCE_KISS: String = "SPAWN_CHANCE_KISS";
 		public static const SPAWN_CHANCE_SEX: String = "SPAWN_CHANCE_SEX";
 
-		// The movement ratio for all buttons.
+		/** The movement ratio for all buttons. */
 		//public static const BUTTONS_MOVEMENT_RATIO: String = "BUTTONS_MOVEMENT_RATIO";
 
-		// The visibility of the button types.
+		/** The visibility of the button types. */
 		//public static const BUTTONS_VISIBILITY: String = "BUTTONS_VISIBILITY";
 
-		// Holds the singleton for this class.
+		/** Holds the singleton for this class. */
 		private static var _instance: ActionValues;
 
-		// Holds all modifiers with their respective values.
+		/** Holds all modifiers with their respective values. */
 		private var modifiers: Dictionary;
 
 		/** 

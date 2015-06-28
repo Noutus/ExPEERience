@@ -1,7 +1,9 @@
-﻿package src.screens
-{	
-	public class Screens
-	{
+﻿package src.screens {
+	
+	/**
+	 * Basic class that holds the Screen names.
+	 */
+	public class Screens {
 		public static const ACTION = "action";
 		public static const PRESSURE = "pressure";
 		public static const MAINMENU = "mainmenu";

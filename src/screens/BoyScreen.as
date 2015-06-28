@@ -1,32 +1,28 @@
-﻿package src.screens
-{	
-	import src.screens.GameScreen;
-	import src.Game;
-	import starling.textures.Texture;
-	import starling.core.Starling;
-	import src.display.Img;
+﻿package src.screens {
+	
 	import src.global.GlobalValues;
-	import starling.events.TouchEvent;
-	import starling.events.Touch;
-	import starling.events.TouchPhase;
-	import starling.animation.Tween;
-	import flash.system.Capabilities;
-	import starling.display.Image;
-	import src.global.*;
-	import src.display.*;
 
-	public class BoyScreen extends StoryScreen
-	{
-		public function BoyScreen(name : String, next : *)
-		{
+	/**
+	 * Screen that shows the story for the boy character.
+	 */
+	public class BoyScreen extends StoryScreen {
+		
+		/**
+		 * Creates an instance of BoyScreen. 
+		 *
+		 * @param name Name of the screen background, as specified in the AssetManager.
+		 * @param next Reference to the screen that is shown after pressing the next button.
+		 */
+		public function BoyScreen(name: String, next: * ) {
 			super(name, next);
 		}
-		
-		public override function OnEnter() : void
-		{
+
+		/**
+		 * Override from Screen. Is called when the screen has been successfully entered.
+		 */
+		public override function OnEnter(): void {
 			GlobalValues.instance().ResetValues();
-			GlobalValues.instance().gender = false;
-			
+			GlobalValues.instance().gender = false; // Sets gender to male.
 			super.OnEnter();
 		}
 	}

@@ -1,39 +1,48 @@
 ﻿package src.display
 {
 	import flash.utils.getDefinitionByName;
-	import src.Game;
+	
 	import starling.events.*;
 	import starling.textures.Texture;
+	
+	import src.Game;
 	import src.screens.*;
 	import src.pressurePhase.*;
 	import src.actionPhase.*;
 	import src.*;
 
-	public class ScreenSwitchButton extends BasicButton
-	{
+	/**
+	 * Button used to switch screens in ExPEERience.
+	 */
+	public class ScreenSwitchButton extends BasicButton {
+		
+		/** Reference to the screen thsi button sends the player to. */
 		private var id : String;
 		
-		public function ScreenSwitchButton(_upState : Texture, _downState : Texture, _id : String)
-		{
+		/**
+		 * Creates an instance of ScreenSwitchButton.
+		 *
+		 * @param _upState Idle texture for the button.
+		 * @param _downState Texture for when the button is pressed.
+		 * @param _id The screen to which this button will send the player.
+		 */
+		public function ScreenSwitchButton(_upState : Texture, _downState : Texture, _id : String) {
 			super(_upState, _downState);
 			this.id = _id;
 		}
 		
-		public override function OnTouch(e : TouchEvent) : void
-		{
+		/**
+		 * Overrides the OnTouch function of BasicButton. This is called whenever the button is touched.
+		 * OnTouch sends the player to the next Screen, based on the reference name.
+		 * 
+		 * @param e TouchEvent.
+		 */
+		public override function OnTouch(e : TouchEvent) : void {
 			var _touch : Touch = e.getTouch(this, TouchPhase.ENDED);
-			if (_touch)
-			{
-				trace("Switching screen to: " + id);
-			
-				switch(id)
-				{
+			if (_touch) {
+				switch(id) {
 					case Screens.ACTION: Game.instance().SwitchScreen(new ActionScreen()); break;
 					case Screens.PRESSURE: Game.instance().SwitchScreen(new PressureScreen()); break;
-					// Commented this line below out because the ScoreScreen now requires the parameter "won: Boolean".
-					// Passing of that parameter could eventually be moved to GlobalVars but that is not necessary 
-					// right now.
-					//case Screens.SCORE: Game.instance().SwitchScreen(new ScoreScreen()); break;
 					case Screens.MAINMENU: Game.instance().SwitchScreen(new MainMenuScreen()); break;
 					case Screens.GENDER: Game.instance().SwitchScreen(new GenderScreen()); break;
 					case Screens.STORYGIRL: Game.instance().SwitchScreen(new GirlScreen("comic_start", Screens.NIGHTTODAY)); break;

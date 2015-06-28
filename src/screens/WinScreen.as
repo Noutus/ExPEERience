@@ -1,30 +1,29 @@
-﻿package src.screens
-{	
-	import src.screens.GameScreen;
-	import src.Game;
-	import starling.textures.Texture;
-	import starling.core.Starling;
-	import starling.events.TouchEvent;
-	import starling.events.Touch;
-	import starling.events.TouchPhase;
-	import starling.animation.Tween;
-	import flash.system.Capabilities;
-	import starling.display.Image;
-	import src.global.*;
-	import src.display.*;
+﻿package src.screens {
 
-	public class WinScreen extends StoryScreen
-	{
-		public function WinScreen(name : String, next : *)
-		{
+	import src.global.GlobalValues;
+	
+	/**
+	 * The screen that is shown when the player wins the game.
+	 */
+	public class WinScreen extends StoryScreen {
+		
+		/**
+		 * Creates an instance of WinScreen. 
+		 *
+		 * @param name Name of the screen background, as specified in the AssetManager.
+		 * @param next Reference to the screen that is shown after pressing the next button.
+		 */
+		public function WinScreen(name: String, next: * ) {
 			super(name, next);
 		}
-		
-		public override function OnEnter() : void
-		{
+
+		/**
+		 * Override from Screen. Is called when the screen has been successfully entered.
+		 * Resets the current run, because the player has won.
+		 */
+		public override function OnEnter(): void {
 			GlobalValues.instance().ResetValues();
 			GlobalValues.instance().SaveGame();
-			
 			super.OnEnter();
 		}
 	}

@@ -1,28 +1,24 @@
-﻿package src.screens
-{	
-	import src.screens.GameScreen;
-	import src.Game;
-	import starling.textures.Texture;
-	import src.display.ScreenSwitchButton;
-	import starling.core.Starling;
-	import src.display.Img;
-	import src.global.GlobalValues;
-	import starling.events.TouchEvent;
-	import starling.events.Touch;
-	import starling.events.TouchPhase;
-	import starling.animation.Tween;
-	import flash.system.Capabilities;
-	import starling.display.Image;
-
-	public class LoseScreen extends StoryScreen
-	{
-		public function LoseScreen(name : String, next : *)
-		{
+﻿package src.screens {
+	
+	/**
+	 * The screen that is shown when the player loses the game.
+	 */
+	public class LoseScreen extends StoryScreen {
+		
+		/**
+		 * Creates an instance of LoseScreen. 
+		 *
+		 * @param name Name of the screen background, as specified in the AssetManager.
+		 * @param next Reference to the screen that is shown after pressing the next button.
+		 */
+		public function LoseScreen(name: String, next: * ) {
 			super(name, next);
 		}
-		
-		public override function OnEnter() : void
-		{
+
+		/**
+		 * Override from Screen. Is called when the screen has been successfully entered.
+		 */
+		public override function OnEnter(): void {
 			super.OnEnter();
 		}
 	}
