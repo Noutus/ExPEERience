@@ -1,5 +1,4 @@
 ﻿package src.actionPhase {
-	import src.screens.GameScreen
 	import starling.display.Button;
 	import starling.core.Starling;
 	import starling.events.TouchEvent;
@@ -12,7 +11,6 @@
 	import starling.text.TextField;
 	import flash.utils.getTimer;
 	import starling.utils.Color;
-	import src.screens.ScoreScreen;
 	import src.*;
 	import starling.display.Quad;
 	import flash.geom.Rectangle;
@@ -20,8 +18,7 @@
 	import src.actionPhase.Baby;
 	import starling.display.DisplayObject;
 	import starling.display.Sprite;
-	import src.screens.LoseScreen;
-	import src.screens.Screens;
+	import src.screens.*;
 	import src.display.*;
 	import src.global.*;
 
@@ -224,6 +221,17 @@
 		public function gameOver(kind: int) {
 			if (kind == WON) {
 				GlobalValues.instance().level++;
+				switch (GlobalValues.instance().level) {
+					case 2: GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_LEVEL_2); break;
+					case 3: GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_LEVEL_3); break;
+					case 4: GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_LEVEL_4); break;
+					case 5: GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_LEVEL_5); break;
+					case 6: GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_LEVEL_6); break;
+					case 7: GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_LEVEL_7); break;
+					case 8: GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_LEVEL_8); break;
+					case 9: GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_LEVEL_9); break;
+					case 10: GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_FINISHED); break;					
+				}
 			}
 			Game.instance().SwitchScreen(new ScoreScreen(kind));
 		}

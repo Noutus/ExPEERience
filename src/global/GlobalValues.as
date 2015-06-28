@@ -34,6 +34,7 @@
 		public var totalScore: int;
 		
 		public var previousLevel : int;
+		public var badgesUnlocked : String;
 		
 		public function GlobalValues()
 		{
@@ -55,6 +56,8 @@
 			pleasure = 0.50;
 			risk = 0.00;
 			totalScore = 0;
+			
+			badgesUnlocked = "fffffffffffffffffffffffff";
 		}
 		
 		/**
@@ -71,6 +74,7 @@
 			risk = _data.data.risk;
 			totalScore = _data.data.totalScore;
 			highScore = _data.data.highScore;
+			if (_data.data.badgesUnlocked) badgesUnlocked = _data.data.badgesUnlocked;
 		}
 		
 		/**
@@ -87,6 +91,7 @@
 			_data.data.risk = risk;
 			_data.data.totalScore = totalScore;
 			_data.data.highScore = highScore;
+			_data.data.badgesUnlocked = badgesUnlocked;
 		}
 		
 		public function LevelChanged() : Boolean
@@ -110,6 +115,11 @@
 		public function SetNewScore() : void
 		{
 			if (totalScore > highScore) highScore = totalScore;
+		}
+		
+		public function unlockBadge(index:int) {
+			badgesUnlocked = badgesUnlocked.substr(0, index) + "t" + badgesUnlocked.substr(index + 1);
+			trace(badgesUnlocked);
 		}
 	}
 }
