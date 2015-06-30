@@ -23,8 +23,15 @@
 	import src.display.*;
 	import src.actionPhase.PauseTimer;
 	
+	/**
+	* class PopupButton is a popup-button in the actionScreen. There are three kinds of PopupButtons:
+	* - Touch
+	* - Kiss
+	* - Sex
+	*/
 	public class PopupButton extends BasicButton {
 		
+		// Enum values
 		public static const POPUP_TOUCH: int = 0;
 		public static const POPUP_KISS: int = 1;
 		public static const POPUP_SEX: int = 2;
@@ -35,14 +42,20 @@
 		public static const PLEASURE_KISS: Number = 0.02;
 		public static const PLEASURE_TOUCH: Number = 0.015;
 		
+		// The popupController that controls this popupButton
 		private var popupController: PopupController;
+		// The kind of popup this is
 		private var popupKind: int;
 		
+		// The risk that's given when clicking this PopupButton
 		private var risk: Number = 0.00;
+		// The pleasure that's given when clicking this PopupButton
 		private var pleasure: Number = 0.00;
 		
+		// The timer that handles the time until this PopupButton is removed after creation
 		private var removeTimer: PauseTimer;
 		
+		// Values used for display of the amount of times this popupButton has to be clicked
 		private var field : TextField;
 		private var circle : Image;
 		
@@ -51,13 +64,16 @@
 		private static const maxRandomSpotTries: int = 100;
 		
 		
-		// a popupbutton can have a sex, kiss, or touch texture
+		/**
+		* Constructor PopupButton
+		*
+		* @param	PopupController	The popupController this popup will be a part of
+		* @param	popupKind	The kind of popup this should be
+		*/
 		public function PopupButton(popupController: PopupController, popupKind: int) {
 			
 			this.popupController = popupController;
 			this.popupKind = popupKind;
-			//ActionScreen.addButton();
-			//ActionScreen.removeButton();
 						
 			var textureName: String; 
 			switch (popupKind) {
@@ -79,6 +95,7 @@
 			
 			super(Game.instance().assets.getTexture(textureName), null);
 			
+			// Create the text indicating the amount of times this popup has to be touched
 			if (maxTouches > 1)
 			{
 				var texture : Texture = Game.instance().assets.getTexture("number");
@@ -99,6 +116,7 @@
 			this.width *= ActionValues.instance().GetModifier(ActionValues.BUTTON_SIZE);
 			this.height *= ActionValues.instance().GetModifier(ActionValues.BUTTON_SIZE);
 			
+			// Initialize the removeTimer
 			removeTimer = new PauseTimer(1000 * ActionValues.instance().GetModifier(ActionValues.BUTTONS_ALIVE_TIME), 1);
 			removeTimer.addEventListener(TimerEvent.TIMER_COMPLETE, 
 				function (event: TimerEvent): void {
@@ -108,21 +126,27 @@
 			removeTimer.start();		
 		}
 		
+		/**
+		* function pause resumes all the timers in this PopupButton
+		*/
 		public function pause() {
 			if (removeTimer)
 				removeTimer.pause();
 		}
 		
+		/**
+		* function resume pauses all the timers in this PopupButton
+		*/
 		public function resume() {
 			if (removeTimer)
 				removeTimer.resume();
 		}
 		
-		/*
-			Places this PopupButton on a random spot in the popupArea 
-			and makes sure it doesn't place it on another button (will recalculate a position otherwise).
-		
-			@return Boolean whether it succeeded in placing the button or not.
+		/**
+		* Places this PopupButton on a random spot in the popupArea 
+		* and makes sure it doesn't place it on another button (will recalculate a position otherwise).
+		*
+		*@return	Boolean	whether it succeeded in placing the button or not.
 		*/
 		public function placeAtRandomSpot(depth: int = 0): Boolean {		
 			
@@ -134,8 +158,7 @@
 			var popups: Vector.<PopupButton> = popupController.getPopups();
 
 			for each (var button: PopupButton in popups) {
-				//trace("This button: " + x + ", " + y + ", " + this.width + ", " + this.height + ", checking button: " +button.x + ", " + button.y + ", " + button.width + ", " + button.height);
-				// if overlap
+
 				if ((x + this.width >= button.x) && 
 					(x <= button.x + button.width) && 
 					(y + this.height >= button.y) && 
@@ -151,7 +174,6 @@
 				}	
 			}
 			return true;
-
 		}
 
 		// Amount of times this button has been touched so far
@@ -160,7 +182,10 @@
 		// Set the maximum number of taps for this button as it is now
 		var maxTouches: int = ActionValues.instance().GetModifier(ActionValues.BUTTONS_MAXIMUM_NUMBER_OF_TAPS);
 		
-				
+		/**
+		* function increaseTouches increases the amount of times this popup has been touched and changes the text
+		* that indicates how many times this popup still has to be touched before it's removed
+		*/
 		public function increaseTouches(): void {
 			touches++;
 			if (maxTouches - touches > 1)
@@ -175,28 +200,50 @@
 			}
 		}
 		
+		/**
+		* function touchedEnough 
+		*
+		* @return	Boolean	Whether or not this popup has been clicked enough times to be removed
+		*/
 		public function touchedEnough(): Boolean {
 			trace('touches: ' + touches + ', maxtouches: ' + maxTouches);
 			return (touches >= maxTouches);			
 		}
 				
+		/**
+		* function OnTouch is called whenever this popup is touched, checks if the touch is an actual click and if so, hands it to the popupController
+		* 
+		* @see PopupController.popupClicked()
+		*/
 		public override function OnTouch(event: TouchEvent): void {
 			var touch:Touch = event.touches[0];
 			if (touch.phase == TouchPhase.BEGAN) {
 				popupController.popupClicked(this);
-				//gameScreen.addPoints(pointsReward);
 			}
 		}
 		
+		/**
+		* function remove tells the PopupController to completely remove this PopupButton
+		*/
 		private function remove() {
 			popupController.removeButton(this);
 		}
 		
-		public function getRisk() {
+		/**
+		* function getRisk 
+		*
+		* @return	Number	The amount of risk being given upon clicking this popup
+		*/
+		public function getRisk(): Number {
 			return this.risk;
 		}
 		
-		public function getPleasure() {
+		/**
+		* function getPleasure 
+		*
+		* @return	Number	The amount of pleasure being given upon clicking this popup
+		*/
+		public function getPleasure(): Number {
 			return this.pleasure;
 		}
 
