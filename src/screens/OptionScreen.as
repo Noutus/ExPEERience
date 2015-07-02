@@ -18,6 +18,12 @@
 	*/
 	public class OptionScreen extends GameScreen
 	{
+		
+		// The difficulties in the game
+		private static var difficulties: Vector[] = new Vector[]{1, 2, 3};
+		// The names of the difficulties
+		private static var difficultyNames: Vector[] = new Vector[]{"easy", "medium", "hard"};
+		
 		/**
 		* constructor OptionScreen
 		*/
@@ -70,20 +76,7 @@
 		* function setDifficultyText sets the text of the difficulty-TextField to show the current difficulty
 		*/
 		public function setDifficultyText() {
-			
-			var text: String;
-			switch (GlobalValues.instance().difficulty) {
-				case 1:
-					text = "beginner";
-				break;
-				case 2:
-					text = "normal";
-				break;
-				case 3: 
-					text = "expert";
-				break;
-			}
-			difficultyText.text = "difficulty: " + text;
+			difficultyText.text = "difficulty: " + difficultyNames[difficulties.indexOf(GlobalValues.instance().difficulty)];
 			GlobalValues.instance().saveOptions();
 		}
 		
@@ -101,6 +94,16 @@
 		}
 		
 		/**
+		* function increaseDifficulty() increases the difficulty.
+		*/
+		private function increaseDifficulty() {		
+			var i: int = difficulties.indexOf(GlobalValues.instance().difficulty);
+			i++;
+			i %= difficulties.length;
+			GlobalValues.instance().difficulty = difficulties[i];
+		}
+		
+		/**
 		* function onDifficultyTouch is called when the difficulty is touched, sets the difficulty one value harder if
 		* it is an actual click
 		*/
@@ -108,7 +111,7 @@
 			var touch: Touch = event.touches[0];
 			if (touch.phase == TouchPhase.ENDED) {
 				// 1, 2, or 3
-				GlobalValues.instance().difficulty = 1 + (GlobalValues.instance().difficulty++ % 3);
+				increaseDifficulty();
 			
 				// Update the text that shows the current difficulty
 				setDifficultyText();
