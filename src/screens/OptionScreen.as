@@ -20,10 +20,10 @@
 	{
 		
 		// The difficulties in the game
-		private static var difficulties: Vector[] = new Vector[]{1, 2, 3};
+		private static var difficulties: Array = [1, 2, 3];
 		// The names of the difficulties
-		private static var difficultyNames: Vector[] = new Vector[]{"easy", "medium", "hard"};
-		
+		private static var difficultyNames: Array = ["easy", "medium", "hard"];
+	
 		/**
 		* constructor OptionScreen
 		*/
