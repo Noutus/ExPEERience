@@ -200,8 +200,8 @@
 				LoadComplete();
 				
 				newSize = Img.GetScaledVector(img_sleeping.width, img_sleeping.height);
-				img_sleeping.width = newSize[0] * 2;
-				img_sleeping.height = newSize[1] * 2;
+				img_sleeping.width = newSize[0] * 1.25;
+				img_sleeping.height = newSize[1] * 1.25;
 			}
 			
 			if (e.imageName == "cry") {
@@ -210,8 +210,8 @@
 				img_crying.height = img_crying.height;
 				
 				newSize = Img.GetScaledVector(img_crying.width, img_crying.height);
-				img_crying.width = newSize[0] * 4;
-				img_crying.height = newSize[1] * 4;
+				img_crying.width = newSize[0] * 2.5;
+				img_crying.height = newSize[1] * 2.5;
 			}
 		}
 		
