@@ -5,6 +5,7 @@
 	import flash.events.TimerEvent;
 	import src.actionPhase.PauseTimer;
 	import src.global.Results;
+	import src.global.GlobalValues;
 	
 	public class PopupController {
 		
@@ -67,6 +68,8 @@
 				popupButton.increaseTouches();
 
 				if (popupButton.touchedEnough()) {
+					
+					GlobalValues.instance().addButtonTouched(popupButton.popupKind);
 					
 					Results.instance().AddRisk(ratioToPoints(popupButton.getRisk()));
 					Results.instance().AddPleasure(ratioToPoints(popupButton.getPleasure()));

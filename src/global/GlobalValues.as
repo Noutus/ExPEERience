@@ -1,6 +1,8 @@
 ﻿package src.global {
 	
 	import flash.net.SharedObject;
+	import src.actionPhase.PopupButton;
+	import src.screens.StatisticsScreen;
 
 	public class GlobalValues {
 		
@@ -48,10 +50,22 @@
 		public var previousLevel: int;
 
 		/** Keeps track of the badges unlocked by the player. */
-		public var badgesUnlocked: String;
+		public var badgesUnlocked: String = "ffffffffffffffffffffffffffffffffffffffffff";
 
 		/** Keeps track of the highest score obtained. */
 		public var highScore: int;
+		
+		/** Amount of hug buttons pressed since new game. */
+		public var hugPressed: int;
+		
+		/** Amount of kiss buttons pressed since new game. */
+		public var kissPressed: int;
+		
+		/** Amount of sex buttons pressed since new game. */
+		public var sexPressed: int;
+		
+		/** Amount of condom uses in a row. */
+		public var condomUsed: int;
 
 		/**
 		 * Creates an instance of GlobalValues.
@@ -71,7 +85,10 @@
 			pleasure = 0.50;
 			risk = 0.00;
 			totalScore = 0;
-			badgesUnlocked = "fffffffffffffffffffffffff";
+			hugPressed = 0;
+			kissPressed = 0;
+			sexPressed = 0;
+			condomUsed = 0;
 		}
 
 		/**
@@ -87,7 +104,6 @@
 			risk = _data.data.risk;
 			totalScore = _data.data.totalScore;
 			highScore = _data.data.highScore;
-			if (_data.data.badgesUnlocked) badgesUnlocked = _data.data.badgesUnlocked;
 		}
 
 		/**
@@ -103,7 +119,6 @@
 			_data.data.risk = risk;
 			_data.data.totalScore = totalScore;
 			_data.data.highScore = highScore;
-			_data.data.badgesUnlocked = badgesUnlocked;
 		}
 
 		/**
@@ -122,6 +137,11 @@
 			var _data: SharedObject = SharedObject.getLocal("SaveGame");
 			_data.data.muted = Sound.isMuted();
 			_data.data.difficulty = difficulty;
+			_data.data.hugPressed = hugPressed;
+			_data.data.kissPressed = kissPressed;
+			_data.data.sexPressed = sexPressed;
+			_data.data.condomUsed = condomUsed;
+			_data.data.badgesUnlocked = badgesUnlocked;
 		}
 
 		/**
@@ -131,6 +151,11 @@
 			var _data: SharedObject = SharedObject.getLocal("SaveGame");
 			Sound.setMute(_data.data.muted);
 			difficulty = _data.data.difficulty;
+			hugPressed = _data.data.hugPressed;
+			kissPressed = _data.data.kissPressed;
+			sexPressed = _data.data.sexPressed;
+			condomUsed = _data.data.condomUsed;
+			if (_data.data.badgesUnlocked) badgesUnlocked = _data.data.badgesUnlocked;
 		}
 
 		/**
@@ -147,6 +172,35 @@
 		 */
 		public function unlockBadge(index: int) {
 			badgesUnlocked = badgesUnlocked.substr(0, index) + "t" + badgesUnlocked.substr(index + 1);
+		}
+		
+		public function addButtonTouched(i: int): void {
+			switch(i)
+			{
+				case PopupButton.POPUP_TOUCH: {
+					hugPressed++;
+					if (hugPressed > 1000) unlockBadge(StatisticsScreen.BADGE_HUG);
+				}
+				case PopupButton.POPUP_KISS: {
+					kissPressed++;
+					if (kissPressed > 1000) unlockBadge(StatisticsScreen.BADGE_KISS);
+				}
+				case PopupButton.POPUP_SEX: {
+					sexPressed++;
+					if (sexPressed > 1000) unlockBadge(StatisticsScreen.BADGE_SEX);
+				}
+			}
+			if (hugPressed + kissPressed + sexPressed > 5000) unlockBadge(StatisticsScreen.BADGE_BUTTON);
+		}
+		
+		public function addCondomUsed(b: Boolean): void {
+			if (b) {
+				condomUsed++;
+				if (condomUsed >= 5) unlockBadge(StatisticsScreen.BADGE_5_CONDOMS);
+				if (condomUsed >= 10) unlockBadge(StatisticsScreen.BADGE_10_CONDOMS);
+			} else {
+				condomUsed = 0;
+			}
 		}
 	}
 }

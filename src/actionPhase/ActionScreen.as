@@ -227,7 +227,11 @@
 					case 5: GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_LEVEL_5); break;
 					case 7: GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_LEVEL_7); break;
 					case 9: GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_LEVEL_9); break;
-					case 10: GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_FINISHED); break;					
+					case 10: {
+						if (GlobalValues.instance().babies == 0) GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_NO_BABIES);
+						if (GlobalValues.instance().babies == 1) GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_ONE_BABY);
+						GlobalValues.instance().unlockBadge(StatisticsScreen.BADGE_FINISHED); break;					
+					}
 				}
 			}
 			Game.instance().SwitchScreen(new ScoreScreen(kind));

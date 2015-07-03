@@ -12,6 +12,7 @@
 	import src.display.Img;
 	import src.global.GlobalValues;
 	import src.screens.*;
+	import src.global.Messages;
 
 	import starling.display.Button;
 	import starling.textures.Texture;
@@ -147,19 +148,17 @@
 			// Display the abilities on the screen.
 			var myPattern: RegExp = /_/g;
 			for (i = 0; i < _modifiers.length; i++) {
-				var n: Number = _peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].ABILITY[i].text();
 				var s: String = _modifiers[i].modifierName;
-				var tf: TextField = Img.CreateTextAt(this, s.replace(myPattern, " ") + " " + GetModStatus(n), 0, 1137 + 30 * i, 360, 29, 24);
-				if (n > 1) tf.color = 0x00AA00;
-				else tf.color = 0xAA0000;
+				var n: Number = _peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].ABILITY[i].text();
+				var tf: TextField = Img.CreateTextAt(this, Messages.getAbilityString(s) + " " + GetModStatus(n), 0, 1137 + 30 * i, 360, 29, 24);
+				tf.color = getModColor(s, n);
 			}
 			
 			for (j = 0; j < _badmodifiers.length; j++) {
-				n = _peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].BAD[j].text();
 				s = _badmodifiers[j].modifierName;
-				var tf2: TextField = Img.CreateTextAt(this, s.replace(myPattern, " ") + " " + GetModStatus(n), 0, 770 + 30 * j, 360, 29, 24);
-				if (n > 1) tf2.color = 0x00AA00;
-				else tf2.color = 0xAA0000;
+				n = _peersXML.PEER[_randomPeer].PRESSURE[_randomPressure].BAD[j].text();
+				var tf2: TextField = Img.CreateTextAt(this, Messages.getAbilityString(s) + " " + GetModStatus(n), 0, 770 + 30 * j, 360, 29, 24);
+				tf2.color = getModColor(s, n);
 			}
 		}
 
@@ -189,6 +188,7 @@
 		public function OnNo(e: TouchEvent): void {
 			var _touch: Touch = e.getTouch(this, TouchPhase.ENDED);
 			if (_touch) {
+				GlobalValues.instance().addCondomUsed(false);
 				activePeer.GetAbility().modifiers = _badmodifiers;
 				activePeer.GetAbility().ChooseAbility();
 				AddLevelModifiers();
@@ -204,6 +204,7 @@
 		public function OnCondom(e: TouchEvent): void {
 			var _touch: Touch = e.getTouch(this, TouchPhase.ENDED);
 			if (_touch) {
+				GlobalValues.instance().addCondomUsed(true);
 				activePeer.GetAbility().ChooseAbility();
 				ActionValues.instance().AddModifier(ActionValues.RISK_SEX, 0);
 				AddLevelModifiers();
@@ -252,6 +253,24 @@
 			if (n > 1) return "++";
 			if (n < 1) return "--";
 			return "";
+		}
+		
+		/**
+		 * Get the color for a modifier.
+		 *
+		 * @param s Name of the modifier.
+		 * @param n Value of the modifier.
+		 *
+		 * @return Returns red or green depending on the modifier type and the value.
+		 */
+		public static function getModColor(s: String, n: Number): Number {
+			if (s == ActionValues.BUTTONS_MAXIMUM_NUMBER_OF_TAPS || s == ActionValues.RISK_SEX || s == ActionValues.PLEASURE_DECREASE) {
+				if (n > 1) return 0xAA0000;
+				else return 0x00AA00;
+			} else {
+				if (n > 1) return 0x00AA00;
+				else return 0xAA0000;
+			}
 		}
 	}
 }

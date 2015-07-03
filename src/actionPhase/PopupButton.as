@@ -36,7 +36,7 @@
 		public static const PLEASURE_TOUCH: Number = 0.015;
 		
 		private var popupController: PopupController;
-		private var popupKind: int;
+		public var popupKind: int;
 		
 		private var risk: Number = 0.00;
 		private var pleasure: Number = 0.00;

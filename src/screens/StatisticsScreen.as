@@ -45,22 +45,20 @@
 
 		/** Array that holds all badge information. */
 		private static var badges: Array = new Array(
-			new Array("badge_gold", "First Kiss", "", "Reach level 2"),
-			new Array("badge_gold", "First Time", "", "Reach level 3"),
-			new Array("badge_gold", "", "", "Reach level 5"),
-			new Array("badge_gold", "", "", "Reach level 7"),
-			new Array("badge_gold", "", "", "Reach level 9"),
-			new Array("badge_black", "", "", "Finish the game"),
-			new Array("badge_gold", "Family Planning", "", "Finish the game with exactly 1 baby"),
-			new Array("badge_black", "", "", "Finish the game without having a baby"),
-			new Array("badge_gold", "", "", "Tap the Hug button 1000 times"),
-			new Array("badge_gold", "", "", "Tap the Kiss button 1000 times"),
-			new Array("badge_gold", "", "", "Tap the sex button 1000 times"),
-			new Array("badge_black", "", "", "Tap a total of 5000 buttons"),
-			new Array("badge_gold", "Safe Sex", "", "Use condom 5 times in a row"),
-			new Array("badge_black", "", "", "Use condom 10 times in a row"),
-			new Array("badge_gold", "", "", ""),
-			new Array("badge_black", "", "", ""));
+			new Array("badge_gold", "First Kiss", "You have kissed your partner for the first time", "Reach level 2"),
+			new Array("badge_gold", "First Time", "You have had sex for the first time", "Reach level 3"),
+			new Array("badge_gold", "I love you!", "You and your partner are officially lovers!", "Reach level 5"),
+			new Array("badge_gold", "Commitment", "Nothing can break you and your partner apart!", "Reach level 7"),
+			new Array("badge_gold", "Engagement", "You are a perfect fit with your partner!", "Reach level 9"),
+			new Array("badge_black", "Perfect Relationship", "You managed to obtain the perfet relationship!", "Finish the game"),
+			new Array("badge_gold", "Family Planning 1", "Plan to have a great relationship with a child. Finish the game with exactly one baby.", GlobalValues.instance().babies.toString() + " / 1 baby"),
+			new Array("badge_black", "Family Planning 2", "Wait to have a baby until you are sure to have one.", GlobalValues.instance().babies.toString() + " / 0 babies"),
+			new Array("badge_gold", "Teddy Bear", "You love to cuddle. You pressed the hug button 1000 times.", GlobalValues.instance().hugPressed.toString() + " / 1000 hugs"),
+			new Array("badge_gold", "Kisser", "You are a great kisser! You pressed the kiss button 1000 times.", GlobalValues.instance().kissPressed.toString() + " / 1000 kisses"),
+			new Array("badge_gold", "Heat of the Moment", "You managed to press the sex button 1000 times.", GlobalValues.instance().sexPressed.toString() + " / 1000 sex buttons"),
+			new Array("badge_black", "Loyal", "You are loyal to your partner and pressed 5000 action buttons.", (GlobalValues.instance().hugPressed + GlobalValues.instance().kissPressed + GlobalValues.instance().sexPressed).toString() + " / 5000 actions"),
+			new Array("badge_gold", "Safe Sex", "Protection is key!", GlobalValues.instance().condomUsed.toString() + " / 5"),
+			new Array("badge_black", "Safer Sex", "Always use protection!", GlobalValues.instance().condomUsed.toString() + " / 10"));
 			
 		/** Array that holds all badge images. */
 		private var badgeObjects: Array = new Array();
@@ -141,12 +139,12 @@
 		 * @param i Index of the badge you want to show the information from.
 		 */
 		public function changeText(i: int) {
-			if (activeBadge) {
+			/*if (activeBadge) {
 				activeBadge.removeFromParent(true);
 				activeBadge = null;
 			}
 			activeBadge = Img.AddDisplayObject(new Image(Game.instance().assets.getTexture(badges[i][0])), 350, 190);
-			sprite.addChild(activeBadge);
+			sprite.addChild(activeBadge);*/
 			titleText.text = badges[i][1];
 			descriptionText.text = badges[i][2];
 			requirementText.text = badges[i][3];
