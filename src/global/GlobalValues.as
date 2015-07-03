@@ -211,6 +211,7 @@
 			} else {
 				condomUsed = 0;
 			}
+			saveOptions();
 		}
 	}
 }

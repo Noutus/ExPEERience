@@ -93,11 +93,13 @@
 			tTitle = Img.CreateTextAt(Game.instance().currentScreen, titleText, 120, 256, 480, 72, 48);
 
 			// Add the image.
-			image = Img.GetNewImageAt(imagePath, 360, 350);
-			image.x = Img.GetScaledVector((720 - image.width) / 2, 0)[0];
-			baseWidth = image.width;
-			baseHeight = image.height;
-			Game.instance().currentScreen.addChild(image);
+			if (imagePath != "") {
+				image = Img.GetNewImageAt(imagePath, 360, 350);
+				image.x = Img.GetScaledVector((720 - image.width) / 2, 0)[0];
+				baseWidth = image.width;
+				baseHeight = image.height;
+				Game.instance().currentScreen.addChild(image);
+			}
 
 			// Add the text.
 			tText = Img.CreateTextAt(Game.instance().currentScreen, textText, 133, 526, 465, 443, 32);
@@ -140,7 +142,7 @@
 				// Destroy all objects related to the pop-up window.
 				bg.removeFromParent(true);
 				tTitle.removeFromParent(true);
-				image.removeFromParent(true);
+				if (image != null) image.removeFromParent(true);
 				tText.removeFromParent(true);
 				exitButton.removeFromParent(true);
 				if (continueButton != null) continueButton.removeFromParent(true);
