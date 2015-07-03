@@ -90,7 +90,7 @@
 			<BAD NAME="BUTTON_SIZE">1.25</BAD>
 			<BAD NAME="TIME_LIMIT">1.25</BAD>
 		</PRESSURE>
-		<PRESSURE MESSAGE="Kofi, if you make our daughter pregnant, you will have to marry her.">
+		<PRESSURE MESSAGE="Daniel, if you make our daughter pregnant, you will have to marry her.">
 			<ABILITY NAME="RISK_SEX">0</ABILITY>
 			<ABILITY NAME="BUTTON_SIZE">0.85</ABILITY>
 			<BAD NAME="BUTTONS_ALIVE_TIME">1.5</BAD>

@@ -85,10 +85,6 @@
 			pleasure = 0.50;
 			risk = 0.00;
 			totalScore = 0;
-			hugPressed = 0;
-			kissPressed = 0;
-			sexPressed = 0;
-			condomUsed = 0;
 		}
 
 		/**
