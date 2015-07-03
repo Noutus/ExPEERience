@@ -156,6 +156,8 @@
 			sexPressed = _data.data.sexPressed;
 			condomUsed = _data.data.condomUsed;
 			if (_data.data.badgesUnlocked) badgesUnlocked = _data.data.badgesUnlocked;
+			if (difficulty == 0)
+				difficulty = 2;
 		}
 
 		/**

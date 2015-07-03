@@ -1,5 +1,8 @@
 ﻿package src.global {
 	
+	/**
+	* class AssetNames contains the names of the assets used in the ActionScreen
+	*/
 	public class AssetNames {
 
 		public static const ACTION_BACKGROUND: String = "action_background_background";

@@ -11,11 +11,20 @@
 	import src.actionPhase.ActionScreen;
 	import src.global.*;
 	
+	/**
+	* class ScoreScreen is the screen that shows the scores from the last game and the current total score
+	*/
 	public class ScoreScreen extends GameScreen
 	{
+		// The kind of ScoreScreen, there are 3 kinds:
+		// ActionScreen. WON, FAILED, or LOST
 		var kind: int;
 		
-		// kind = ActionScreen. WON/FAILED/LOST
+		/**
+		* constructor ScoreScreen initializes this ScoreScreen
+		*
+		* @param	int	the kind of ScoreScreen this is
+		*/
 		public function ScoreScreen(kind: int)
 		{
 			this.setBackground("main_background_orange");
@@ -56,6 +65,9 @@
 			Img.CreateTextAt(this, "Total Score: " + GlobalValues.instance().totalScore.toString(), 0, 924, 720, 100, 48);
 		}
 		
+		/**
+		* function OnEnter called upon entering this ScoreScreen
+		*/
 		public override function OnEnter() : void
 		{
 			trace("Entering Score Screen: ");
@@ -85,6 +97,9 @@
 			if (kind != ActionScreen.LOST) Img.CreateScreenSwitchButtonAt("button_back", Screens.MAINMENU, 0, 1100);
 		}
 		
+		/**
+		* function OnExit called upon exiting this ScoreScreen
+		*/
 		public override function OnExit() : void
 		{
 			Results.instance().ResetValues();

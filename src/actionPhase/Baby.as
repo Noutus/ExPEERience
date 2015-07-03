@@ -26,6 +26,9 @@
 	import src.screens.MainMenuScreen;
 	import src.display.Img;
 	
+	/**
+	* class Baby
+	*/
 	public class Baby extends Sprite {
 
 		private static var minBabySpeed: int = 1;
@@ -34,6 +37,11 @@
 		private var speedX: int = calcSpeed();
 		private var speedY: int = calcSpeed();
 		
+		/**
+		* calculates a speed for the baby, between minBabySpeed and maxBabySpeed in any direction
+		* 
+		* @return	int	Calculated speed
+		*/
 		private static function calcSpeed(): int {
 			var speed: int;
 			do {
@@ -45,6 +53,12 @@
 		private var babyController: BabyController;
 		private var actionScreen: ActionScreen;
 		
+		/**
+		* Constructor Baby
+		* 
+		* @param	BabyController	The BabyController this baby is part of
+		* @param	ActionScreen	The ActionScreen this baby is part ofs
+		*/
 		public function Baby(babyController: BabyController, actionScreen: ActionScreen) {
 			this.babyController = babyController;
 			this.actionScreen = actionScreen;
@@ -53,31 +67,26 @@
 			createSleepingImage();
 		}
 		
+		// Maximum amount of times it may try to put this baby somewhere on the screen where no other babies are.
 		private static const maxRandomSpotTries: int = 30;
-		
-		/*public function placeAtFirstAvailableSpot(): Boolean {
-			for (var x: int = 0; x <= Starling.current.stage.stageWidth - this.width; x++) {
-				for (var y: int = 0; y <= Starling.current.stage.stageHeight - this.height; y++) {
-					if (spotOK(x, y)) {
-						this.x = x;
-						this.y = y;
-						return true;
-					}
-				}
-			}
-			return false;
-		}*/
-		
+				
+		/**
+		* function spotOK checks if it's okay to put the baby at the given x, y -coordinates
+		* 
+		* @param	x	The X-position to be checked
+		* @param	y	The Y-position to be checked
+		* @return	Boolean	Whether it's okay to put the baby at the given position or not
+		*/
 		public function spotOK(x: int, y: int): Boolean {
 
+			// All babies on the screen
 			var babies: Vector.<Baby> = babyController.getBabies();
-
-
+			
+			// Go through them all
 			for each (var baby: Baby in babies) {
+				// Except this baby itself
 				if (!(baby == this)) {
-
-				//trace("This button: " + x + ", " + y + ", " + this.width + ", " + this.height + ", checking button: " +button.x + ", " + button.y + ", " + button.width + ", " + button.height);
-				// if overlap
+					// If the x and y position is a position inside the baby that's being checked, then return false (spot not OK)
 					if ((x + this.width >= baby.x) && 
 						(x <= baby.x + baby.width) && 
 						(y + this.height >= baby.y) && 
@@ -87,9 +96,16 @@
 					}
 				}
 			}
+			// Looped through all babies and the x, y-position is in none of them
 			return true;
 		}
 
+		/**
+		* function placeAtRandomSpot places this baby on a spot on the screen
+		* 
+		* @param	int		the amount of times it already tried to put this baby on-screen, should only be used internally by this function
+		* @return	Boolean	Whether it has put the baby on screen or not
+		*/
 		public function placeAtRandomSpot(depth: int = 0): Boolean {
 
 			this.x = Math.floor(Math.random() * (Starling.current.stage.stageWidth - this.width)); 
@@ -107,62 +123,45 @@
 			return true;
 		}
 		
+		/**
+		* function move moves this baby in it's own speed-direction and makes it go the other way if it hits the wall 
+		*/
 		public function move() {
 			this.x += speedX;
 			this.y += speedY;
-		 
-
-			if(this.x <= 0){ 
+	
+			
+			if(this.x <= 0){ // Hit the left wall
 				this.x = 0; 
 				speedX *= -1; 
 		 
-			} else if(this.x >= Starling.current.stage.stageWidth - this.width){ 
+			} else if(this.x >= Starling.current.stage.stageWidth - this.width){ // Hit the right wall
 				this.x = Starling.current.stage.stageWidth - this.width; 
 				speedX *= -1; 
 		 
 			}
-		 
 			
-			if(this.y <= 0){ 
+			if(this.y <= 0){ // Hit the upper wall
 				this.y = 0; 
 				speedY *= -1; 
 		 
-			} else if(this.y >= Starling.current.stage.stageHeight - this.height){ 
+			} else if(this.y >= Starling.current.stage.stageHeight - this.height){ // Hit the bottom wall
 				this.y = Starling.current.stage.stageHeight - this.height; 
 				speedY *= -1; 
 		 
 			}
-			
-			/*var babies: Vector.<Baby> = babyController.getBabies();
-			
-			for each (var baby: Baby in babies) {
-
-				
-				
-				// if overlap
-				if (!(baby == this)) {
-					if ((x + this.width >= baby.x) && 
-						(x <= baby.x + baby.width) && 
-					
-						(y + this.height >= baby.y) && 
-						(y <= baby.y + baby.height)) {
-							
-						trace("Hit a baby");
-						this.speedX *= -1;
-						this.speedY *= -1;
-							
-						baby.speedX *= -1;
-						baby.speedY *= -1;
-					}	
-				}
-			}*/
 		}
 		
+		// Is this baby crying
 		private var crying: Boolean = false;
 		
+		// Images for the states of the baby
 		private var img_crying: BitmapImage;
 		private var img_sleeping: BitmapImage;
-		
+
+		/**
+		* function move createCryingImage just initializes the BitmapImage img_crying
+		*/
 		private function createCryingImage() : void {
 			var bitmapData:BitmapData;
 			var loader:BitmapLoader = new BitmapLoader();
@@ -177,6 +176,9 @@
 			}
 		}
 
+		/**
+		* function move createSleepingImage just initializes the BitmapImage img_sleeping
+		*/
 		private function createSleepingImage() : void {
 			var bitmapData: BitmapData;
 			var loader:BitmapLoader = new BitmapLoader();
@@ -213,13 +215,16 @@
 			}
 		}
 		
-		// Time the baby will cry for in ms, once it gets hit (don't hit babies you bastard!)
+		// Time the baby will cry for in ms, once it gets hit
 		public static var cryTime: Number = 3000; 
 		
+		// The timer that handles the wait-time until it sleeps again
 		private var backToSleepTimer: PauseTimer;
 
+		/**
+		* function clicked is called when the baby has been clicked and will make the baby cry if it isn't already
+		*/
 		public function clicked() {
-			trace('clicked');
 			if (crying) {
 				// Maybe put the time until it sleeps again to cryTime again here?
 				trace('clicked on the crying baby.');
@@ -238,13 +243,18 @@
 
 		}
 
-		
+		/**
+		* function pause pauses any running timers in this baby
+		*/
 		public function pause() {
 			trace('pausing a baby');
 			if (backToSleepTimer)
 				backToSleepTimer.pause();
 		}
 		
+		/**
+		* function resume resumes any paused timers in this baby
+		*/
 		public function resume() {
 			trace('resuming a baby');
 			if (backToSleepTimer)
@@ -257,14 +267,21 @@
 			crying = false;
 		}
 
+		/**
+		* function OnTouch invoked when this baby is touched, checks if the touch is enough to call the clicked() function
+		* 
+		* @See	function Clicked()
+		*/
 		public function OnTouch(event: TouchEvent): void {
 			var touch:Touch = event.touches[0];
-			if (touch.phase == TouchPhase.BEGAN) {
+			if (touch.phase == TouchPhase.BEGAN)
 				if (!actionScreen.isPaused())
 					clicked();
-			}
 		}		
 		
+		/**
+		* function LoadComplete called when the images are loaded
+		*/
 		public function LoadComplete()
 		{
 			addChild(img_sleeping);
