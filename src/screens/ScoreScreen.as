@@ -36,7 +36,7 @@
 			switch(kind) {
 				case ActionScreen.WON:
 					upperText = "Succesfull night, next level!";
-					nextLevelText = "Next level: " + GlobalValues.instance().level;
+					if (GlobalValues.instance().level < 11) nextLevelText = "Next level: " + GlobalValues.instance().level;
 				break;
 				case ActionScreen.FAILED:
 					upperText = "Could have gone better, try again!";
