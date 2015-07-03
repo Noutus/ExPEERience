@@ -80,6 +80,9 @@
 		 * Override from Screen. Is called upon entering the screen. Creates the basic buttons and text.
 		 */
 		public override function OnEnter(): void {
+			
+			GlobalValues.instance().loadOptions();
+			
 			Img.CreateTextAt(this, "HI-SCORE: " + GlobalValues.instance().highScore, 0, 0, 720, 200, 64);
 			Img.CreateScreenSwitchButtonAt("button_back", Screens.MAINMENU, 0, 1100);
 			createTextArea();

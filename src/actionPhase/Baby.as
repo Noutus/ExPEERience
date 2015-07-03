@@ -200,18 +200,18 @@
 				LoadComplete();
 				
 				newSize = Img.GetScaledVector(img_sleeping.width, img_sleeping.height);
-				img_sleeping.width = newSize[0];
-				img_sleeping.height = newSize[1];
+				img_sleeping.width = newSize[0] * 2;
+				img_sleeping.height = newSize[1] * 2;
 			}
 			
 			if (e.imageName == "cry") {
 				img_crying = new BitmapImage(new Bitmap(e.result));
-				img_crying.width = img_crying.width * 1.5;
-				img_crying.height = img_crying.height * 1.5;
+				img_crying.width = img_crying.width;
+				img_crying.height = img_crying.height;
 				
 				newSize = Img.GetScaledVector(img_crying.width, img_crying.height);
-				img_crying.width = newSize[0];
-				img_crying.height = newSize[1];
+				img_crying.width = newSize[0] * 4;
+				img_crying.height = newSize[1] * 4;
 			}
 		}
 		
