@@ -134,15 +134,23 @@
 			this.dispose();
 		}
 
+		// The amount of time between pleasure decreases, which depends on the difficulty:
+		// hard   =	100	= 10x per second
+		// medium = 130	= 7.6x per second
+		// easy   =	160	= 6.25x per second
+		private var pauseTimerMS: int = 190 - (30 * GlobalValues.instance().difficulty);
+		
 		/**
 		 * function AddPleasureTimer initializes the pleasureTimer
 		 */
 		private function addPleasureTimer(): void {
-			pleasureTimer = new PauseTimer(100);
+			pleasureTimer = new PauseTimer(pauseTimerMS);
 
 			pleasureTimer.addEventListener("timer", pleasureDecrease);
 		}
 
+		
+		
 		/**
 		 * function pleasureDecrease called all the time by the pleasureTimer, slightly decreases the pleasure.
 		 *

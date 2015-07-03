@@ -21,8 +21,8 @@
 		
 		// The difficulties in the game
 		private static var difficulties: Array = [1, 2, 3];
-		// The names of the difficulties
-		private static var difficultyNames: Array = ["easy", "medium", "hard"];
+		// The names of the difficulties 
+		private static var difficultyNames: Array = ["beginner", "experienced", "professional"];
 	
 		/**
 		* constructor OptionScreen

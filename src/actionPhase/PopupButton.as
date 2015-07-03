@@ -117,12 +117,12 @@
 			this.height *= ActionValues.instance().GetModifier(ActionValues.BUTTON_SIZE);
 			
 			// Initialize the removeTimer
-			removeTimer = new PauseTimer(1000 * ActionValues.instance().GetModifier(ActionValues.BUTTONS_ALIVE_TIME), 1);
+			removeTimer = new PauseTimer(1000 * ActionValues.instance().GetModifier(ActionValues.BUTTONS_ALIVE_TIME) + (0.75 + 0.25 * GlobalValues.instance().difficulty), 1);
 			removeTimer.addEventListener(TimerEvent.TIMER_COMPLETE, 
 				function (event: TimerEvent): void {
 					remove();
 				});
-				
+			
 			removeTimer.start();		
 		}
 		
