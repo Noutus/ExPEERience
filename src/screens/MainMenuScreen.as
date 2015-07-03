@@ -35,17 +35,20 @@
 			GlobalValues.instance().LoadGame();
 			GlobalValues.instance().loadOptions();
 
+			var savedGame: Boolean = GlobalValues.instance().totalScore > 0;
 			// If there is a saved game, show the continue button.
-			if (GlobalValues.instance().totalScore > 0) {
-				Img.CreateScreenSwitchButtonAt("main_button_continue", Screens.PRESSURE, 170, 10);
-			} else GlobalValues.instance().ResetValues();
-
+			if (savedGame) {
+				Img.CreateScreenSwitchButtonAt("main_button_continue", Screens.PRESSURE, 170, 48);
+			} else 
+				GlobalValues.instance().ResetValues();
+			//48, 48, 46, 46, 46, 46
+			//y = 1280
+			// Buttons y = 200
 			// Add other buttons.
-			Img.CreateScreenSwitchButtonAt("main_button_play", Screens.GENDER, 170, 220);
-			Img.CreateScreenSwitchButtonAt("main_button_rules", Screens.RULES, 170, 430);
-			Img.CreateScreenSwitchButtonAt("main_button_options", Screens.OPTION, 170, 640);
-			Img.CreateScreenSwitchButtonAt("main_button_achievements", Screens.STATISTICS, 170, 850);
-			exitButton = Img.GetNewImageAt("main_button_exit", 170, 1060);
+			Img.CreateScreenSwitchButtonAt("main_button_play", Screens.GENDER, 170, savedGame? 294: 96);
+			Img.CreateScreenSwitchButtonAt("main_button_options", Screens.OPTION, 170, savedGame? 540: 392);
+			Img.CreateScreenSwitchButtonAt("main_button_achievements", Screens.STATISTICS, 170, savedGame? 786: 688);
+			exitButton = Img.GetNewImageAt("main_button_exit", 170, savedGame? 1032: 984);
 			exitButton.addEventListener(TouchEvent.TOUCH, onTouch);
 
 			// Play music.
