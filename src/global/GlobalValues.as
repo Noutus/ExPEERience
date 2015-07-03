@@ -131,6 +131,8 @@
 			var _data: SharedObject = SharedObject.getLocal("SaveGame");
 			Sound.setMute(_data.data.muted);
 			difficulty = _data.data.difficulty;
+			if (difficulty == 0)
+				difficulty = 2;
 		}
 
 		/**
