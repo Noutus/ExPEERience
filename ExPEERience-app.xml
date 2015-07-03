@@ -536,7 +536,18 @@
   
 
   
-<!-- To localize the description, use the following format for the description element.<description><text xml:lang="en">English App description goes here</text><text xml:lang="fr">French App description goes here</text><text xml:lang="ja">Japanese App description goes here</text></description>-->
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- To localize the description, use the following format for the description element.<description><text xml:lang="en">English App description goes here</text><text xml:lang="fr">French App description goes here</text><text xml:lang="ja">Japanese App description goes here</text></description>-->
   <name>ExPEERience</name>
   
 
@@ -1069,7 +1080,18 @@
   
 
   
-<!-- To localize the name, use the following format for the name element.<name><text xml:lang="en">English App name goes here</text><text xml:lang="fr">French App name goes here</text><text xml:lang="ja">Japanese App name goes here</text></name>-->
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- To localize the name, use the following format for the name element.<name><text xml:lang="en">English App name goes here</text><text xml:lang="fr">French App name goes here</text><text xml:lang="ja">Japanese App name goes here</text></name>-->
   <copyright/>
   <initialWindow>
     <content>ExPEERience.swf</content>
@@ -1080,7 +1102,12 @@
     <aspectRatio>portrait</aspectRatio>
     <renderMode>direct</renderMode>
     <autoOrients>true</autoOrients></initialWindow>
-  <icon/>
+  <icon>
+    <image36x36>AppIconsForPublish/logox36.png</image36x36>
+    <image48x48>AppIconsForPublish/logox48.png</image48x48>
+    <image72x72>AppIconsForPublish/logox72.png</image72x72>
+    <image96x96>AppIconsForPublish/logox96.png</image96x96>
+  </icon>
   <customUpdateUI>false</customUpdateUI>
   <allowBrowserInvocation>false</allowBrowserInvocation>
   <android>

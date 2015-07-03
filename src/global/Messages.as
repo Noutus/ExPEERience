@@ -76,9 +76,9 @@
 		public function getNewLevelText(level : int) : String {
 			var rv : String = "Cannot find message.";
 			switch(level) {
-				case 1: rv = "Tap the 'hug' buttons to increase fun."; break;
-				case 2: rv = "Tap the 'kiss' buttons to gain more fun."; break;
-				case 3: rv = "Tap the 'sex' buttons to gain more fun. But beware! Having sex without a condom also increases the risk to have a baby."; break;
+				case 1: rv = "Tap the 'hug' buttons to increase pleasure."; break;
+				case 2: rv = "Tap the 'kiss' buttons to gain more pleasure."; break;
+				case 3: rv = "Tap the 'sex' buttons to gain more pleasure. But beware! Having sex without a condom also increases the risk to have a baby."; break;
 				case 4: rv = ""; break;
 				case 5: rv = "The game just got harder! Buttons are now smaller and more difficult to tap."; break;
 				case 6: rv = ""; break;

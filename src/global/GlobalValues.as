@@ -174,6 +174,7 @@
 		 */
 		public function unlockBadge(index: int) {
 			badgesUnlocked = badgesUnlocked.substr(0, index) + "t" + badgesUnlocked.substr(index + 1);
+			saveOptions();
 		}
 		
 		public function addButtonTouched(i: int): void {
@@ -181,15 +182,22 @@
 			{
 				case PopupButton.POPUP_TOUCH: {
 					hugPressed++;
+					saveOptions();
+					trace("hug!" + hugPressed);
 					if (hugPressed > 1000) unlockBadge(StatisticsScreen.BADGE_HUG);
+					break;
 				}
 				case PopupButton.POPUP_KISS: {
 					kissPressed++;
+					saveOptions();
 					if (kissPressed > 1000) unlockBadge(StatisticsScreen.BADGE_KISS);
+					break;
 				}
 				case PopupButton.POPUP_SEX: {
 					sexPressed++;
+					saveOptions();
 					if (sexPressed > 1000) unlockBadge(StatisticsScreen.BADGE_SEX);
+					break;
 				}
 			}
 			if (hugPressed + kissPressed + sexPressed > 5000) unlockBadge(StatisticsScreen.BADGE_BUTTON);

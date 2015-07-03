@@ -50,7 +50,7 @@
 			new Array("badge_gold", "I love you!", "You and your partner are officially lovers!", "Reach level 5"),
 			new Array("badge_gold", "Commitment", "Nothing can break you and your partner apart!", "Reach level 7"),
 			new Array("badge_gold", "Engagement", "You are a perfect fit with your partner!", "Reach level 9"),
-			new Array("badge_black", "Perfect Relationship", "You managed to obtain the perfet relationship!", "Finish the game"),
+			new Array("badge_black", "Perfect Relationship", "You managed to obtain the perfect relationship!", "Finish the game"),
 			new Array("badge_gold", "Family Planning 1", "Plan to have a great relationship with a child. Finish the game with exactly one baby.", GlobalValues.instance().babies.toString() + " / 1 baby"),
 			new Array("badge_black", "Family Planning 2", "Wait to have a baby until you are sure to have one.", GlobalValues.instance().babies.toString() + " / 0 babies"),
 			new Array("badge_gold", "Teddy Bear", "You love to cuddle. You pressed the hug button 1000 times.", GlobalValues.instance().hugPressed.toString() + " / 1000 hugs"),
